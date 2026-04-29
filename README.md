@@ -1,0 +1,1 @@
+Personal portfolio website built with pure HTML/CSS/JS — no framework. A hands-on project to learn web development, featuring a dynamic star canvas, smooth scroll parallax, and an always up-to-date showcase of my education, projects and skills.
