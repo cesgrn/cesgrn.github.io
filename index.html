@@ -1,0 +1,1986 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <!--============================================================C
+  ÉSAR GARIN — PERSONAL PORTFOLIO
+  ============================================================
+  QUICK EDIT GUIDE: Use Ctrl+F (or Cmd+F) to search for [EDIT] tags in this file — 
+  they mark every section to modify.
+  ============================================================-->
+  <title>
+   César Garin — EPFL
+  </title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200&amp;family=Barlow+Condensed:wght@200;300;400;500;600&amp;display=swap" rel="stylesheet"/>
+  <style>
+   * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box
+}
+
+:root {
+    --w: #FFF;
+    --off: #9A9A9A;
+    --dim: #4A4A4A;
+    --line: rgba(255, 255, 255, 0.1);
+    --bg: #080808;
+    --acc: #E8E0C8
+}
+
+body {
+    background: var(--bg);
+    color: var(--w);
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    font-size: 16px
+}
+
+a {
+    color: inherit;
+    text-decoration: none
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 3rem;
+    height: 58px;
+    background: rgba(8, 8, 8, 0.88);
+    border-bottom: 0.5px solid var(--line);
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    backdrop-filter: blur(12px)
+}
+
+.logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none
+}
+
+.nav-links a {
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--off);
+    transition: color .2s
+}
+
+.nav-links a:hover {
+    color: var(--w)
+}
+
+.nav-cta {
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: 0.5px solid rgba(255, 255, 255, 0.35);
+    padding: 8px 20px;
+    transition: all .2s
+}
+
+.nav-cta:hover {
+    background: var(--w);
+    color: var(--bg)
+}
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 3rem 5rem;
+    position: relative;
+    overflow: hidden
+}
+
+#sf {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0
+}
+
+.hero-tag {
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--off);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 12px
+}
+
+.hero-tag::before {
+    content: '';
+    width: 28px;
+    height: 0.5px;
+    background: var(--off)
+}
+
+.hero h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(3.5rem, 10vw, 7.5rem);
+    font-weight: 200;
+    line-height: .92;
+    letter-spacing: -.01em;
+    text-transform: uppercase;
+    margin-bottom: 2rem
+}
+
+.hero h1 span {
+    display: block;
+    color: var(--off);
+    font-weight: 100;
+    font-style: italic;
+    font-family: 'Barlow', sans-serif
+}
+
+.hero-desc {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--off);
+    max-width: 500px;
+    line-height: 1.8;
+    margin-bottom: 2.5rem
+}
+
+.hero-btns {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap
+}
+
+.btn-s {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 13px 30px;
+    background: var(--w);
+    color: var(--bg);
+    transition: opacity .2s;
+    cursor: pointer
+}
+
+.btn-s:hover {
+    opacity: .85
+}
+
+.btn-o {
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 13px 30px;
+    border: 0.5px solid rgba(255, 255, 255, .4);
+    transition: background .2s;
+    cursor: pointer
+}
+
+.btn-o:hover {
+    background: rgba(255, 255, 255, .08)
+}
+
+.scroll-ind {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px
+}
+
+.scroll-ind span {
+    width: 0.5px;
+    height: 36px;
+    background: linear-gradient(to bottom, var(--dim), transparent);
+    display: block
+}
+
+.scroll-ind p {
+    font-size: 9px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--dim)
+}
+
+section {
+    padding: 6rem 3rem;
+    border-top: 0.5px solid var(--line)
+}
+
+.sec-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: .75rem
+}
+
+.sec-h {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 200;
+    text-transform: uppercase;
+    letter-spacing: .02em;
+    line-height: 1.05;
+    margin-bottom: 3.5rem
+}
+
+.sec-h em {
+    color: var(--dim);
+    font-style: normal
+}
+
+.profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem
+}
+
+.profile-text {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--off);
+    line-height: 1.9
+}
+
+.profile-text strong {
+    color: var(--w);
+    font-weight: 400
+}
+
+.profile-text p+p {
+    margin-top: 1.1rem
+}
+
+.stats-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5px;
+    background: var(--line)
+}
+
+.stat-row {
+    background: rgba(8, 8, 8, 0.75);
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between
+}
+
+.stat-row:hover {
+    background: #0f0f0f
+}
+
+.sv {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 2rem;
+    font-weight: 200;
+    letter-spacing: -.01em
+}
+
+.sl {
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--dim)
+}
+
+.tiles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.5px;
+    background: transparent;
+    margin-top: 3.5rem
+}
+
+.tile {
+    background: rgba(8, 8, 8, 0.75);
+    padding: 2.5rem 2rem;
+    transition: background .3s
+}
+
+.tile:hover {
+    background: #0f0f0f
+}
+
+.t-n {
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: .2em;
+    color: var(--dim);
+    margin-bottom: 1.75rem
+}
+
+.t-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    margin-bottom: .75rem
+}
+
+.t-body {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--off);
+    line-height: 1.75
+}
+
+.tl {
+    display: flex;
+    flex-direction: column
+}
+
+.tl-item {
+    display: grid;
+    grid-template-columns: 160px 1px 1fr;
+    gap: 0 2.5rem;
+    padding: 2.5rem 0;
+    border-bottom: 0.5px solid var(--line);
+    align-items: start
+}
+
+.tl-item:last-child {
+    border-bottom: none
+}
+
+.tl-date {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--dim);
+    text-align: right;
+    padding-top: 3px
+}
+
+.tl-sep {
+    background: rgba(255, 255, 255, .12);
+    position: relative
+}
+
+.tl-sep::before {
+    content: '';
+    position: absolute;
+    top: 7px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--w)
+}
+
+.tl-role {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    margin-bottom: 3px
+}
+
+.tl-org {
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--acc);
+    margin-bottom: 10px
+}
+
+.tl-desc {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--dim);
+    line-height: 1.75
+}
+
+.tl-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px
+}
+
+.tag {
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: .1em;
+    padding: 3px 10px;
+    border: 0.5px solid var(--dim);
+    color: var(--off)
+}
+
+.proj-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 0.5px;
+    background: transparent;
+    margin-top: 3.5rem
+}
+
+.proj-card {
+    background: rgba(8, 8, 8, 0.75);
+    padding: 2.5rem 2rem;
+    transition: background .3s;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem
+}
+
+.proj-card:hover {
+    background: #0f0f0f
+}
+
+.proj-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem
+}
+
+.proj-lang {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 0.5px solid var(--dim);
+    color: var(--off);
+    white-space: nowrap
+}
+
+.proj-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    line-height: 1.1
+}
+
+.proj-sub {
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--acc);
+    margin-top: 2px
+}
+
+.proj-desc {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--dim);
+    line-height: 1.75;
+    flex: 1
+}
+
+.proj-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px
+}
+
+.proj-tag {
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: .08em;
+    padding: 2px 9px;
+    border: 0.5px solid rgba(255, 255, 255, .1);
+    color: var(--dim)
+}
+
+.coursera-card {
+    background: rgba(8, 8, 8, 0.75);
+    border: 0.5px solid var(--line);
+    margin-top: 3.5rem;
+    padding: 2.5rem 2rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 2rem;
+    align-items: start;
+    transition: background .3s
+}
+
+.coursera-card:hover {
+    background: rgba(8, 8, 8, 0.75)
+}
+
+.cc-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px
+}
+
+.cc-dot {
+    width: 44px;
+    height: 44px;
+    border: 0.5px solid var(--dim);
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+.cc-dot span {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--off)
+}
+
+.cc-platform {
+    font-size: 9px;
+    font-weight: 300;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--dim)
+}
+
+.cc-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    margin-bottom: 4px
+}
+
+.cc-inst {
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--acc);
+    margin-bottom: 10px
+}
+
+.cc-desc {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--dim);
+    line-height: 1.75;
+    margin-bottom: 12px
+}
+
+.skills-wrap {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5px;
+    background: var(--line);
+    margin-top: 3.5rem
+}
+
+.sk {
+    background: rgba(8, 8, 8, 0.75);
+    padding: 2.5rem 2rem;
+    transition: background .3s
+}
+
+.sk:hover {
+    background: #0f0f0f
+}
+
+.sk-cat {
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 1.25rem
+}
+
+.sk-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 24px;
+    font-weight: 200;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    margin-bottom: 1.25rem
+}
+
+.sk-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px
+}
+
+.sk-item {
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: .08em;
+    padding: 4px 12px;
+    border: 0.5px solid rgba(255, 255, 255, .15);
+    color: var(--off)
+}
+
+.lang-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5px;
+    background: var(--line);
+    margin-top: 0
+}
+
+.lang-cell {
+    background: rgba(8, 8, 8, 0.75);
+    padding: 1.75rem 2rem
+}
+
+.lang-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+    text-transform: uppercase;
+    margin-bottom: 4px
+}
+
+.lang-level {
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--off)
+}
+
+.amb-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5px;
+    background: transparent
+}
+
+.amb {
+    background: rgba(8, 8, 8, 0.75);
+    padding: 2.5rem 2rem;
+    transition: background .3s;
+    cursor: default
+}
+
+.amb:hover {
+    background: #0f0f0f
+}
+
+.amb-n {
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: .2em;
+    color: var(--dim);
+    margin-bottom: 1.5rem
+}
+
+.amb-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    line-height: 1.2;
+    margin-bottom: .75rem
+}
+
+.amb-body {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--dim);
+    line-height: 1.75
+}
+
+.contact-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start
+}
+
+.contact-big {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 200;
+    text-transform: uppercase;
+    letter-spacing: .02em;
+    line-height: 1.05;
+    margin-bottom: 1.5rem
+}
+
+.contact-sub {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--dim);
+    line-height: 1.8;
+    max-width: 360px
+}
+
+.clinks {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5px;
+    background: var(--line)
+}
+
+.clink {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--bg);
+    padding: 1.2rem 1.5rem;
+    transition: background .2s;
+    gap: 1rem
+}
+
+.clink:hover {
+    background: #111
+}
+
+.cl-l {
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--dim);
+    min-width: 70px
+}
+
+.cl-v {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--off)
+}
+
+.cl-a {
+    font-size: 14px;
+    color: var(--dim)
+}
+
+footer {
+    padding: 2rem 3rem;
+    border-top: 0.5px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+}
+
+.footer-l {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--dim)
+}
+
+.footer-r {
+    font-size: 10px;
+    font-weight: 300;
+    color: var(--dim);
+    letter-spacing: .08em
+}
+
+.interests {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 2.5rem
+}
+
+.int-item {
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border: 0.5px solid rgba(255, 255, 255, .1);
+    color: var(--dim)
+}
+
+@media(max-width:768px) {
+    nav {
+        padding: 0 1.5rem
+    }
+    .nav-links {
+        display: none
+    }
+    .hero,
+    section {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem
+    }
+    .hero {
+        padding-bottom: 4rem
+    }
+    .profile-grid,
+    .contact-inner {
+        grid-template-columns: 1fr
+    }
+    .skills-wrap,
+    .amb-row,
+    .lang-grid {
+        grid-template-columns: 1fr
+    }
+    .tl-item {
+        grid-template-columns: 1fr;
+        gap: 6px
+    }
+    .tl-sep {
+        display: none
+    }
+    .tl-date {
+        text-align: left
+    }
+    .coursera-card {
+        grid-template-columns: 1fr
+    }
+}
+    nav, section, footer, .hero {
+        position: relative;
+        z-index: 1
+    }
+  </style>
+ </head>
+ <body>
+    <canvas id="sf">
+   </canvas>
+  <!--============================================================
+  NAVIGATION [EDIT] Modifie les liens de la nav si tu ajoutes/supprimes des sections. 
+  Chaque <a href="#id">pointe vers l'id d'une <section id="...">plus bas dans la page.
+  ============================================================-->
+  <nav>
+   <span class="logo">
+    César Garin
+   </span>
+   <ul class="nav-links">
+    <li>
+     <a href="#about">
+      Profile
+     </a>
+    </li>
+    <li>
+     <a href="#projects">
+      Projects
+     </a>
+    </li>
+    <li>
+     <a href="#experience">
+      Background
+     </a>
+    </li>
+    <li>
+     <a href="#skills">
+      Skills
+     </a>
+    </li>
+    <li>
+     <a href="#ambitions">
+      Ambitions
+     </a>
+    </li>
+   </ul>
+   <a class="nav-cta" href="#contact">
+    Contact
+   </a>
+  </nav>
+  <!--============================================================
+  HERO — SECTION D'ACCUEIL
+============================================================-->
+  <div class="hero" id="home">
+   <!-- [EDIT] Accroche sous le nom — statut actuel,
+disponibilité -->
+   <div class="hero-tag">
+    BSc Computer and Communication Sciences · EPFL · Available July 2026
+   </div>
+   <!-- [EDIT] Ton nom — ne modifie que le texte,
+pas les balises -->
+   <h1>
+    César
+    <br/>
+    <span>
+     Charles Sébastien
+    </span>
+    Garin
+   </h1>
+   <!-- [EDIT] Phrase de présentation principale -->
+   <p class="hero-desc">
+    2nd-year EPFL student,
+    combining mathematical rigor, software engineering,
+    a deep interest in AI and financial markets.
+    B permit — authorized to work in Switzerland.
+   </p>
+   <div class="hero-btns">
+    <a class="btn-s" href="#contact">
+     Get in Touch
+    </a>
+    <a class="btn-o" href="#projects">
+     My projects
+    </a>
+   </div>
+   <div class="scroll-ind">
+    <p>
+     Scroll
+    </p>
+    <span>
+    </span>
+   </div>
+  </div>
+  <!--============================================================
+  SECTION 01 — PROFILE / À PROPOS
+  ============================================================-->
+  <section id="about">
+   <div class="sec-label">
+    01 · Profile
+   </div>
+   <h2 class="sec-h">
+    Engineering.
+    <br/>
+    <em>
+     Marckets. Excellence.
+    </em>
+   </h2>
+   <div class="profile-grid">
+    <!-- [EDIT] Paragraphes de présentation -->
+    <div class="profile-text">
+     <p>
+      Trained at
+      <strong>
+       EPFL
+      </strong>
+      in Computer &amp; Communication Sciences,
+      I am building 
+      advanced skills in algorithms, Machine Learning, probability, mathematic analysis and systems architecture.
+     </p>
+     <p>
+      Alongside my technical education,
+      I have developed a strong interest in both
+      <strong>
+       AI and financial markets
+      </strong>
+      : Yale Financial Markets course on Coursera, personal 
+      stock & crypto portfolio management, automated Python tracking scripts, 
+      and study of DCF fundamentals.
+     </p>
+     <p>
+      Multilingual (FR · EN · DE), proactive and experienced in high-performance 
+      environments, I am seeking a full-time position in
+      <strong>
+       july 2026
+      </strong>
+      in Switzerland.
+     </p>
+    </div>
+    <!-- [EDIT] Statistiques rapides — modifie la valeur (.sv) et le label (.sl) -->
+    <div class="stats-col">
+     <div class="stat-row">
+      <span class="sv">
+       EPFL
+      </span>
+      <span class="sl">
+       École Polytechnique Fédérlale · Lausanne
+      </span>
+     </div>
+     <div class="stat-row">
+      <!-- [EDIT] Exemple: passe à "Bac+3" quand tu entres en 3e année -->
+      <span class="sv">
+       Bac+2
+      </span>
+      <span class="sl">
+       2nd year · BSc CS
+      </span>
+     </div>
+     <div class="stat-row">
+      <span class="sv">
+       6
+      </span>
+      <span class="sl">
+       Academic &amp; personnal projects 
+      </span>
+     </div>
+     <div class="stat-row">
+      <span class="sv">
+       3
+      </span>
+      <span class="sl">
+       Languages
+      </span>
+     </div>
+     <div class="stat-row">
+      <span class="sv">
+       CH
+      </span>
+      <span class="sl">
+       B Permit · Work permit
+      </span>
+     </div>
+    </div>
+   </div>
+   <!-- [EDIT] Les 4 tuiles de mise en avant — titre+description courte -->
+   <div class="tiles">
+    <div class="tile">
+     <div class="t-n">
+      01
+     </div>
+     <div class="t-title">
+      Tech &amp; AI
+     </div>
+     <div class="t-body">
+      ML, AI reliability and scalability,
+      Neural Networks,
+      advanced algorithm,
+      RISC-V architecture,
+      cybersecurity. 
+     </div>
+    </div>
+    <div class="tile">
+     <div class="t-n">
+      02
+     </div>
+     <div class="t-title">
+      Quant Finance 
+     </div>
+     <div class="t-body">
+      DCF modeling, quant trading, 
+      stock & crypto portfolio, 
+      Python scripting for market data. 
+      Yale Financial Markets course.
+     </div>
+    </div>
+    <div class="tile">
+     <div class="t-n">
+      03
+     </div>
+     <div class="t-title">
+      Concrete projects
+     </div>
+     <div class="t-body">
+      6 projects covering C, Java, Scala, Python, Verilog, Assembly — from low-level to applied ML.
+     </div>
+    </div>
+    <div class="tile">
+     <div class="t-n">
+      04
+     </div>
+     <div class="t-title">
+      Leadership
+     </div>
+     <div class="t-body">
+      Forum EPFL Staff (150+ companies), PolySI supervision. Organization, coordination, teamwork (group coding projects).
+     </div>
+    </div>
+   </div>
+  </section>
+  <!--============================================================SECTION 02 — PROJECTS============================================================-->
+  <section id="projects">
+   <div class="sec-label">
+    02 · Projects
+   </div>
+   <h2 class="sec-h">
+    ACHIEVEMENTS &amp;
+    <br/>
+    <em>
+     PROJECTS
+    </em>
+   </h2>
+   <!-- COURS YALE — COURSERA -->
+   <!-- [EDIT] Modifie le titre,
+l'institution, la description et les tags -->
+   <div class="coursera-card">
+    <div class="cc-badge">
+     <div class="cc-dot">
+      <span>
+       Yale
+      </span>
+     </div>
+     <div class="cc-platform">
+      Coursera
+     </div>
+    </div>
+    <div>
+     <div class="cc-title">
+      Financial Markets
+     </div>
+     <div class="cc-inst">
+      Yale University — Robert Shiller · Coursera
+     </div>
+     <div class="cc-desc">
+      Comprehensive course on financial markets taught by Nobel Prize winner Robert Shiller. 
+      Covers equity and bond markets, derivatives, portfolio management, 
+      market psychology and global financial institutions.
+     </div>
+     <div class="tl-tags">
+      <span class="tag">
+       Financial Markets
+      </span>
+      <span class="tag">
+       Derivatives
+      </span>
+      <span class="tag">
+       Portfolio Management
+      </span>
+      <span class="tag">
+       Risk Analysis
+      </span>
+      <span class="tag">
+       Financial Institutions
+      </span>
+     </div>
+    </div>
+   </div>
+   <!-- GRILLE DE PROJETS -->
+   <!-- [EDIT] Pour chaque projet: modifie proj-title,
+proj-sub,
+proj-lang,
+proj-desc et les <span class="proj-tag">-->
+   <!-- [EDIT] Pour AJOUTER un projet: copie-colle un bloc <div class="proj-card">complet et modifie son contenu -->
+   <!-- [EDIT] Pour SUPPRIMER un projet: supprime tout le bloc <div class="proj-card">-->
+   <div class="proj-grid">
+    <div class="proj-card">
+     <div class="proj-header">
+      <div>
+       <div class="proj-title">
+        Software Construction
+       </div>
+       <div class="proj-sub">
+        Software Engineering · EPFL
+       </div>
+      </div>
+      <!-- [EDIT] Le badge langage en haut à droite -->
+      <span class="proj-lang">
+       Java / Scala
+      </span>
+     </div>
+     <div class="proj-desc">
+      Robust software development applying software engineering principles: 
+      abstraction, modularity, unit testing and integration. 
+      API design, error handling and technical documentation. 
+      Built using Java and Scala, including the creation of a mini card game involving many players — "Le Président".
+     </div>
+     <div class="proj-tags">
+      <span class="proj-tag">
+       Abstraction
+      </span>
+      <span class="proj-tag">
+       Testing
+      </span>
+      <span class="proj-tag">
+       API design
+      </span>
+      <span class="proj-tag">
+       Scala
+      </span>
+      <span class="proj-tag">
+       Modularity
+      </span>
+     </div>
+    </div>
+    <div class="proj-card">
+     <div class="proj-header">
+      <div>
+       <div class="proj-title">
+        Computer Architecture
+       </div>
+       <div class="proj-sub">
+        Low level architecture · EPFL
+       </div>
+      </div>
+      <span class="proj-lang">
+       Verilog / ASM
+      </span>
+     </div>
+     <div class="proj-desc">
+      Design and simulation of digital circuits in Verilog, 
+      implementation in RISC-V Assembly. Understanding of the CPU pipeline,
+       memory management, interrupts and low-level instruction execution. 
+      Includes the design of a mini processor and a Game of Life implementation in Assembly
+     </div>
+     <div class="proj-tags">
+      <span class="proj-tag">
+       RISC-V
+      </span>
+      <span class="proj-tag">
+       Pipeline CPU
+      </span>
+      <span class="proj-tag">
+       Verilog HDL
+      </span>
+      <span class="proj-tag">
+       Memory
+      </span>
+      <span class="proj-tag">
+       Assembly
+      </span>
+     </div>
+    </div>
+    <div class="proj-card">
+     <div class="proj-header">
+      <div>
+       <div class="proj-title">
+        Artificial Intelligence
+       </div>
+       <div class="proj-sub">
+        Machine Learning · EPFL
+       </div>
+      </div>
+      <span class="proj-lang">
+       Python
+      </span>
+     </div>
+     <div class="proj-desc">
+      Implementation of supervised and unsupervised ML algorithms, 
+      neural networks, optimization via gradient descent. 
+      Applied projects in classification, 
+      regression and signal processing using NumPy, Pandas and scikit-learn.
+     </div>
+     <div class="proj-tags">
+      <span class="proj-tag">
+       Supervised ML
+      </span>
+      <span class="proj-tag">
+       Neural Networks
+      </span>
+      <span class="proj-tag">
+       NumPy
+      </span>
+      <span class="proj-tag">
+       Pandas
+      </span>
+      <span class="proj-tag">
+       Optimization
+      </span>
+     </div>
+    </div>
+    <div class="proj-card">
+     <div class="proj-header">
+      <div>
+       <div class="proj-title">
+        Object-Oriented
+       </div>
+       <div class="proj-sub">
+        OOP &amp;
+design patterns · EPFL
+       </div>
+      </div>
+      <span class="proj-lang">
+       Java
+      </span>
+     </div>
+     <div class="proj-desc">
+      Object-oriented software design: inheritance, 
+      polymorphism, encapsulation, design patterns (Factory, Observer, Strategy). 
+      Development of complex Java projects with dependency management and MVC architecture. 
+      Includes a grid-based mini game project a routing algorithm for the Lausanne public transport network.
+     </div>
+     <div class="proj-tags">
+      <span class="proj-tag">
+       OOP
+      </span>
+      <span class="proj-tag">
+       Design patterns
+      </span>
+      <span class="proj-tag">
+       MVC
+      </span>
+      <span class="proj-tag">
+       Inheritance
+      </span>
+      <span class="proj-tag">
+       Polymorphisme
+      </span>
+     </div>
+    </div>
+    <div class="proj-card">
+     <div class="proj-header">
+      <div>
+       <div class="proj-title">
+        Systems Programming
+       </div>
+       <div class="proj-sub">
+        Systems-Oriented Programming · EPFL
+       </div>
+      </div>
+      <span class="proj-lang">
+       C
+      </span>
+     </div>
+     <div class="proj-desc">
+      Low-level programming in C: manual memory management (malloc/free), 
+      pointers, data structures, system calls,
+      process and concurrency management. Deep interface between software and hardware.
+     </div>
+     <div class="proj-tags">
+      <span class="proj-tag">
+       Memory Management
+      </span>
+      <span class="proj-tag">
+       Pointers
+      </span>
+      <span class="proj-tag">
+       Syscalls
+      </span>
+      <span class="proj-tag">
+       Concurrency
+      </span>
+      <span class="proj-tag">
+       Data Structures
+      </span>
+     </div>
+    </div>
+    <div class="proj-card">
+     <div class="proj-header">
+      <div>
+       <div class="proj-title">
+        Personnal Finance Project
+       </div>
+       <div class="proj-sub">
+        Quantitative · Personal
+       </div>
+      </div>
+      <span class="proj-lang">
+       Python
+      </span>
+     </div>
+     <div class="proj-desc">
+      Python scripts for automated market trend tracking (stocks, crypto). Analytical management of a personal portfolio with risk analysis. Study of DCF fundamentals, financial statement reading and valuation modeling.
+     </div>
+     <div class="proj-tags">
+      <span class="proj-tag">
+       Scraping
+      </span>
+      <span class="proj-tag">
+       Risk Analysis
+      </span>
+      <span class="proj-tag">
+       DCF
+      </span>
+      <span class="proj-tag">
+       Valuation
+      </span>
+      <span class="proj-tag">
+       Automation
+      </span>
+     </div>
+    </div>
+   </div>
+  </section>
+  <!--============================================================
+  SECTION 03 — BACKGROUND (EDUCATION + EXPERIENCE)
+  ============================================================-->
+  <section id="experience">
+   <div class="sec-label">
+    03 · Background
+   </div>
+   <h2 class="sec-h">
+    Education &amp;
+    <br/>
+    <em>
+     Experience
+    </em>
+   </h2>
+   <!-- [EDIT] Timeline — each .tl-item = one entry. To ADD an entry: copy a full .tl-item block. To MODIFY: change tl-date, tl-role, tl-org, tl-desc and the tags. To DELETE: remove the entire .tl-item block. -->
+   <div class="tl">
+    <div class="tl-item">
+     <!-- [EDIT] Date on the left -->
+     <div class="tl-date">
+      Sept 2024 — Present
+     </div>
+     <div class="tl-sep">
+     </div>
+     <div>
+      <!-- [EDIT] Job title or degree -->
+      <div class="tl-role">
+       BSc Computer and Communication Sciences
+      </div>
+      <!-- [EDIT] Institution / company name -->
+      <div class="tl-org">
+       EPFL — Swiss Federal Institute of Technology Lausanne
+      </div>
+      <!-- [EDIT] Description -->
+      <div class="tl-desc">
+       Elite program conducted entirely in English. Key courses: Machine Learning,
+       ML for Signal Processing, Computer Systems, Algorithms, Probability & Statistics, 
+       Cybersecurity, Artificial Intelligence, Computer Architecture, 
+       Mathematical Analysis, Algebra, Software Construction.
+      </div>
+      <!-- [EDIT] Skill tags — add/remove <span class="tag">-->
+      <div class="tl-tags">
+       <span class="tag">
+        Python
+       </span>
+       <span class="tag">
+        Java
+       </span>
+       <span class="tag">
+        Scala
+       </span>
+       <span class="tag">
+        C
+       </span>
+       <span class="tag">
+        Verilog
+       </span>
+       <span class="tag">
+        RISC-V
+       </span>
+       <span class="tag">
+        LaTeX
+       </span>
+       <span class="tag">
+        Machine Learning
+       </span>
+      </div>
+     </div>
+    </div>
+    <!-- [EDIT] DTU EXCHANGE EXAMPLE — uncomment and fill in when confirmed
+ <div class="tl-item"><div class="tl-date">Sept 2025 — Juin 2026</div><div class="tl-sep"></div><div><div class="tl-role">Exchange Semester</div>
+ <div class="tl-org">DTU — Danmarks Tekniske Universitet, Copenhagen</div><div class="tl-desc">Échange académique en 3e année de BSc. Cours suivis in English dans un environnement international et pluridisciplinaire. </div><div class="tl-tags"><span class="tag">International Exchange</span><span class="tag">Danemark</span></div></div></div>-->
+    <div class="tl-item">
+     <div class="tl-date">
+      Oct. 2025
+     </div>
+     <div class="tl-sep">
+     </div>
+     <div>
+      <div class="tl-role">
+       Logistics Staff
+      </div>
+      <div class="tl-org">
+       EPFL Forum — Largest student recruitment forum in Switzerland
+      </div>
+      <div class="tl-desc">
+       Operational coordination for over 150 partner companies. 
+       Daily interactions with professionals in banking, consulting and tech.
+      </div>
+     </div>
+    </div>
+    <div class="tl-item">
+     <div class="tl-date">
+      Août 2025
+     </div>
+     <div class="tl-sep">
+     </div>
+     <div>
+      <div class="tl-role">
+       Supervision Staff
+      </div>
+      <div class="tl-org">
+       PolySI — EPFL Integration Week
+      </div>
+      <div class="tl-desc">
+       Leading and supervising groups of new students for a full week.
+       Managing activities, logistics and unexpected situations.
+      </div>
+     </div>
+    </div>
+    <div class="tl-item">
+     <div class="tl-date">
+      Fév. 2023
+     </div>
+     <div class="tl-sep">
+     </div>
+     <div>
+      <div class="tl-role">
+       Intern
+      </div>
+      <div class="tl-org">
+       Getronics — International IT Services
+      </div>
+      <div class="tl-desc">
+       Exposure to corporate finance principles through cross-departmental rotations. 
+       Observation of revenue generation mechanisms, budgeting and cost analysis.
+      </div>
+      <div class="tl-tags">
+       <span class="tag">
+        Corporate Finance
+       </span>
+       <span class="tag">
+        Budgeting
+       </span>
+       <span class="tag">
+        Digital Transformation
+       </span>
+      </div>
+     </div>
+    </div>
+    <div class="tl-item">
+     <div class="tl-date">
+      2021 — 2024
+     </div>
+     <div class="tl-sep">
+     </div>
+     <div>
+      <div class="tl-role">
+       French Baccalaureate — Highest Honors
+      </div>
+      <div class="tl-org">
+       Lycée Sainte-Marie, Lyon
+      </div>
+      <div class="tl-desc">
+       Specializations: Mathematics, Physics-Chemistry, Economics and Social Sciences.
+      </div>
+     </div>
+    </div>
+    <div class="tl-item">
+     <div class="tl-date">
+      Mai — Juil. 2022
+     </div>
+     <div class="tl-sep">
+     </div>
+     <div>
+      <div class="tl-role">
+       Crew Member
+      </div>
+      <div class="tl-org">
+       McDonald's
+      </div>
+      <div class="tl-desc">
+       Simultaneous management of kitchen and register at high volume. 
+       Reactivity, rigor and communication under pressure.
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+  <!--============================================================
+  SECTION 04 — SKILLS
+  ============================================================-->
+  <section id="skills">
+   <div class="sec-label">
+    04 · Skills
+   </div>
+   <h2 class="sec-h">
+    Stack &amp;
+    <br/>
+    <em>
+     Expertise
+    </em>
+   </h2>
+   <!-- [EDIT] Each .sk = one skill category. Add/remove <span class="sk-item">for each technology. -->
+   <div class="skills-wrap">
+    <div class="sk">
+     <div class="sk-cat">
+      Languages &amp;
+Tools
+     </div>
+     <div class="sk-name">
+      Development
+     </div>
+     <div class="sk-items">
+      <span class="sk-item">
+       Python
+      </span>
+      <span class="sk-item">
+       C
+      </span>
+      <span class="sk-item">
+       Java
+      </span>
+      <span class="sk-item">
+       Scala
+      </span>
+      <span class="sk-item">
+       Verilog
+      </span>
+      <span class="sk-item">
+       RISC-V
+      </span>
+      <span class="sk-item">
+       Assembly
+      </span>
+      <span class="sk-item">
+       Git
+      </span>
+      <span class="sk-item">
+       LaTeX
+      </span>
+      <span class="sk-item">
+       Excel
+      </span>
+     </div>
+    </div>
+    <div class="sk">
+     <div class="sk-cat">
+      Artificial Intelligence
+     </div>
+     <div class="sk-name">
+      Machine Learning
+     </div>
+     <div class="sk-items">
+      <span class="sk-item">
+       Supervised ML
+      </span>
+      <span class="sk-item">
+       Neural Networks
+      </span>
+      <span class="sk-item">
+       Data Analysis
+      </span>
+      <span class="sk-item">
+       Statistics
+      </span>
+      <span class="sk-item">
+       Optimization
+      </span>
+      <span class="sk-item">
+       NumPy / Pandas
+      </span>
+      <span class="sk-item">
+       Probabilities
+      </span>
+     </div>
+    </div>
+    <div class="sk">
+     <div class="sk-cat">
+      Finance &amp;
+Markets
+     </div>
+     <div class="sk-name">
+      Quantitative
+     </div>
+     <div class="sk-items">
+      <span class="sk-item">
+       Market Finance
+      </span>
+      <span class="sk-item">
+       Valuation DCF
+      </span>
+      <span class="sk-item">
+       Trading Quant
+      </span>
+      <span class="sk-item">
+       Private Equity
+      </span>
+      <span class="sk-item">
+       Financial Analysis
+      </span>
+      <span class="sk-item">
+       Crypto / Stocks
+      </span>
+      <span class="sk-item">
+       Yale Fin. Markets
+      </span>
+     </div>
+    </div>
+    <div class="sk">
+     <div class="sk-cat">
+      Human &amp;
+Leadership
+     </div>
+     <div class="sk-name">
+      Soft Skills
+     </div>
+     <div class="sk-items">
+      <span class="sk-item">
+       Communication
+      </span>
+      <span class="sk-item">
+       Rigor
+      </span>
+      <span class="sk-item">
+       Teamwork
+      </span>
+      <span class="sk-item">
+       Adaptability
+      </span>
+      <span class="sk-item">
+       Organization
+      </span>
+      <span class="sk-item">
+       Initiative
+      </span>
+     </div>
+    </div>
+   </div>
+   <!-- [EDIT] Languages — modifie lang-name et lang-level -->
+   <div style="margin-top:0.5px;background:var(--line)">
+    <div style="background:var(--bg);padding:2rem">
+     <div class="sk-cat" style="margin-bottom:1.25rem">
+      Languages
+     </div>
+     <div class="lang-grid">
+      <div class="lang-cell">
+       <div class="lang-name">
+        French
+       </div>
+       <div class="lang-level">
+        Native language
+       </div>
+      </div>
+      <div class="lang-cell">
+       <div class="lang-name">
+        English
+       </div>
+       <div class="lang-level">
+        Fluent — EPFL Education and certificate
+       </div>
+      </div>
+      <div class="lang-cell">
+       <div class="lang-name">
+        German
+       </div>
+       <div class="lang-level">
+        Intermediate
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+  <!--============================================================
+  SECTION 05 — AMBITIONS
+  ============================================================-->
+  <section id="ambitions">
+   <div class="sec-label">
+    05 · Ambitions
+   </div>
+   <h2 class="sec-h">
+    Goals &amp;
+    <br/>
+    <em>
+     Vision
+    </em>
+   </h2>
+   <!-- [EDIT] 3 ambition cards — edit amb-title and amb-body. Example: once you know which master you are doing, replace A.01 with the program name. -->
+   <div class="amb-row">
+    <div class="amb">
+     <div class="amb-n">
+      A.01
+     </div>
+     <!-- [EDIT] Future example: "MSc Financial Engineering — EPFL / HEC" -->
+     <div class="amb-title">
+      Complete BSc at EPFL
+     </div>
+     <div class="amb-body">
+      Complete the BSc with excellence, building strong foundations in AI, 
+      algorithms, systems and quantitative finance.
+     </div>
+    </div>
+    <div class="amb">
+     <div class="amb-n">
+      A.02
+     </div>
+     <div class="amb-title">
+      Quantitative Finance
+     </div>
+     <div class="amb-body">
+      Explore market finance, quant trading and private equity, 
+      at the intersection of computer science and global financial markets.
+     </div>
+    </div>
+    <div class="amb">
+     <div class="amb-n">
+      A.03
+     </div>
+     <div class="amb-title">
+      International Impact
+     </div>
+     <div class="amb-body">
+      Thrive in a multicultural environment from Switzerland, 
+      contributing to high-impact tech and finance projects, in Europe and beyond.
+     </div>
+    </div>
+   </div>
+   <!-- [EDIT] Interests — ajoute/supprime des <span class="int-item"> -->
+   <div style="margin-top:2rem">
+    <div class="sec-label" style="margin-bottom:1rem">
+     Interests
+    </div>
+    <div class="interests">
+     <span class="int-item">
+      Financial Markets
+     </span>
+     <span class="int-item">
+      Stock Market &amp;
+Crypto
+     </span>
+     <span class="int-item">
+      Private Equity
+     </span>
+     <span class="int-item">
+      CS Side Projects
+     </span>
+     <span class="int-item">
+      Competitive Skiing
+     </span>
+     <span class="int-item">
+      Football
+     </span>
+     <span class="int-item">
+      Weightlifting
+     </span>
+     <span class="int-item">
+      Martial Arts
+     </span>
+     <span class="int-item">
+      Electric Guitar
+     </span>
+     <span class="int-item">
+      Piano
+     </span>
+     <span class="int-item">
+      Personal Development &amp; Reading
+     </span>
+    </div>
+   </div>
+  </section>
+  <!--============================================================
+  SECTION 06 — CONTACT
+  ============================================================-->
+  <section id="contact">
+   <div class="sec-label">
+    06 · Contact
+   </div>
+   <div class="contact-inner">
+    <div>
+     <!-- [EDIT] Grand titre de contact — ex: "Stage\nÉté\n2027." -->
+     <div class="contact-big">
+      Available
+      <br/>
+      July
+      <br/>
+      2026.
+     </div>
+     <!-- [EDIT] Availability subtext -->
+     <p class="contact-sub">
+      Full-time position in Switzerland — Tech, AI, Market Finance or Private Equity. B permit, work authorization.
+     </p>
+    </div>
+    <!-- [EDIT] Contact links — edit href="" and the .cl-v text -->
+    <div class="clinks">
+     <a class="clink" href="mailto:cesar.garin@epfl.ch">
+      <span class="cl-l">
+       Email
+      </span>
+      <span class="cl-v">
+       cesar.garin@epfl.ch
+      </span>
+      <span class="cl-a">
+       →
+      </span>
+     </a>
+     <a class="clink" href="tel:+33622279674">
+      <span class="cl-l">
+       Phone
+      </span>
+      <span class="cl-v">
+       +33 6 22 27 96 74
+      </span>
+      <span class="cl-a">
+       →
+      </span>
+     </a>
+     <a class="clink" href="https://linkedin.com/in/césar-garin">
+      <span class="cl-l">
+       LinkedIn
+      </span>
+      <span class="cl-v">
+       linkedin.com/in/césar-garin
+      </span>
+      <span class="cl-a">
+       →
+      </span>
+     </a>
+     <a class="clink" href="https://github.com/cesgrn">
+      <span class="cl-l">
+       GitHub
+      </span>
+      <span class="cl-v">
+       github.com/cesgrn
+      </span>
+      <span class="cl-a">
+       →
+      </span>
+     </a>
+    </div>
+   </div>
+  </section>
+  <!-- [EDIT] Footer — year and city -->
+  <footer>
+   <span class="footer-l">
+    César Garin
+   </span>
+   <span class="footer-r">
+    © 2026 · EPFL · Lausanne, Switzerland
+   </span>
+  </footer>
+<script>
+const c = document.getElementById('sf');
+const ctx = c.getContext('2d');
+
+function resize() {
+    c.width = window.innerWidth;
+    c.height = window.innerHeight;
+}
+
+window.addEventListener('load', () => {
+    resize();
+    draw();
+});
+
+const stars = Array.from({ length: 220 }, () => ({
+    x: Math.random() * window.innerWidth,
+    y: Math.random() * window.innerHeight,
+    r: Math.random() * 1.2 + .2,
+    o: Math.random() * .55 + .1
+}));
+
+let scrollY = 0;
+
+function draw() {
+    ctx.clearRect(0, 0, c.width, c.height);
+    stars.forEach(s => {
+        let y = ((s.y - scrollY * 0.15) % c.height + c.height) % c.height;
+        ctx.beginPath();
+        ctx.arc(s.x, y, s.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 255, 255, ${s.o})`;
+        ctx.fill();
+    });
+}
+
+window.addEventListener('scroll', () => {
+    scrollY = window.scrollY;
+    draw();
+});
+
+window.addEventListener('resize', () => {
+    resize();
+    stars.forEach(s => {
+        s.x = Math.random() * window.innerWidth;
+        s.y = Math.random() * window.innerHeight;
+    });
+    draw();
+});
+</script>
+ </body>
+</html>
