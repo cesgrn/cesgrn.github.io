@@ -36,7 +36,8 @@ body {
     font-family: 'Barlow', sans-serif;
     font-weight: 300;
     overflow-x: hidden;
-    font-size: 16px
+    font-size: 16px;
+    padding-top: 58px
 }
 
 a {
@@ -52,8 +53,10 @@ nav {
     height: 58px;
     background: rgba(8, 8, 8, 0.88);
     border-bottom: 0.5px solid var(--line);
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     z-index: 200;
     backdrop-filter: blur(12px)
 }
@@ -110,11 +113,12 @@ nav {
     overflow: hidden
 }
 
-#sf {
+#bg {
     position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
     pointer-events: none;
     z-index: 0
 }
@@ -866,7 +870,7 @@ footer {
         grid-template-columns: 1fr
     }
 }
-nav, section, footer, .hero {
+section, footer, .hero {
     position: relative;
     z-index: 1
 }
@@ -876,7 +880,7 @@ html {
   </style>
  </head>
  <body>
-    <canvas id="sf">
+    <canvas id="bg">
    </canvas>
   <!--============================================================
   NAVIGATION [EDIT] Modifie les liens de la nav si tu ajoutes/supprimes des sections. 
@@ -1938,52 +1942,89 @@ Crypto
    </span>
   </footer>
 <script>
-const c = document.getElementById('sf');
-const ctx = c.getContext('2d');
+(function () {
+const canvas = document.getElementById('bg');
+const ctx = canvas.getContext('2d');
+let W, H, scrollY = 0;
+const LINK_DIST = 160, NODE_COUNT = 95;
+const PALETTE = [[255,255,255],[180,210,255],[140,195,255],[200,230,255],[160,200,240]];
+const nodes = [];
+
+function initNodes() {
+    nodes.length = 0;
+    for (let i = 0; i < NODE_COUNT; i++) {
+        nodes.push({
+            x: Math.random() * W, y: Math.random() * H,
+            vx: (Math.random() - 0.5) * 0.35, vy: (Math.random() - 0.5) * 0.35,
+            r: Math.random() * 1.8 + 0.8,
+            col: PALETTE[Math.floor(Math.random() * PALETTE.length)],
+            o: Math.random() * 0.5 + 0.4,
+        });
+    }
+}
 
 function resize() {
-    c.width = window.innerWidth;
-    c.height = window.innerHeight;
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+    initNodes();
 }
-
-window.addEventListener('load', () => {
-    resize();
-    draw();
-});
-
-const stars = Array.from({ length: 220 }, () => ({
-    x: Math.random() * window.innerWidth,
-    y: Math.random() * window.innerHeight,
-    r: Math.random() * 1.2 + .2,
-    o: Math.random() * .55 + .1
-}));
-
-let scrollY = 0;
 
 function draw() {
-    ctx.clearRect(0, 0, c.width, c.height);
-    stars.forEach(s => {
-        let y = ((s.y - scrollY * 0.15) % c.height + c.height) % c.height;
-        ctx.beginPath();
-        ctx.arc(s.x, y, s.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${s.o})`;
-        ctx.fill();
-    });
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = '#080808';
+    ctx.fillRect(0, 0, W, H);
+    const glow = ctx.createRadialGradient(W*.5, H*.42, 0, W*.5, H*.42, W*.65);
+    glow.addColorStop(0, 'rgba(20,40,80,0.45)');
+    glow.addColorStop(0.5, 'rgba(10,20,50,0.18)');
+    glow.addColorStop(1, 'rgba(8,8,8,0)');
+    ctx.fillStyle = glow; ctx.fillRect(0, 0, W, H);
+
+    const oy = scrollY * 0.12;
+    const screenY = nodes.map(n => ((n.y - oy) % H + H) % H);
+
+    for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+            const a = nodes[i], b = nodes[j];
+            const dx = a.x - b.x, dy = screenY[i] - screenY[j];
+            const dist = Math.sqrt(dx*dx + dy*dy);
+            if (dist > LINK_DIST) continue;
+            const [r,g,bl] = a.col;
+            ctx.beginPath(); ctx.moveTo(a.x, screenY[i]); ctx.lineTo(b.x, screenY[j]);
+            ctx.strokeStyle = `rgba(${r},${g},${bl},${(1 - dist/LINK_DIST) * 0.18})`;
+            ctx.lineWidth = 0.6; ctx.stroke();
+        }
+    }
+
+    for (let i = 0; i < nodes.length; i++) {
+        const n = nodes[i], [r,g,b] = n.col, ny = screenY[i];
+        const halo = ctx.createRadialGradient(n.x, ny, 0, n.x, ny, n.r * 5);
+        halo.addColorStop(0, `rgba(${r},${g},${b},${n.o * 0.35})`);
+        halo.addColorStop(1, `rgba(${r},${g},${b},0)`);
+        ctx.fillStyle = halo; ctx.beginPath(); ctx.arc(n.x, ny, n.r*5, 0, Math.PI*2); ctx.fill();
+        ctx.beginPath(); ctx.arc(n.x, ny, n.r, 0, Math.PI*2);
+        ctx.fillStyle = `rgba(${r},${g},${b},${n.o})`; ctx.fill();
+    }
+
+    const vig = ctx.createRadialGradient(W/2, H/2, H*.15, W/2, H/2, H*.85);
+    vig.addColorStop(0, 'rgba(8,8,8,0)'); vig.addColorStop(1, 'rgba(8,8,8,0.78)');
+    ctx.fillStyle = vig; ctx.fillRect(0, 0, W, H);
 }
 
-window.addEventListener('scroll', () => {
-    scrollY = window.scrollY;
-    draw();
-});
+function update() {
+    for (const n of nodes) {
+        n.x += n.vx; n.y += n.vy;
+        if (n.x < 0 || n.x > W) n.vx *= -1;
+        if (n.y < 0 || n.y > H) n.vy *= -1;
+        n.x = Math.max(0, Math.min(W, n.x));
+        n.y = Math.max(0, Math.min(H, n.y));
+    }
+}
 
-window.addEventListener('resize', () => {
-    resize();
-    stars.forEach(s => {
-        s.x = Math.random() * window.innerWidth;
-        s.y = Math.random() * window.innerHeight;
-    });
-    draw();
-});
+function loop() { update(); draw(); requestAnimationFrame(loop); }
+window.addEventListener('scroll', () => { scrollY = window.scrollY; });
+window.addEventListener('resize', resize);
+window.addEventListener('load', () => { resize(); loop(); });
+})();
 </script>
  </body>
 </html>
