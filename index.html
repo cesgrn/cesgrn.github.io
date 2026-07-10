@@ -12,6 +12,11 @@
   <title>
    César Garin — EPFL
   </title>
+  <meta content="César Garin — EPFL Computer Science student focused on quantitative research, systematic trading and applied AI. Open to internships June–August 2027." name="description"/>
+  <meta content="César Garin — EPFL" property="og:title"/>
+  <meta content="Quantitative research, systematic trading &amp; applied AI — EPFL Computer Science student, open to internships June–August 2027." property="og:description"/>
+  <meta content="website" property="og:type"/>
+  <link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23F6F4EF'/%3E%3Ctext x='50' y='68' font-size='58' font-family='Georgia,serif' fill='%231A1912' text-anchor='middle'%3ECG%3C/text%3E%3C/svg%3E" rel="icon"/>
   <link href="https://fonts.googleapis.com" rel="preconnect"/>
   <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200&amp;family=Barlow+Condensed:wght@200;300;400;500;600&amp;display=swap" rel="stylesheet"/>
   <style>
@@ -22,12 +27,15 @@
 }
 
 :root {
-    --w: #FFF;
-    --off: #9A9A9A;
-    --dim: #4A4A4A;
-    --line: rgba(255, 255, 255, 0.1);
-    --bg: #080808;
-    --acc: #E8E0C8
+    --w: #1A1912;
+    --off: #57544C;
+    --dim: #8B8880;
+    --line: rgba(20, 18, 12, 0.1);
+    --bg-rgb: 246, 244, 239;
+    --bg: rgb(var(--bg-rgb));
+    --card: #FFFFFF;
+    --card-hover: #EFECE4;
+    --acc: #7A5C25
 }
 
 body {
@@ -51,7 +59,7 @@ nav {
     justify-content: space-between;
     padding: 0 3rem;
     height: 58px;
-    background: rgba(8, 8, 8, 0.88);
+    background: rgba(var(--bg-rgb), 0.88);
     border-bottom: 0.5px solid var(--line);
     position: fixed;
     top: 0;
@@ -93,7 +101,7 @@ nav {
     font-weight: 400;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    border: 0.5px solid rgba(255, 255, 255, 0.35);
+    border: 0.5px solid rgba(20, 18, 12, 0.3);
     padding: 8px 20px;
     transition: all .2s
 }
@@ -101,6 +109,16 @@ nav {
 .nav-cta:hover {
     background: var(--w);
     color: var(--bg)
+}
+
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--w);
+    font-size: 20px;
+    cursor: pointer;
+    padding: 4px
 }
 
 .hero {
@@ -111,16 +129,6 @@ nav {
     padding: 0 3rem 5rem;
     position: relative;
     overflow: hidden
-}
-
-#bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    pointer-events: none;
-    z-index: 0
 }
 
 .hero-tag {
@@ -160,6 +168,16 @@ nav {
     font-family: 'Barlow', sans-serif
 }
 
+.hero-role {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--acc);
+    margin-bottom: 1.5rem
+}
+
 .hero-desc {
     font-size: 15px;
     font-weight: 300;
@@ -197,13 +215,13 @@ nav {
     letter-spacing: 0.08em;
     text-transform: uppercase;
     padding: 13px 30px;
-    border: 0.5px solid rgba(255, 255, 255, .4);
+    border: 0.5px solid rgba(20, 18, 12, .35);
     transition: background .2s;
     cursor: pointer
 }
 
 .btn-o:hover {
-    background: rgba(255, 255, 255, .08)
+    background: rgba(20, 18, 12, .05)
 }
 
 .scroll-ind {
@@ -291,7 +309,7 @@ section {
 }
 
 .stat-row {
-    background: rgba(8, 8, 8, 0.75);
+    background: var(--card);
     padding: 1.5rem 2rem;
     display: flex;
     align-items: baseline;
@@ -299,7 +317,7 @@ section {
 }
 
 .stat-row:hover {
-    background: #0f0f0f
+    background: var(--card-hover)
 }
 
 .sv {
@@ -326,13 +344,13 @@ section {
 }
 
 .tile {
-    background: rgba(8, 8, 8, 0.75);
+    background: var(--card);
     padding: 2.5rem 2rem;
     transition: background .3s
 }
 
 .tile:hover {
-    background: #0f0f0f
+    background: var(--card-hover)
 }
 
 .t-n {
@@ -389,7 +407,7 @@ section {
 }
 
 .tl-sep {
-    background: rgba(255, 255, 255, .12);
+    background: rgba(20, 18, 12, .15);
     position: relative
 }
 
@@ -426,7 +444,7 @@ section {
 .tl-desc {
     font-size: 13px;
     font-weight: 300;
-    color: var(--dim);
+    color: var(--off);
     line-height: 1.75
 }
 
@@ -455,7 +473,7 @@ section {
 }
 
 .proj-card {
-    background: rgba(8, 8, 8, 0.75);
+    background: var(--card);
     padding: 2.5rem 2rem;
     transition: background .3s;
     display: flex;
@@ -464,7 +482,7 @@ section {
 }
 
 .proj-card:hover {
-    background: #0f0f0f
+    background: var(--card-hover)
 }
 
 .proj-header {
@@ -507,7 +525,7 @@ section {
 .proj-desc {
     font-size: 13px;
     font-weight: 300;
-    color: var(--dim);
+    color: var(--off);
     line-height: 1.75;
     flex: 1
 }
@@ -523,12 +541,12 @@ section {
     font-weight: 300;
     letter-spacing: .08em;
     padding: 2px 9px;
-    border: 0.5px solid rgba(255, 255, 255, .1);
+    border: 0.5px solid rgba(20, 18, 12, .12);
     color: var(--dim)
 }
 
 .coursera-card {
-    background: rgba(8, 8, 8, 0.75);
+    background: var(--card);
     border: 0.5px solid var(--line);
     margin-top: 3.5rem;
     padding: 2.5rem 2rem;
@@ -540,7 +558,7 @@ section {
 }
 
 .coursera-card:hover {
-    background: rgba(8, 8, 8, 0.75)
+    background: var(--card-hover)
 }
 
 .cc-badge {
@@ -597,27 +615,27 @@ section {
 .cc-desc {
     font-size: 13px;
     font-weight: 300;
-    color: var(--dim);
+    color: var(--off);
     line-height: 1.75;
     margin-bottom: 12px
 }
 
 .skills-wrap {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 0.5px;
     background: var(--line);
     margin-top: 3.5rem
 }
 
 .sk {
-    background: rgba(8, 8, 8, 0.75);
+    background: var(--card);
     padding: 2.5rem 2rem;
     transition: background .3s
 }
 
 .sk:hover {
-    background: #0f0f0f
+    background: var(--card-hover)
 }
 
 .sk-cat {
@@ -649,7 +667,7 @@ section {
     font-weight: 300;
     letter-spacing: .08em;
     padding: 4px 12px;
-    border: 0.5px solid rgba(255, 255, 255, .15);
+    border: 0.5px solid rgba(20, 18, 12, .15);
     color: var(--off)
 }
 
@@ -662,7 +680,7 @@ section {
 }
 
 .lang-cell {
-    background: rgba(8, 8, 8, 0.75);
+    background: var(--card);
     padding: 1.75rem 2rem
 }
 
@@ -690,14 +708,14 @@ section {
 }
 
 .amb {
-    background: rgba(8, 8, 8, 0.75);
+    background: var(--card);
     padding: 2.5rem 2rem;
     transition: background .3s;
     cursor: default
 }
 
 .amb:hover {
-    background: #0f0f0f
+    background: var(--card-hover)
 }
 
 .amb-n {
@@ -721,7 +739,7 @@ section {
 .amb-body {
     font-size: 13px;
     font-weight: 300;
-    color: var(--dim);
+    color: var(--off);
     line-height: 1.75
 }
 
@@ -768,7 +786,7 @@ section {
 }
 
 .clink:hover {
-    background: #111
+    background: var(--card-hover)
 }
 
 .cl-l {
@@ -828,7 +846,7 @@ footer {
     letter-spacing: .1em;
     text-transform: uppercase;
     padding: 6px 14px;
-    border: 0.5px solid rgba(255, 255, 255, .1);
+    border: 0.5px solid rgba(20, 18, 12, .12);
     color: var(--dim)
 }
 
@@ -836,8 +854,31 @@ footer {
     nav {
         padding: 0 1.5rem
     }
+    .nav-toggle {
+        display: block
+    }
     .nav-links {
-        display: none
+        display: none;
+        position: fixed;
+        top: 58px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        gap: 0;
+        background: rgba(var(--bg-rgb), 0.97);
+        backdrop-filter: blur(12px);
+        border-bottom: 0.5px solid var(--line);
+        padding: 0.5rem 1.5rem
+    }
+    .nav-links.open {
+        display: flex
+    }
+    .nav-links li {
+        padding: 1rem 0;
+        border-bottom: 0.5px solid var(--line)
+    }
+    .nav-links li:last-child {
+        border-bottom: none
     }
     .hero,
     section {
@@ -877,11 +918,36 @@ section, footer, .hero {
 html {
     scroll-behavior: smooth;
 }
+.back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(var(--bg-rgb), 0.85);
+    border: 0.5px solid rgba(20, 18, 12, .3);
+    backdrop-filter: blur(12px);
+    font-size: 16px;
+    color: var(--w);
+    z-index: 150;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .3s, background .2s, color .2s
+}
+.back-to-top.visible {
+    opacity: 1;
+    pointer-events: auto
+}
+.back-to-top:hover {
+    background: var(--w);
+    color: var(--bg)
+}
   </style>
  </head>
  <body>
-    <canvas id="bg">
-   </canvas>
   <!--============================================================
   NAVIGATION [EDIT] Modifie les liens de la nav si tu ajoutes/supprimes des sections. 
   Chaque <a href="#id">pointe vers l'id d'une <section id="...">plus bas dans la page.
@@ -916,10 +982,18 @@ html {
       Ambitions
      </a>
     </li>
+    <li>
+     <a download="César_Garin_CV.pdf" href="assets/CV_Cesar_Garin.pdf" target="_blank">
+      Résumé
+     </a>
+    </li>
    </ul>
    <a class="nav-cta" href="#contact">
     Contact
    </a>
+   <button aria-expanded="false" aria-label="Menu" class="nav-toggle" id="navToggle">
+    ☰
+   </button>
   </nav>
   <!--============================================================
   HERO — SECTION D'ACCUEIL
@@ -928,7 +1002,7 @@ html {
    <!-- [EDIT] Accroche sous le nom — statut actuel,
 disponibilité -->
    <div class="hero-tag">
-    BSc Computer and Communication Sciences · EPFL · Available July 2026
+    EPFL · DTU
    </div>
    <!-- [EDIT] Ton nom — ne modifie que le texte,
 pas les balises -->
@@ -940,12 +1014,15 @@ pas les balises -->
     </span>
     Garin
    </h1>
+   <div class="hero-role">
+    Quantitative Modeling · Complex Data Systems · AI &amp; Software Engineering
+   </div>
    <!-- [EDIT] Phrase de présentation principale -->
    <p class="hero-desc">
     2nd-year EPFL student,
     combining mathematical rigor, software engineering,
     a deep interest in AI and financial markets.
-    B permit — authorized to work in Switzerland.
+    Focused on quantitative modeling and research applied to finance.
    </p>
    <div class="hero-btns">
     <a class="btn-s" href="#contact">
@@ -993,12 +1070,12 @@ pas les balises -->
       and study of DCF fundamentals.
      </p>
      <p>
-      Multilingual (FR · EN · DE), proactive and experienced in high-performance 
-      environments, I am seeking a full-time position in
+      Multilingual (FR · EN · DE), proactive and experienced in high-performance
+      environments, I am seeking
       <strong>
-       july 2026
+       quantitative research or systematic trading opportunities
       </strong>
-      in Switzerland.
+      , available Fall 2026-27.
      </p>
     </div>
     <!-- [EDIT] Statistiques rapides — modifie la valeur (.sv) et le label (.sl) -->
@@ -1038,10 +1115,10 @@ pas les balises -->
      </div>
      <div class="stat-row">
       <span class="sv">
-       CH
+       2026–27
       </span>
       <span class="sl">
-       B Permit · Work permit
+       Availability · Fall term
       </span>
      </div>
     </div>
@@ -1113,51 +1190,6 @@ pas les balises -->
      PROJECTS
     </em>
    </h2>
-   <!-- COURS YALE — COURSERA -->
-   <!-- [EDIT] Modifie le titre,
-l'institution, la description et les tags -->
-   <div class="coursera-card">
-    <div class="cc-badge">
-     <div class="cc-dot">
-      <span>
-       Yale
-      </span>
-     </div>
-     <div class="cc-platform">
-      Coursera
-     </div>
-    </div>
-    <div>
-     <div class="cc-title">
-      Financial Markets
-     </div>
-     <div class="cc-inst">
-      Yale University — Robert Shiller · Coursera
-     </div>
-     <div class="cc-desc">
-      Comprehensive course on financial markets taught by Nobel Prize winner Robert Shiller. 
-      Covers equity and bond markets, derivatives, portfolio management, 
-      market psychology and global financial institutions.
-     </div>
-     <div class="tl-tags">
-      <span class="tag">
-       Financial Markets
-      </span>
-      <span class="tag">
-       Derivatives
-      </span>
-      <span class="tag">
-       Portfolio Management
-      </span>
-      <span class="tag">
-       Risk Analysis
-      </span>
-      <span class="tag">
-       Financial Institutions
-      </span>
-     </div>
-    </div>
-   </div>
    <!-- GRILLE DE PROJETS -->
    <!-- [EDIT] Pour chaque projet: modifie proj-title,
 proj-sub,
@@ -1416,6 +1448,51 @@ design patterns · EPFL
      </div>
     </div>
    </div>
+   <!-- COURS YALE — COURSERA -->
+   <!-- [EDIT] Modifie le titre,
+l'institution, la description et les tags -->
+   <div class="coursera-card">
+    <div class="cc-badge">
+     <div class="cc-dot">
+      <span>
+       Yale
+      </span>
+     </div>
+     <div class="cc-platform">
+      Coursera
+     </div>
+    </div>
+    <div>
+     <div class="cc-title">
+      Financial Markets
+     </div>
+     <div class="cc-inst">
+      Yale University — Robert Shiller · Coursera
+     </div>
+     <div class="cc-desc">
+      Comprehensive course on financial markets taught by Nobel Prize winner Robert Shiller.
+      Covers equity and bond markets, derivatives, portfolio management,
+      market psychology and global financial institutions.
+     </div>
+     <div class="tl-tags">
+      <span class="tag">
+       Financial Markets
+      </span>
+      <span class="tag">
+       Derivatives
+      </span>
+      <span class="tag">
+       Portfolio Management
+      </span>
+      <span class="tag">
+       Risk Analysis
+      </span>
+      <span class="tag">
+       Financial Institutions
+      </span>
+     </div>
+    </div>
+   </div>
   </section>
   <!--============================================================
   SECTION 03 — BACKGROUND (EDUCATION + EXPERIENCE)
@@ -1561,8 +1638,8 @@ design patterns · EPFL
        Getronics — International IT Services
       </div>
       <div class="tl-desc">
-       Exposure to corporate finance principles through cross-departmental rotations. 
-       Observation of revenue generation mechanisms, budgeting and cost analysis.
+       Rotated across finance, budgeting and procurement teams at an international IT services firm.
+       Analyzed cost structures and revenue mechanisms alongside corporate finance staff.
       </div>
       <div class="tl-tags">
        <span class="tag">
@@ -1663,6 +1740,12 @@ Tools
        Assembly
       </span>
       <span class="sk-item">
+       HTML
+      </span>
+      <span class="sk-item">
+       CSS
+      </span>
+      <span class="sk-item">
        Git
       </span>
       <span class="sk-item">
@@ -1670,6 +1753,50 @@ Tools
       </span>
       <span class="sk-item">
        Excel
+      </span>
+     </div>
+    </div>
+    <div class="sk">
+     <div class="sk-cat">
+      Mathematics &amp;
+Engineering
+     </div>
+     <div class="sk-name">
+      Core Coursework
+     </div>
+     <div class="sk-items">
+      <span class="sk-item">
+       Calculus I
+      </span>
+      <span class="sk-item">
+       Calculus II
+      </span>
+      <span class="sk-item">
+       Calculus III
+      </span>
+      <span class="sk-item">
+       Probability &amp; Statistics
+      </span>
+      <span class="sk-item">
+       Signal Processing
+      </span>
+      <span class="sk-item">
+       Computer Systems
+      </span>
+      <span class="sk-item">
+       Algorithms
+      </span>
+      <span class="sk-item">
+       Algebra
+      </span>
+      <span class="sk-item">
+       Computer Architecture
+      </span>
+      <span class="sk-item">
+       Software Construction
+      </span>
+      <span class="sk-item">
+       Machine Learning
       </span>
      </div>
     </div>
@@ -1826,8 +1953,8 @@ Leadership
       Complete BSc at EPFL
      </div>
      <div class="amb-body">
-      Complete the BSc with excellence, building strong foundations in AI, 
-      algorithms, systems and quantitative finance.
+      Graduate with distinction, on a foundation of AI, algorithms,
+      systems and quantitative finance.
      </div>
     </div>
     <div class="amb">
@@ -1835,11 +1962,11 @@ Leadership
       A.02
      </div>
      <div class="amb-title">
-      Quantitative Finance
+      Quantitative Research
      </div>
      <div class="amb-body">
-      Explore market finance, quant trading and private equity, 
-      at the intersection of computer science and global financial markets.
+      Work on systematic trading and derivatives pricing problems
+      where machine learning and market structure meet.
      </div>
     </div>
     <div class="amb">
@@ -1847,11 +1974,11 @@ Leadership
       A.03
      </div>
      <div class="amb-title">
-      International Impact
+      Cross-Border Career
      </div>
      <div class="amb-body">
-      Thrive in a multicultural environment from Switzerland, 
-      contributing to high-impact tech and finance projects, in Europe and beyond.
+      Build on the EPFL–DTU experience to work across Swiss and
+      European financial and tech hubs.
      </div>
     </div>
    </div>
@@ -1909,15 +2036,15 @@ Crypto
     <div>
      <!-- [EDIT] Grand titre de contact — ex: "Stage\nÉté\n2027." -->
      <div class="contact-big">
-      Available
+      Open to
       <br/>
-      July
+      Opportunities
       <br/>
-      2026.
+      Fall 2026-27.
      </div>
      <!-- [EDIT] Availability subtext -->
      <p class="contact-sub">
-      Full-time position in Switzerland — Tech, AI, Market Finance or Private Equity. B permit, work authorization.
+      Open to quantitative research and systematic trading opportunities for Fall 2026-27 — driven by an interest in building software and AI-driven solutions for finance and data.
      </p>
     </div>
     <!-- [EDIT] Contact links — edit href="" and the .cl-v text -->
@@ -1966,6 +2093,17 @@ Crypto
        →
       </span>
      </a>
+     <a class="clink" download="César_Garin_CV.pdf" href="assets/CV_Cesar_Garin.pdf" target="_blank">
+      <span class="cl-l">
+       Résumé
+      </span>
+      <span class="cl-v">
+       Download PDF
+      </span>
+      <span class="cl-a">
+       →
+      </span>
+     </a>
     </div>
    </div>
   </section>
@@ -1978,89 +2116,34 @@ Crypto
     © 2026 · EPFL · Lausanne, Switzerland
    </span>
   </footer>
+  <!-- [EDIT] Back to top button -->
+  <a class="back-to-top" href="#home" id="backToTop" aria-label="Back to top">
+   ↑
+  </a>
 <script>
 (function () {
-const canvas = document.getElementById('bg');
-const ctx = canvas.getContext('2d');
-let W, H, scrollY = 0;
-const LINK_DIST = 160, NODE_COUNT = 95;
-const PALETTE = [[255,255,255],[180,210,255],[140,195,255],[200,230,255],[160,200,240]];
-const nodes = [];
+const backToTop = document.getElementById('backToTop');
+const footerEl = document.querySelector('footer');
+window.addEventListener('scroll', () => {
+    if (!backToTop) return;
+    backToTop.classList.toggle('visible', window.scrollY > 400);
+    const overlap = window.innerHeight - footerEl.getBoundingClientRect().top;
+    backToTop.style.bottom = overlap > 0 ? `calc(2rem + ${overlap}px)` : '2rem';
+});
+})();
 
-function initNodes() {
-    nodes.length = 0;
-    for (let i = 0; i < NODE_COUNT; i++) {
-        nodes.push({
-            x: Math.random() * W, y: Math.random() * H,
-            vx: (Math.random() - 0.5) * 0.35, vy: (Math.random() - 0.5) * 0.35,
-            r: Math.random() * 1.8 + 0.8,
-            col: PALETTE[Math.floor(Math.random() * PALETTE.length)],
-            o: Math.random() * 0.5 + 0.4,
-        });
-    }
-}
-
-function resize() {
-    W = canvas.width = window.innerWidth;
-    H = canvas.height = window.innerHeight;
-    initNodes();
-}
-
-function draw() {
-    ctx.clearRect(0, 0, W, H);
-    ctx.fillStyle = '#080808';
-    ctx.fillRect(0, 0, W, H);
-    const glow = ctx.createRadialGradient(W*.5, H*.42, 0, W*.5, H*.42, W*.65);
-    glow.addColorStop(0, 'rgba(20,40,80,0.45)');
-    glow.addColorStop(0.5, 'rgba(10,20,50,0.18)');
-    glow.addColorStop(1, 'rgba(8,8,8,0)');
-    ctx.fillStyle = glow; ctx.fillRect(0, 0, W, H);
-
-    const oy = scrollY * 0.12;
-    const screenY = nodes.map(n => ((n.y - oy) % H + H) % H);
-
-    for (let i = 0; i < nodes.length; i++) {
-        for (let j = i + 1; j < nodes.length; j++) {
-            const a = nodes[i], b = nodes[j];
-            const dx = a.x - b.x, dy = screenY[i] - screenY[j];
-            const dist = Math.sqrt(dx*dx + dy*dy);
-            if (dist > LINK_DIST) continue;
-            const [r,g,bl] = a.col;
-            ctx.beginPath(); ctx.moveTo(a.x, screenY[i]); ctx.lineTo(b.x, screenY[j]);
-            ctx.strokeStyle = `rgba(${r},${g},${bl},${(1 - dist/LINK_DIST) * 0.18})`;
-            ctx.lineWidth = 0.6; ctx.stroke();
-        }
-    }
-
-    for (let i = 0; i < nodes.length; i++) {
-        const n = nodes[i], [r,g,b] = n.col, ny = screenY[i];
-        const halo = ctx.createRadialGradient(n.x, ny, 0, n.x, ny, n.r * 5);
-        halo.addColorStop(0, `rgba(${r},${g},${b},${n.o * 0.35})`);
-        halo.addColorStop(1, `rgba(${r},${g},${b},0)`);
-        ctx.fillStyle = halo; ctx.beginPath(); ctx.arc(n.x, ny, n.r*5, 0, Math.PI*2); ctx.fill();
-        ctx.beginPath(); ctx.arc(n.x, ny, n.r, 0, Math.PI*2);
-        ctx.fillStyle = `rgba(${r},${g},${b},${n.o})`; ctx.fill();
-    }
-
-    const vig = ctx.createRadialGradient(W/2, H/2, H*.15, W/2, H/2, H*.85);
-    vig.addColorStop(0, 'rgba(8,8,8,0)'); vig.addColorStop(1, 'rgba(8,8,8,0.78)');
-    ctx.fillStyle = vig; ctx.fillRect(0, 0, W, H);
-}
-
-function update() {
-    for (const n of nodes) {
-        n.x += n.vx; n.y += n.vy;
-        if (n.x < 0 || n.x > W) n.vx *= -1;
-        if (n.y < 0 || n.y > H) n.vy *= -1;
-        n.x = Math.max(0, Math.min(W, n.x));
-        n.y = Math.max(0, Math.min(H, n.y));
-    }
-}
-
-function loop() { update(); draw(); requestAnimationFrame(loop); }
-window.addEventListener('scroll', () => { scrollY = window.scrollY; });
-window.addEventListener('resize', resize);
-window.addEventListener('load', () => { resize(); loop(); });
+(function () {
+    const toggle = document.getElementById('navToggle');
+    const links = document.querySelector('.nav-links');
+    if (!toggle || !links) return;
+    toggle.addEventListener('click', () => {
+        const open = links.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', open);
+    });
+    links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+        links.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+    }));
 })();
 </script>
  </body>
