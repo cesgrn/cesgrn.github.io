@@ -977,7 +977,68 @@ html {
     background: var(--w);
     color: var(--bg)
 }
-  </style>
+
+
+
+  
+/* ── Reveal on scroll ────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.tl-item.reveal:nth-child(1)  { transition-delay: 0s; }
+.tl-item.reveal:nth-child(2)  { transition-delay: 0.07s; }
+.tl-item.reveal:nth-child(3)  { transition-delay: 0.14s; }
+.tl-item.reveal:nth-child(4)  { transition-delay: 0.21s; }
+.tl-item.reveal:nth-child(5)  { transition-delay: 0.28s; }
+.tl-item.reveal:nth-child(6)  { transition-delay: 0.35s; }
+.tl-item.reveal:nth-child(7)  { transition-delay: 0.42s; }
+.tile.reveal:nth-child(1) { transition-delay: 0s; }
+.tile.reveal:nth-child(2) { transition-delay: 0.08s; }
+.tile.reveal:nth-child(3) { transition-delay: 0.16s; }
+.tile.reveal:nth-child(4) { transition-delay: 0.24s; }
+.proj-card.reveal:nth-child(odd)  { transition-delay: 0s; }
+.proj-card.reveal:nth-child(even) { transition-delay: 0.1s; }
+.lang-cell.reveal:nth-child(1) { transition-delay: 0s; }
+.lang-cell.reveal:nth-child(2) { transition-delay: 0.08s; }
+.lang-cell.reveal:nth-child(3) { transition-delay: 0.16s; }
+.amb.reveal:nth-child(1) { transition-delay: 0s; }
+.amb.reveal:nth-child(2) { transition-delay: 0.08s; }
+.amb.reveal:nth-child(3) { transition-delay: 0.16s; }
+
+
+/* ── Hero entrance animation ─────────────────── */
+.hero-tag {
+  opacity: 0;
+  animation: heroFadeUp 0.7s ease 0.1s forwards;
+}
+.hero h1 {
+  opacity: 0;
+  animation: heroFadeUp 0.8s ease 0.25s forwards;
+}
+.hero-role {
+  opacity: 0;
+  animation: heroFadeUp 0.7s ease 0.5s forwards;
+}
+.hero-desc {
+  opacity: 0;
+  animation: heroFadeUp 0.7s ease 0.65s forwards;
+}
+.hero-btns {
+  opacity: 0;
+  animation: heroFadeUp 0.7s ease 0.8s forwards;
+}
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+</style>
  </head>
  <body>
   <!--============================================================
@@ -1069,10 +1130,10 @@ pas les balises -->
   SECTION 01 — PROFILE / À PROPOS
   ============================================================-->
   <section id="about">
-   <div class="sec-label">
+   <div class="sec-label reveal">
     01 · Profile
    </div>
-   <h2 class="sec-h">
+   <h2 class="sec-h reveal">
     Engineering.
     <br/>
     <em>
@@ -1081,7 +1142,7 @@ pas les balises -->
    </h2>
    <div class="profile-grid">
     <!-- [EDIT] Paragraphes de présentation -->
-    <div class="profile-text">
+    <div class="profile-text reveal">
      <p>
       Trained at
       <strong>
@@ -1111,7 +1172,7 @@ pas les balises -->
      </p>
     </div>
     <!-- [EDIT] Statistiques rapides — modifie la valeur (.sv) et le label (.sl) -->
-    <div class="stats-col">
+    <div class="stats-col reveal">
      <div class="stat-row">
       <span class="sv">
        EPFL
@@ -1157,7 +1218,7 @@ pas les balises -->
    </div>
    <!-- [EDIT] Les 4 tuiles de mise en avant — titre+description courte -->
    <div class="tiles">
-    <div class="tile">
+    <div class="tile reveal">
      <div class="t-n">
       01
      </div>
@@ -1172,7 +1233,7 @@ pas les balises -->
       cybersecurity. 
      </div>
     </div>
-    <div class="tile">
+    <div class="tile reveal">
      <div class="t-n">
       02
      </div>
@@ -1186,7 +1247,7 @@ pas les balises -->
       Yale Financial Markets course.
      </div>
     </div>
-    <div class="tile">
+    <div class="tile reveal">
      <div class="t-n">
       03
      </div>
@@ -1197,7 +1258,7 @@ pas les balises -->
       6 projects covering C, Java, Scala, Python, Verilog, Assembly — from low-level to applied ML.
      </div>
     </div>
-    <div class="tile">
+    <div class="tile reveal">
      <div class="t-n">
       04
      </div>
@@ -1212,10 +1273,10 @@ pas les balises -->
   </section>
   <!--============================================================SECTION 02 — PROJECTS============================================================-->
   <section id="projects">
-   <div class="sec-label">
+   <div class="sec-label reveal">
     02 · Projects
    </div>
-   <h2 class="sec-h">
+   <h2 class="sec-h reveal">
     ACHIEVEMENTS &amp;
     <br/>
     <em>
@@ -1227,10 +1288,10 @@ pas les balises -->
 proj-sub,
 proj-lang,
 proj-desc et les <span class="proj-tag">-->
-   <!-- [EDIT] Pour AJOUTER un projet: copie-colle un bloc <div class="proj-card">complet et modifie son contenu -->
-   <!-- [EDIT] Pour SUPPRIMER un projet: supprime tout le bloc <div class="proj-card">-->
+   <!-- [EDIT] Pour AJOUTER un projet: copie-colle un bloc <div class="proj-card reveal">complet et modifie son contenu -->
+   <!-- [EDIT] Pour SUPPRIMER un projet: supprime tout le bloc <div class="proj-card reveal">-->
    <div class="proj-grid">
-    <div class="proj-card">
+    <div class="proj-card reveal">
      <div class="proj-header">
       <div>
        <div class="proj-title">ML × Quant Finance</div>
@@ -1267,7 +1328,7 @@ proj-desc et les <span class="proj-tag">-->
       <span class="proj-tag">Options Pricing</span>
      </div>
     </div>
-    <div class="proj-card">
+    <div class="proj-card reveal">
     <div class="proj-header">
         <div>
         <div class="proj-title">NanoGPT</div>
@@ -1341,7 +1402,7 @@ proj-desc et les <span class="proj-tag">-->
         <span class="proj-tag">NLP</span>
     </div>
     </div>
-    <div class="proj-card">
+    <div class="proj-card reveal">
      <div class="proj-header">
       <div>
        <div class="proj-title">Personal Finance Project</div>
@@ -1400,7 +1461,7 @@ proj-desc et les <span class="proj-tag">-->
       <span class="proj-tag">Scraping</span><span class="proj-tag">Risk Analysis</span><span class="proj-tag">DCF</span><span class="proj-tag">Valuation</span><span class="proj-tag">Automation</span>
      </div>
     </div>
-    <div class="proj-card">
+    <div class="proj-card reveal">
      <div class="proj-header">
       <div>
        <div class="proj-title">
@@ -1472,7 +1533,7 @@ proj-desc et les <span class="proj-tag">-->
       </span>
      </div>
     </div>
-    <div class="proj-card">
+    <div class="proj-card reveal">
      <div class="proj-header">
       <div>
        <div class="proj-title">
@@ -1613,7 +1674,7 @@ proj-desc et les <span class="proj-tag">-->
       </span>
      </div>
     </div>
-    <div class="proj-card">
+    <div class="proj-card reveal">
      <div class="proj-header">
       <div>
        <div class="proj-title">
@@ -1651,7 +1712,7 @@ proj-desc et les <span class="proj-tag">-->
       </span>
      </div>
     </div>
-    <div class="proj-card">
+    <div class="proj-card reveal">
      <div class="proj-header">
       <div>
        <div class="proj-title">
@@ -1690,7 +1751,7 @@ design patterns · EPFL
       </span>
      </div>
     </div>
-    <div class="proj-card">
+    <div class="proj-card reveal">
      <div class="proj-header">
       <div>
        <div class="proj-title">
@@ -1731,7 +1792,7 @@ design patterns · EPFL
    <!-- COURS YALE — COURSERA -->
    <!-- [EDIT] Modifie le titre,
 l'institution, la description et les tags -->
-   <div class="coursera-card">
+   <div class="coursera-card reveal">
     <div class="cc-badge">
      <div class="cc-dot">
       <span>
@@ -1778,10 +1839,10 @@ l'institution, la description et les tags -->
   SECTION 03 — BACKGROUND (EDUCATION + EXPERIENCE)
   ============================================================-->
   <section id="experience">
-   <div class="sec-label">
+   <div class="sec-label reveal">
     03 · Background
    </div>
-   <h2 class="sec-h">
+   <h2 class="sec-h reveal">
     Education &amp;
     <br/>
     <em>
@@ -1790,7 +1851,7 @@ l'institution, la description et les tags -->
    </h2>
    <!-- [EDIT] Timeline — each .tl-item = one entry. To ADD an entry: copy a full .tl-item block. To MODIFY: change tl-date, tl-role, tl-org, tl-desc and the tags. To DELETE: remove the entire .tl-item block. -->
    <div class="tl">
-    <div class="tl-item">
+    <div class="tl-item reveal">
      <!-- [EDIT] Date on the left -->
      <div class="tl-date">
       Sept 2024 — Present
@@ -1845,7 +1906,7 @@ l'institution, la description et les tags -->
       </div>
      </div>
     </div>
-    <div class="tl-item">
+    <div class="tl-item reveal">
         <div class="tl-date">Sept 2026 — June 2027</div>
         <div class="tl-sep"></div>
          <div>
@@ -1866,7 +1927,7 @@ l'institution, la description et les tags -->
             </div>
         </div>
     </div>
-    <div class="tl-item">
+    <div class="tl-item reveal">
      <div class="tl-date">
       Oct. 2025
      </div>
@@ -1885,7 +1946,7 @@ l'institution, la description et les tags -->
       </div>
      </div>
     </div>
-    <div class="tl-item">
+    <div class="tl-item reveal">
      <div class="tl-date">
       Août 2025
      </div>
@@ -1904,7 +1965,7 @@ l'institution, la description et les tags -->
       </div>
      </div>
     </div>
-    <div class="tl-item">
+    <div class="tl-item reveal">
      <div class="tl-date">
       Fév. 2023
      </div>
@@ -1934,7 +1995,7 @@ l'institution, la description et les tags -->
       </div>
      </div>
     </div>
-    <div class="tl-item">
+    <div class="tl-item reveal">
      <div class="tl-date">
       2021 — 2024
      </div>
@@ -1952,7 +2013,7 @@ l'institution, la description et les tags -->
       </div>
      </div>
     </div>
-    <div class="tl-item">
+    <div class="tl-item reveal">
      <div class="tl-date">
       Mai — Juil. 2022
      </div>
@@ -1977,10 +2038,10 @@ l'institution, la description et les tags -->
   SECTION 04 — SKILLS
   ============================================================-->
   <section id="skills">
-   <div class="sec-label">
+   <div class="sec-label reveal">
     04 · Skills
    </div>
-   <h2 class="sec-h">
+   <h2 class="sec-h reveal">
     Stack &amp;
     <br/>
     <em>
@@ -1989,7 +2050,7 @@ l'institution, la description et les tags -->
    </h2>
    <!-- [EDIT] Each .sk = one skill category. Add/remove <span class="sk-item">for each technology. -->
    <div class="skills-wrap">
-    <div class="sk">
+    <div class="sk reveal">
      <div class="sk-cat">
       Languages &amp;
 Tools
@@ -2036,7 +2097,7 @@ Tools
       </span>
      </div>
     </div>
-    <div class="sk">
+    <div class="sk reveal">
      <div class="sk-cat">
       Mathematics &amp;
 Engineering
@@ -2080,7 +2141,7 @@ Engineering
       </span>
      </div>
     </div>
-    <div class="sk">
+    <div class="sk reveal">
      <div class="sk-cat">
       Artificial Intelligence
      </div>
@@ -2111,7 +2172,7 @@ Engineering
       </span>
      </div>
     </div>
-    <div class="sk">
+    <div class="sk reveal">
      <div class="sk-cat">
       Finance &amp;
 Markets
@@ -2143,7 +2204,7 @@ Markets
       </span>
      </div>
     </div>
-    <div class="sk">
+    <div class="sk reveal">
      <div class="sk-cat">
       Human &amp;
 Leadership
@@ -2180,7 +2241,7 @@ Leadership
       Languages
      </div>
      <div class="lang-grid">
-      <div class="lang-cell">
+      <div class="lang-cell reveal">
        <div class="lang-name">
         French
        </div>
@@ -2188,7 +2249,7 @@ Leadership
         Native language
        </div>
       </div>
-      <div class="lang-cell">
+      <div class="lang-cell reveal">
        <div class="lang-name">
         English
        </div>
@@ -2196,7 +2257,7 @@ Leadership
         Fluent — EPFL Education and certificate
        </div>
       </div>
-      <div class="lang-cell">
+      <div class="lang-cell reveal">
        <div class="lang-name">
         German
        </div>
@@ -2212,10 +2273,10 @@ Leadership
   SECTION 05 — AMBITIONS
   ============================================================-->
   <section id="ambitions">
-   <div class="sec-label">
+   <div class="sec-label reveal">
     05 · Ambitions
    </div>
-   <h2 class="sec-h">
+   <h2 class="sec-h reveal">
     Goals &amp;
     <br/>
     <em>
@@ -2224,7 +2285,7 @@ Leadership
    </h2>
    <!-- [EDIT] 3 ambition cards — edit amb-title and amb-body. Example: once you know which master you are doing, replace A.01 with the program name. -->
    <div class="amb-row">
-    <div class="amb">
+    <div class="amb reveal">
      <div class="amb-n">
       A.01
      </div>
@@ -2237,7 +2298,7 @@ Leadership
       systems and quantitative finance.
      </div>
     </div>
-    <div class="amb">
+    <div class="amb reveal">
      <div class="amb-n">
       A.02
      </div>
@@ -2249,7 +2310,7 @@ Leadership
       where machine learning and market structure meet.
      </div>
     </div>
-    <div class="amb">
+    <div class="amb reveal">
      <div class="amb-n">
       A.03
      </div>
@@ -2309,10 +2370,10 @@ Crypto
   SECTION 06 — CONTACT
   ============================================================-->
   <section id="contact">
-   <div class="sec-label">
+   <div class="sec-label reveal">
     06 · Contact
    </div>
-   <div class="contact-inner">
+   <div class="contact-inner reveal">
     <div>
      <!-- [EDIT] Grand titre de contact — ex: "Stage\nÉté\n2027." -->
      <div class="contact-big">
@@ -2388,7 +2449,7 @@ Crypto
    </div>
   </section>
   <!-- [EDIT] Footer — year and city -->
-  <footer>
+  <footer class="reveal">
    <span class="footer-l">
     César Garin
    </span>
@@ -2425,6 +2486,16 @@ window.addEventListener('scroll', () => {
         toggle.setAttribute('aria-expanded', 'false');
     }));
 })();
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
  </body>
 </html>
