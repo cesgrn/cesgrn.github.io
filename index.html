@@ -34,7 +34,17 @@
     --bg: rgb(var(--bg-rgb));
     --card: #FFFFFF;
     --card-hover: #EFECE4;
-    --acc: #7A5C25
+    --acc: #7A5C25;
+    --r: 14px;
+    --r-sm: 8px;
+
+    /* Text-size controls — tweak any one independently.
+       1 = original size. 1.15 = 15% bigger. 0.9 = 10% smaller. */
+    --fs-nav: 1;       /* top navigation bar: logo, menu links, Contact button */
+    --fs-body: 1.25;   /* explanatory / descriptive paragraph text */
+    --fs-label: 1;     /* small uppercase labels, tags, dates, meta info */
+    --fs-heading: 1;   /* mid-size sub-headings (job titles, project titles...) */
+    --fs-ui: 1         /* buttons and contact-link values */
 }
 
 body {
@@ -58,8 +68,9 @@ nav {
     justify-content: space-between;
     padding: 0 3rem;
     height: 58px;
-    background: rgba(var(--bg-rgb), 0.88);
-    border-bottom: 0.5px solid var(--line);
+    background: rgba(var(--bg-rgb), 0.62);
+    border-bottom: 0.5px solid transparent;
+    transition: border-color .35s ease;
     position: fixed;
     top: 0;
     left: 0;
@@ -68,9 +79,13 @@ nav {
     backdrop-filter: blur(12px)
 }
 
+nav.scrolled {
+    border-bottom-color: var(--line)
+}
+
 .logo {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 16px;
+    font-size: calc(16px * var(--fs-nav));
     font-weight: 500;
     letter-spacing: 0.18em;
     text-transform: uppercase
@@ -83,12 +98,34 @@ nav {
 }
 
 .nav-links a {
-    font-size: 11px;
+    font-size: calc(11px * var(--fs-nav));
     font-weight: 300;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--off);
-    transition: color .2s
+    transition: color .2s;
+    position: relative
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -6px;
+    height: 1px;
+    background: var(--w);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .3s ease
+}
+
+.nav-links a.active {
+    color: var(--w)
+}
+
+.nav-links a.active::after {
+    transform: scaleX(1)
 }
 
 .nav-links a:hover {
@@ -96,11 +133,12 @@ nav {
 }
 
 .nav-cta {
-    font-size: 11px;
+    font-size: calc(11px * var(--fs-nav));
     font-weight: 400;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     border: 0.5px solid rgba(20, 18, 12, 0.3);
+    border-radius: var(--r-sm);
     padding: 8px 20px;
     transition: all .2s
 }
@@ -121,17 +159,53 @@ nav {
 }
 
 .hero {
-    min-height: 100vh;
+    min-height: 50vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding: 0 3rem 5rem;
+    padding: 6rem 3rem 4rem;
     position: relative;
     overflow: hidden
 }
 
+.hero-inner {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 4.5rem;
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto
+}
+
+.hero-text {
+    flex: 0 1 840px;
+    min-width: 0
+}
+
+.hero-photo {
+    flex-shrink: 0;
+    width: 370px;
+    aspect-ratio: 4 / 5;
+    border: 1px dashed rgba(20, 18, 12, .25);
+    border-radius: var(--r);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1.5rem
+}
+
+.hero-photo span {
+    font-size: calc(10px * var(--fs-label));
+    font-weight: 300;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--dim)
+}
+
 .hero-tag {
-    font-size: 10px;
+    font-size: calc(10px * var(--fs-label));
     font-weight: 300;
     letter-spacing: 0.25em;
     text-transform: uppercase;
@@ -169,7 +243,7 @@ nav {
 
 .hero-role {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 15px;
+    font-size: calc(15px * var(--fs-heading));
     font-weight: 500;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -178,11 +252,22 @@ nav {
 }
 
 .hero-desc {
-    font-size: 15px;
+    font-size: calc(15px * var(--fs-body));
     font-weight: 300;
     color: var(--off);
     max-width: 500px;
     line-height: 1.8;
+    margin-bottom: 1.75rem
+}
+
+.hero-avail {
+    font-size: calc(13.5px * var(--fs-body));
+    font-weight: 300;
+    color: var(--off);
+    max-width: 500px;
+    line-height: 1.7;
+    border-left: 2px solid var(--acc);
+    padding-left: 1rem;
     margin-bottom: 2.5rem
 }
 
@@ -193,13 +278,14 @@ nav {
 }
 
 .btn-s {
-    font-size: 12px;
+    font-size: calc(12px * var(--fs-ui));
     font-weight: 400;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     padding: 13px 30px;
     background: var(--w);
     color: var(--bg);
+    border-radius: var(--r-sm);
     transition: opacity .2s;
     cursor: pointer
 }
@@ -209,12 +295,13 @@ nav {
 }
 
 .btn-o {
-    font-size: 12px;
+    font-size: calc(12px * var(--fs-ui));
     font-weight: 300;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     padding: 13px 30px;
     border: 0.5px solid rgba(20, 18, 12, .35);
+    border-radius: var(--r-sm);
     transition: background .2s;
     cursor: pointer
 }
@@ -242,7 +329,7 @@ nav {
 }
 
 .scroll-ind p {
-    font-size: 9px;
+    font-size: calc(9px * var(--fs-label));
     letter-spacing: .2em;
     text-transform: uppercase;
     color: var(--dim)
@@ -255,7 +342,7 @@ section {
 
 .sec-label {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 10px;
+    font-size: calc(10px * var(--fs-label));
     font-weight: 300;
     letter-spacing: .22em;
     text-transform: uppercase;
@@ -285,7 +372,7 @@ section {
 }
 
 .profile-text {
-    font-size: 14px;
+    font-size: calc(14px * var(--fs-body));
     font-weight: 300;
     color: var(--off);
     line-height: 1.9
@@ -303,8 +390,7 @@ section {
 .stats-col {
     display: flex;
     flex-direction: column;
-    gap: 0.5px;
-    background: var(--line)
+    gap: 10px
 }
 
 .stat-row {
@@ -312,7 +398,9 @@ section {
     padding: 1.5rem 2rem;
     display: flex;
     align-items: baseline;
-    justify-content: space-between
+    justify-content: space-between;
+    border-radius: var(--r-sm);
+    border: 0.5px solid var(--line)
 }
 
 .stat-row:hover {
@@ -327,7 +415,7 @@ section {
 }
 
 .sl {
-    font-size: 10px;
+    font-size: calc(10px * var(--fs-label));
     font-weight: 300;
     letter-spacing: .15em;
     text-transform: uppercase;
@@ -345,6 +433,7 @@ section {
 .tile {
     background: var(--card);
     padding: 2.5rem 2rem;
+    border-radius: var(--r);
     transition: background .3s
 }
 
@@ -353,7 +442,7 @@ section {
 }
 
 .t-n {
-    font-size: 10px;
+    font-size: calc(10px * var(--fs-label));
     font-weight: 300;
     letter-spacing: .2em;
     color: var(--dim);
@@ -362,7 +451,7 @@ section {
 
 .t-title {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 22px;
+    font-size: calc(22px * var(--fs-heading));
     font-weight: 300;
     text-transform: uppercase;
     letter-spacing: .04em;
@@ -370,7 +459,7 @@ section {
 }
 
 .t-body {
-    font-size: 13px;
+    font-size: calc(13px * var(--fs-body));
     font-weight: 300;
     color: var(--off);
     line-height: 1.75
@@ -396,7 +485,7 @@ section {
 
 .tl-date {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 12px;
+    font-size: calc(12px * var(--fs-label));
     font-weight: 300;
     letter-spacing: .1em;
     text-transform: uppercase;
@@ -424,7 +513,7 @@ section {
 
 .tl-role {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 20px;
+    font-size: calc(20px * var(--fs-heading));
     font-weight: 300;
     text-transform: uppercase;
     letter-spacing: .04em;
@@ -432,7 +521,7 @@ section {
 }
 
 .tl-org {
-    font-size: 11px;
+    font-size: calc(11px * var(--fs-label));
     font-weight: 300;
     letter-spacing: .12em;
     text-transform: uppercase;
@@ -441,7 +530,7 @@ section {
 }
 
 .tl-desc {
-    font-size: 13px;
+    font-size: calc(13px * var(--fs-body));
     font-weight: 300;
     color: var(--off);
     line-height: 1.75
@@ -455,11 +544,12 @@ section {
 }
 
 .tag {
-    font-size: 10px;
+    font-size: calc(10px * var(--fs-label));
     font-weight: 300;
     letter-spacing: .1em;
     padding: 3px 10px;
     border: 0.5px solid var(--dim);
+    border-radius: 999px;
     color: var(--off)
 }
 
@@ -474,6 +564,7 @@ section {
 .proj-card {
     background: var(--card);
     padding: 2.5rem 2rem;
+    border-radius: var(--r);
     transition: background .3s;
     display: flex;
     flex-direction: column;
@@ -493,19 +584,20 @@ section {
 
 .proj-lang {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 11px;
+    font-size: calc(11px * var(--fs-label));
     font-weight: 400;
     letter-spacing: .18em;
     text-transform: uppercase;
     padding: 4px 10px;
     border: 0.5px solid var(--dim);
+    border-radius: 999px;
     color: var(--off);
     white-space: nowrap
 }
 
 .proj-title {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 20px;
+    font-size: calc(20px * var(--fs-heading));
     font-weight: 300;
     text-transform: uppercase;
     letter-spacing: .04em;
@@ -513,7 +605,7 @@ section {
 }
 
 .proj-sub {
-    font-size: 11px;
+    font-size: calc(11px * var(--fs-label));
     font-weight: 300;
     letter-spacing: .1em;
     text-transform: uppercase;
@@ -535,7 +627,7 @@ section {
 }
 
 .proj-desc {
-    font-size: 13px;
+    font-size: calc(13px * var(--fs-body));
     font-weight: 300;
     color: var(--off);
     line-height: 1.75;
@@ -551,7 +643,8 @@ section {
 .proj-diagram {
     border-top: 0.5px solid var(--line);
     border-bottom: 0.5px solid var(--line);
-    padding: 1.1rem 0
+    padding: 1.1rem 0;
+    border-radius: var(--r-sm)
 }
 
 .proj-diagram svg {
@@ -569,17 +662,19 @@ section {
 }
 
 .proj-tag {
-    font-size: 10px;
+    font-size: calc(10px * var(--fs-label));
     font-weight: 300;
     letter-spacing: .08em;
     padding: 2px 9px;
     border: 0.5px solid rgba(20, 18, 12, .12);
+    border-radius: 999px;
     color: var(--dim)
 }
 
 .coursera-card {
     background: var(--card);
     border: 0.5px solid var(--line);
+    border-radius: var(--r);
     margin-top: 3.5rem;
     padding: 2.5rem 2rem;
     display: grid;
@@ -604,6 +699,7 @@ section {
     width: 44px;
     height: 44px;
     border: 0.5px solid var(--dim);
+    border-radius: var(--r-sm);
     display: flex;
     align-items: center;
     justify-content: center
@@ -611,7 +707,7 @@ section {
 
 .cc-dot span {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 10px;
+    font-size: calc(10px * var(--fs-label));
     font-weight: 400;
     letter-spacing: .1em;
     text-transform: uppercase;
@@ -619,7 +715,7 @@ section {
 }
 
 .cc-platform {
-    font-size: 9px;
+    font-size: calc(9px * var(--fs-label));
     font-weight: 300;
     letter-spacing: .15em;
     text-transform: uppercase;
@@ -628,7 +724,7 @@ section {
 
 .cc-title {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 22px;
+    font-size: calc(22px * var(--fs-heading));
     font-weight: 300;
     text-transform: uppercase;
     letter-spacing: .04em;
@@ -636,7 +732,7 @@ section {
 }
 
 .cc-inst {
-    font-size: 11px;
+    font-size: calc(11px * var(--fs-label));
     font-weight: 300;
     letter-spacing: .12em;
     text-transform: uppercase;
@@ -645,7 +741,7 @@ section {
 }
 
 .cc-desc {
-    font-size: 13px;
+    font-size: calc(13px * var(--fs-body));
     font-weight: 300;
     color: var(--off);
     line-height: 1.75;
@@ -655,14 +751,16 @@ section {
 .skills-wrap {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 0.5px;
-    background: var(--line);
+    gap: 12px;
+    background: transparent;
     margin-top: 3.5rem
 }
 
 .sk {
     background: var(--card);
     padding: 2.5rem 2rem;
+    border-radius: var(--r);
+    border: 0.5px solid var(--line);
     transition: background .3s
 }
 
@@ -671,7 +769,7 @@ section {
 }
 
 .sk-cat {
-    font-size: 10px;
+    font-size: calc(10px * var(--fs-label));
     font-weight: 300;
     letter-spacing: .18em;
     text-transform: uppercase;
@@ -681,7 +779,7 @@ section {
 
 .sk-name {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 24px;
+    font-size: calc(24px * var(--fs-heading));
     font-weight: 200;
     text-transform: uppercase;
     letter-spacing: .04em;
@@ -695,37 +793,40 @@ section {
 }
 
 .sk-item {
-    font-size: 11px;
+    font-size: calc(11px * var(--fs-label));
     font-weight: 300;
     letter-spacing: .08em;
     padding: 4px 12px;
     border: 0.5px solid rgba(20, 18, 12, .15);
+    border-radius: 999px;
     color: var(--off)
 }
 
 .lang-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 0.5px;
-    background: var(--line);
+    gap: 12px;
+    background: transparent;
     margin-top: 0
 }
 
 .lang-cell {
     background: var(--card);
-    padding: 1.75rem 2rem
+    padding: 1.75rem 2rem;
+    border-radius: var(--r-sm);
+    border: 0.5px solid var(--line)
 }
 
 .lang-name {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 20px;
+    font-size: calc(20px * var(--fs-heading));
     font-weight: 300;
     text-transform: uppercase;
     margin-bottom: 4px
 }
 
 .lang-level {
-    font-size: 11px;
+    font-size: calc(11px * var(--fs-label));
     font-weight: 300;
     letter-spacing: .12em;
     text-transform: uppercase;
@@ -742,6 +843,7 @@ section {
 .amb {
     background: var(--card);
     padding: 2.5rem 2rem;
+    border-radius: var(--r);
     transition: background .3s;
     cursor: default
 }
@@ -751,7 +853,7 @@ section {
 }
 
 .amb-n {
-    font-size: 10px;
+    font-size: calc(10px * var(--fs-label));
     font-weight: 300;
     letter-spacing: .2em;
     color: var(--dim);
@@ -760,7 +862,7 @@ section {
 
 .amb-title {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 20px;
+    font-size: calc(20px * var(--fs-heading));
     font-weight: 300;
     text-transform: uppercase;
     letter-spacing: .04em;
@@ -769,10 +871,51 @@ section {
 }
 
 .amb-body {
-    font-size: 13px;
+    font-size: calc(13px * var(--fs-body));
     font-weight: 300;
     color: var(--off);
     line-height: 1.75
+}
+
+#contact {
+    background-color: #16150F;
+    background-image:
+        repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.028) 0px, rgba(255, 255, 255, 0.028) 1px, transparent 1px, transparent 15px),
+        repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.016) 0px, rgba(255, 255, 255, 0.016) 1px, transparent 1px, transparent 15px);
+    color: #EDEAE1
+}
+
+#contact .sec-label {
+    color: rgba(237, 234, 225, 0.5)
+}
+
+#contact .contact-big {
+    color: #EDEAE1
+}
+
+#contact .contact-sub {
+    color: rgba(237, 234, 225, 0.65)
+}
+
+#contact .clink {
+    background: rgba(255, 255, 255, 0.04);
+    border: 0.5px solid rgba(255, 255, 255, 0.12)
+}
+
+#contact .clink:hover {
+    background: rgba(255, 255, 255, 0.08)
+}
+
+#contact .cl-l {
+    color: rgba(237, 234, 225, 0.5)
+}
+
+#contact .cl-v {
+    color: #EDEAE1
+}
+
+#contact .cl-a {
+    color: rgba(237, 234, 225, 0.5)
 }
 
 .contact-inner {
@@ -793,7 +936,7 @@ section {
 }
 
 .contact-sub {
-    font-size: 14px;
+    font-size: calc(14px * var(--fs-body));
     font-weight: 300;
     color: var(--dim);
     line-height: 1.8;
@@ -803,8 +946,7 @@ section {
 .clinks {
     display: flex;
     flex-direction: column;
-    gap: 0.5px;
-    background: var(--line)
+    gap: 10px
 }
 
 .clink {
@@ -813,6 +955,8 @@ section {
     justify-content: space-between;
     background: var(--bg);
     padding: 1.2rem 1.5rem;
+    border-radius: var(--r-sm);
+    border: 0.5px solid var(--line);
     transition: background .2s;
     gap: 1rem
 }
@@ -822,7 +966,7 @@ section {
 }
 
 .cl-l {
-    font-size: 10px;
+    font-size: calc(10px * var(--fs-label));
     font-weight: 300;
     letter-spacing: .15em;
     text-transform: uppercase;
@@ -831,37 +975,40 @@ section {
 }
 
 .cl-v {
-    font-size: 13px;
+    font-size: calc(13px * var(--fs-ui));
     font-weight: 300;
     color: var(--off)
 }
 
 .cl-a {
-    font-size: 14px;
+    font-size: calc(14px * var(--fs-ui));
     color: var(--dim)
 }
 
 footer {
     padding: 2rem 3rem;
-    border-top: 0.5px solid var(--line);
+    border-top: 0.5px solid rgba(255, 255, 255, 0.08);
     display: flex;
     justify-content: space-between;
-    align-items: center
+    align-items: center;
+    background-color: #1B1A17;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+    background-size: 18px 18px
 }
 
 .footer-l {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 13px;
+    font-size: calc(13px * var(--fs-label));
     font-weight: 400;
     letter-spacing: .15em;
     text-transform: uppercase;
-    color: var(--dim)
+    color: rgba(237, 234, 225, 0.85)
 }
 
 .footer-r {
-    font-size: 10px;
+    font-size: calc(10px * var(--fs-label));
     font-weight: 300;
-    color: var(--dim);
+    color: rgba(237, 234, 225, 0.5);
     letter-spacing: .08em
 }
 
@@ -873,12 +1020,13 @@ footer {
 }
 
 .int-item {
-    font-size: 11px;
+    font-size: calc(11px * var(--fs-label));
     font-weight: 300;
     letter-spacing: .1em;
     text-transform: uppercase;
     padding: 6px 14px;
     border: 0.5px solid rgba(20, 18, 12, .12);
+    border-radius: 999px;
     color: var(--dim)
 }
 
@@ -919,6 +1067,15 @@ footer {
     }
     .hero {
         padding-bottom: 4rem
+    }
+    .hero-inner {
+        flex-direction: column-reverse;
+        align-items: stretch
+    }
+    .hero-photo {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        margin-bottom: 2rem
     }
     .profile-grid,
     .contact-inner {
@@ -961,6 +1118,7 @@ html {
     justify-content: center;
     background: rgba(var(--bg-rgb), 0.85);
     border: 0.5px solid rgba(20, 18, 12, .3);
+    border-radius: 50%;
     backdrop-filter: blur(12px);
     font-size: 16px;
     color: var(--w);
@@ -1029,9 +1187,17 @@ html {
   opacity: 0;
   animation: heroFadeUp 0.7s ease 0.65s forwards;
 }
+.hero-avail {
+  opacity: 0;
+  animation: heroFadeUp 0.7s ease 0.75s forwards;
+}
 .hero-btns {
   opacity: 0;
-  animation: heroFadeUp 0.7s ease 0.8s forwards;
+  animation: heroFadeUp 0.7s ease 0.9s forwards;
+}
+.hero-photo {
+  opacity: 0;
+  animation: heroFadeUp 0.9s ease 0.3s forwards;
 }
 @keyframes heroFadeUp {
   from { opacity: 0; transform: translateY(20px); }
@@ -1092,38 +1258,49 @@ html {
   HERO — SECTION D'ACCUEIL
 ============================================================-->
   <div class="hero" id="home">
-   <!-- [EDIT] Accroche sous le nom — statut actuel,
+   <div class="hero-inner">
+    <div class="hero-text">
+     <!-- [EDIT] Accroche sous le nom — statut actuel,
 disponibilité -->
-   <div class="hero-tag">
-    EPFL · DTU
-   </div>
-   <!-- [EDIT] Ton nom — ne modifie que le texte,
+     <div class="hero-tag">
+      EPFL · DTU
+     </div>
+     <!-- [EDIT] Ton nom — ne modifie que le texte,
 pas les balises -->
-   <h1>
-    César
-    <br/>
-    <span>
-     Charles Sébastien
-    </span>
-    Garin
-   </h1>
-   <div class="hero-role">
-    Quantitative Modeling · Complex Data Systems · AI &amp; Software Engineering
-   </div>
-   <!-- [EDIT] Phrase de présentation principale -->
-   <p class="hero-desc">
-    3rd-year EPFL student,
-    combining mathematical rigor, software engineering,
-    a deep interest in AI and financial markets.
-    Focused on quantitative modeling and research applied to finance.
-   </p>
-   <div class="hero-btns">
-    <a class="btn-s" href="#contact">
-     Get in Touch
-    </a>
-    <a class="btn-o" href="#projects">
-     My projects
-    </a>
+     <h1>
+      César Garin
+     </h1>
+     <div class="hero-role">
+      Quantitative Modeling · Complex Data Systems · AI &amp; Software Engineering
+     </div>
+     <!-- [EDIT] Phrase de présentation principale -->
+     <p class="hero-desc">
+      3rd-year EPFL student,
+      combining mathematical rigor, software engineering,
+      a deep interest in AI and financial markets.
+      Focused on quantitative modeling and research applied to finance.
+     </p>
+     <!-- [EDIT] Ligne de disponibilité — mets à jour la période si besoin -->
+     <p class="hero-avail">
+      Available for a 3-month full-time internship, June – August 2027. 
+      Also looking for a part-time student job alongside my studies until then.
+      Open to conversations in the meantime.
+     </p>
+     <div class="hero-btns">
+      <a class="btn-s" href="#contact">
+       Get in Touch
+      </a>
+      <a class="btn-o" href="#projects">
+       My projects
+      </a>
+     </div>
+    </div>
+    <!-- [EDIT] Emplacement réservé pour ta photo. Pas de photo pour le moment :
+         quand tu en as une, remplace ce <div class="hero-photo">...</div>
+         par : <img class="hero-photo" src="assets/photo.jpg" alt="César Garin"> -->
+    <div class="hero-photo">
+     <span>Photo<br/>coming soon</span>
+    </div>
    </div>
   </div>
   <!--============================================================
@@ -1164,11 +1341,12 @@ pas les balises -->
      </p>
      <p>
       Multilingual (FR · EN · DE), proactive and experienced in high-performance
-      environments, I am seeking
+      environments, I am seeking opportunities at the intersection of
       <strong>
-       quantitative research or systematic trading opportunities
+       quantitative research, systems and data modeling, intelligent systems, AI, 
+       machine learning, and computational methods,
       </strong>
-      , available Fall 2026-27.
+      available Fall 2026-27.
      </p>
     </div>
     <!-- [EDIT] Statistiques rapides — modifie la valeur (.sv) et le label (.sl) -->
@@ -1184,7 +1362,7 @@ pas les balises -->
      <div class="stat-row">
       <!-- [EDIT] Exemple: passe à "Bac+3" quand tu entres en 3e année -->
       <span class="sv">
-       Bac+2
+       Bac+3
       </span>
       <span class="sl">
        3rd year · BSc CS
@@ -1854,7 +2032,7 @@ l'institution, la description et les tags -->
     <div class="tl-item reveal">
      <!-- [EDIT] Date on the left -->
      <div class="tl-date">
-      Sept 2024 — Present
+      Sept 2024 — Jul 2027
      </div>
      <div class="tl-sep">
      </div>
@@ -1869,9 +2047,9 @@ l'institution, la description et les tags -->
       </div>
       <!-- [EDIT] Description -->
       <div class="tl-desc">
-       One of the world's most demanding engineering programs, conducted entirely in English. 
+        One of the world's most demanding engineering programs, conducted entirely in English. 
         Builds deep technical foundations through rigorous coursework: Machine Learning, 
-        ML for Signal Processing, Computer Systems, Algorithms, Probability & Statistics, 
+        Signal Processing, Computer Systems, Algorithms, Probability & Statistics, 
         Cybersecurity, Artificial Intelligence, Computer Architecture, 
         Mathematical Analysis, Algebra and Software Construction. 
         The intensity of the program forges exceptional work ethic, 
@@ -1907,7 +2085,7 @@ l'institution, la description et les tags -->
      </div>
     </div>
     <div class="tl-item reveal">
-        <div class="tl-date">Sept 2026 — June 2027</div>
+        <div class="tl-date">Sept 2026 — Jun 2027</div>
         <div class="tl-sep"></div>
          <div>
             <div class="tl-role">Exchange Year</div>
@@ -1919,13 +2097,74 @@ l'institution, la description et les tags -->
                 Developed strong soft skills through daily collaboration with students 
                 from across Europe and beyond: cross-cultural communication, adaptability 
                 and autonomy — continuing an international academic journey already 
-                started in Switzerland.
+                started in Switzerland. 
             </div>
             <div class="tl-tags">
-                <span class="tag">International Exchange</span>
-                <span class="tag">Denmark</span>
+                <span class="tag">ML for Signal Processing</span>
+                <span class="tag">Intelligent Systems</span>
+                <span class="tag">Algebra</span>
+                <span class="tag">Digital Communication</span>
+                <span class="tag">Logic for Security</span>
+                <span class="tag">Database Systems</span>
+                <span class="tag">Software Development</span>
+                <span class="tag">MATLAB</span>
             </div>
         </div>
+    </div>
+    <div class="tl-item reveal">
+     <div class="tl-date">
+      Jun 2026 — Present
+     </div>
+     <div class="tl-sep">
+     </div>
+     <div>
+      <div class="tl-role">
+       Independent Entrepreneur
+      </div>
+      <div class="tl-org">
+       Event Services — Lyon, France
+      </div>
+      <div class="tl-desc">
+       Independently operate a service business providing event services for weddings,
+       professional events and private events. Generated €4,000+ in revenue since
+       launching the activity.
+      </div>
+      <div class="tl-tags">
+       <span class="tag">
+        Entrepreneurship
+       </span>
+       <span class="tag">
+        Event Management
+       </span>
+      </div>
+     </div>
+    </div>
+    <div class="tl-item reveal">
+     <div class="tl-date">
+      Sept 2026 — Jun 2027
+     </div>
+     <div class="tl-sep">
+     </div>
+     <div>
+      <div class="tl-role">
+       Restaurant Staff
+      </div>
+      <div class="tl-org">
+       Ma Cuisine — Copenhagen, Denmark
+      </div>
+      <div class="tl-desc">
+       Part-time restaurant work alongside the academic exchange year at DTU, balancing
+       service shifts with a demanding course load in an international environment.
+      </div>
+      <div class="tl-tags">
+       <span class="tag">
+        Part-Time
+       </span>
+       <span class="tag">
+        Customer Service
+       </span>
+      </div>
+     </div>
     </div>
     <div class="tl-item reveal">
      <div class="tl-date">
@@ -1948,7 +2187,7 @@ l'institution, la description et les tags -->
     </div>
     <div class="tl-item reveal">
      <div class="tl-date">
-      Août 2025
+      Aug. 2025
      </div>
      <div class="tl-sep">
      </div>
@@ -1967,7 +2206,7 @@ l'institution, la description et les tags -->
     </div>
     <div class="tl-item reveal">
      <div class="tl-date">
-      Fév. 2023
+      Feb. 2023
      </div>
      <div class="tl-sep">
      </div>
@@ -1997,7 +2236,7 @@ l'institution, la description et les tags -->
     </div>
     <div class="tl-item reveal">
      <div class="tl-date">
-      2021 — 2024
+      Sept 2021 — Jul 2024
      </div>
      <div class="tl-sep">
      </div>
@@ -2015,7 +2254,7 @@ l'institution, la description et les tags -->
     </div>
     <div class="tl-item reveal">
      <div class="tl-date">
-      Mai — Juil. 2022
+      Mai — Jul. 2022
      </div>
      <div class="tl-sep">
      </div>
@@ -2053,7 +2292,7 @@ l'institution, la description et les tags -->
     <div class="sk reveal">
      <div class="sk-cat">
       Languages &amp;
-Tools
+      Tools
      </div>
      <div class="sk-name">
       Development
@@ -2095,12 +2334,15 @@ Tools
       <span class="sk-item">
        Excel
       </span>
+      <span class="sk-item">
+       MATLAB
+      </span>
      </div>
     </div>
     <div class="sk reveal">
      <div class="sk-cat">
       Mathematics &amp;
-Engineering
+      Engineering
      </div>
      <div class="sk-name">
       Core Coursework
@@ -2139,6 +2381,9 @@ Engineering
       <span class="sk-item">
        Machine Learning
       </span>
+      <span class="sk-item">
+       Intelligent Systems
+      </span>
      </div>
     </div>
     <div class="sk reveal">
@@ -2168,6 +2413,9 @@ Engineering
        NumPy / Pandas
       </span>
       <span class="sk-item">
+       Pytorch
+      </span>
+      <span class="sk-item">
        Probabilities
       </span>
      </div>
@@ -2175,7 +2423,7 @@ Engineering
     <div class="sk reveal">
      <div class="sk-cat">
       Finance &amp;
-Markets
+      Markets
      </div>
      <div class="sk-name">
       Quantitative
@@ -2207,7 +2455,7 @@ Markets
     <div class="sk reveal">
      <div class="sk-cat">
       Human &amp;
-Leadership
+      Leadership
      </div>
      <div class="sk-name">
       Soft Skills
@@ -2235,7 +2483,7 @@ Leadership
     </div>
    </div>
    <!-- [EDIT] Languages — modifie lang-name et lang-level -->
-   <div style="margin-top:0.5px;background:var(--line)">
+   <div style="margin-top:2rem">
     <div style="background:var(--bg);padding:2rem">
      <div class="sk-cat" style="margin-bottom:1.25rem">
       Languages
@@ -2287,39 +2535,43 @@ Leadership
    <div class="amb-row">
     <div class="amb reveal">
      <div class="amb-n">
-      A.01
+      A.01 - ACADEMIC
      </div>
      <!-- [EDIT] Future example: "MSc Financial Engineering — EPFL / HEC" -->
      <div class="amb-title">
       Complete BSc at EPFL
      </div>
      <div class="amb-body">
-      Graduate with distinction, on a foundation of AI, algorithms,
-      systems and quantitative finance.
+      Graduate with distinction, on a foundation of AI, algorithms, 
+      systems and quantitative finance, preparing to pursue a 
+      leading Master’s in computational and quantitative disciplines.
      </div>
     </div>
     <div class="amb reveal">
      <div class="amb-n">
-      A.02
+      A.02 - RESEARCH
      </div>
      <div class="amb-title">
       Quantitative Research
      </div>
      <div class="amb-body">
-      Work on systematic trading and derivatives pricing problems
-      where machine learning and market structure meet.
+      Explore systematic trading, derivatives pricing, and intelligent 
+      systems using computational modeling, data-driven methods, 
+      machine learning, and systems research, bridging quantitative finance, 
+      computer science, and complex systems.
      </div>
     </div>
     <div class="amb reveal">
      <div class="amb-n">
-      A.03
+      A.03 - INDUSTRY
      </div>
      <div class="amb-title">
-      Cross-Border Career
+      DEEP TECH & ENTREPRENEURSHIP
      </div>
      <div class="amb-body">
-      Build on the EPFL–DTU experience to work across Swiss and
-      European financial and tech hubs.
+      Build on the EPFL–DTU experience to develop and work on innovative 
+      deep-tech projects, combining engineering, AI, systems, 
+      and entrepreneurship to turn research and ideas into impactful technologies.
      </div>
     </div>
    </div>
@@ -2434,7 +2686,7 @@ Crypto
        →
       </span>
      </a>
-     <a class="clink" download="César_Garin_CV.pdf" href="assets/CV_Cesar_Garin.pdf" target="_blank">
+     <a class="clink" download="César_Garin_CV.pdf" href="assets/Cesar_Garin_Resume.pdf" target="_blank">
       <span class="cl-l">
        Résumé
       </span>
@@ -2465,12 +2717,16 @@ Crypto
 (function () {
 const backToTop = document.getElementById('backToTop');
 const footerEl = document.querySelector('footer');
-window.addEventListener('scroll', () => {
+const navEl = document.querySelector('nav');
+function onScroll() {
+    if (navEl) navEl.classList.toggle('scrolled', window.scrollY > 4);
     if (!backToTop) return;
     backToTop.classList.toggle('visible', window.scrollY > 400);
     const overlap = window.innerHeight - footerEl.getBoundingClientRect().top;
     backToTop.style.bottom = overlap > 0 ? `calc(2rem + ${overlap}px)` : '2rem';
-});
+}
+window.addEventListener('scroll', onScroll);
+onScroll();
 })();
 
 (function () {
@@ -2485,6 +2741,24 @@ window.addEventListener('scroll', () => {
         links.classList.remove('open');
         toggle.setAttribute('aria-expanded', 'false');
     }));
+})();
+
+(function () {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+    const linkMap = new Map();
+    navLinks.forEach(link => linkMap.set(link.getAttribute('href').slice(1), link));
+
+    const spyObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            const link = linkMap.get(entry.target.id);
+            if (!link || !entry.isIntersecting) return;
+            navLinks.forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+        });
+    }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
+
+    sections.forEach(sec => spyObserver.observe(sec));
 })();
 
 const observer = new IntersectionObserver((entries) => {
