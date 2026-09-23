@@ -10,23 +10,21 @@
   they mark every section to modify.
   ============================================================-->
   <title>
-   César Garin — Quantitative Research &amp; AI | EPFL
+   César Garin — EPFL Computer Science Student
   </title>
-  <meta content="César Garin — EPFL Computer Science student focused on quantitative research, systematic trading and applied AI. Open to internships June–August 2027." name="description"/>
-  <!-- [EDIT] Remplace par l'URL finale de ton site une fois en ligne -->
-  <link rel="canonical" href="https://cesargarin.com/"/>
+  <meta content="César Garin — EPFL Computer Science student with a strong interest in quantitative finance, AI and systematic trading. Open to full-time internships, June–August 2027." name="description"/>
+  <link rel="canonical" href="https://cesgrn.github.io/"/>
   <meta content="César Garin — EPFL" property="og:title"/>
-  <meta content="Quantitative research, systematic trading &amp; applied AI — EPFL Computer Science student, open to internships June–August 2027." property="og:description"/>
+  <meta content="EPFL Computer Science student with a strong interest in quantitative finance, AI and systematic trading — open to full-time internships, June–August 2027." property="og:description"/>
   <meta content="website" property="og:type"/>
-  <!-- [EDIT] Remplace par l'URL finale de ton site une fois en ligne -->
-  <meta content="https://cesargarin.com/" property="og:url"/>
-  <meta content="https://cesargarin.com/assets/og-image.png" property="og:image"/>
+  <meta content="https://cesgrn.github.io/" property="og:url"/>
+  <meta content="https://cesgrn.github.io/assets/og-image.png" property="og:image"/>
   <meta content="1200" property="og:image:width"/>
   <meta content="630" property="og:image:height"/>
   <meta content="summary_large_image" name="twitter:card"/>
   <meta content="César Garin — EPFL" name="twitter:title"/>
-  <meta content="Quantitative research, systematic trading &amp; applied AI — EPFL Computer Science student, open to internships June–August 2027." name="twitter:description"/>
-  <meta content="https://cesargarin.com/assets/og-image.png" name="twitter:image"/>
+  <meta content="EPFL Computer Science student with a strong interest in quantitative finance, AI and systematic trading — open to full-time internships, June–August 2027." name="twitter:description"/>
+  <meta content="https://cesgrn.github.io/assets/og-image.png" name="twitter:image"/>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">  <link href="https://fonts.googleapis.com" rel="preconnect"/>
   <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200&amp;family=Barlow+Condensed:wght@200;300;400;500;600&amp;display=swap" rel="stylesheet"/>
   <style>
@@ -47,15 +45,7 @@
     --card-hover: #EFECE4;
     --acc: #7A5C25;
     --r: 14px;
-    --r-sm: 8px;
-
-    /* Text-size controls — tweak any one independently.
-       1 = original size. 1.15 = 15% bigger. 0.9 = 10% smaller. */
-    --fs-nav: 1;       /* top navigation bar: logo, menu links, Contact button */
-    --fs-body: 1.25;   /* explanatory / descriptive paragraph text */
-    --fs-label: 1;     /* small uppercase labels, tags, dates, meta info */
-    --fs-heading: 1;   /* mid-size sub-headings (job titles, project titles...) */
-    --fs-ui: 1         /* buttons and contact-link values */
+    --r-sm: 8px
 }
 
 body {
@@ -80,8 +70,7 @@ nav {
     padding: 0 3rem;
     height: 58px;
     background: rgba(var(--bg-rgb), 0.62);
-    border-bottom: 0.5px solid transparent;
-    transition: border-color .35s ease;
+    border-bottom: 0.5px solid var(--line);
     position: fixed;
     top: 0;
     left: 0;
@@ -90,13 +79,9 @@ nav {
     backdrop-filter: blur(12px)
 }
 
-nav.scrolled {
-    border-bottom-color: var(--line)
-}
-
 .logo {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: calc(16px * var(--fs-nav));
+    font-size: 16px;
     font-weight: 500;
     letter-spacing: 0.18em;
     text-transform: uppercase
@@ -109,7 +94,7 @@ nav.scrolled {
 }
 
 .nav-links a {
-    font-size: calc(11px * var(--fs-nav));
+    font-size: 11px;
     font-weight: 300;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -144,7 +129,7 @@ nav.scrolled {
 }
 
 .nav-cta {
-    font-size: calc(11px * var(--fs-nav));
+    font-size: 11px;
     font-weight: 400;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -208,7 +193,7 @@ nav.scrolled {
 }
 
 .hero-photo span {
-    font-size: calc(10px * var(--fs-label));
+    font-size: 10px;
     font-weight: 300;
     letter-spacing: .15em;
     text-transform: uppercase;
@@ -216,7 +201,7 @@ nav.scrolled {
 }
 
 .hero-tag {
-    font-size: calc(10px * var(--fs-label));
+    font-size: 10px;
     font-weight: 300;
     letter-spacing: 0.25em;
     text-transform: uppercase;
@@ -254,7 +239,7 @@ nav.scrolled {
 
 .hero-role {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: calc(15px * var(--fs-heading));
+    font-size: 15px;
     font-weight: 500;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -263,7 +248,7 @@ nav.scrolled {
 }
 
 .hero-desc {
-    font-size: calc(15px * var(--fs-body));
+    font-size: 15px;
     font-weight: 300;
     color: var(--off);
     max-width: 500px;
@@ -272,7 +257,7 @@ nav.scrolled {
 }
 
 .hero-avail {
-    font-size: calc(13.5px * var(--fs-body));
+    font-size: 13.5px;
     font-weight: 300;
     color: var(--off);
     max-width: 500px;
@@ -289,7 +274,7 @@ nav.scrolled {
 }
 
 .btn-s {
-    font-size: calc(12px * var(--fs-ui));
+    font-size: 12px;
     font-weight: 400;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -306,7 +291,7 @@ nav.scrolled {
 }
 
 .btn-o {
-    font-size: calc(12px * var(--fs-ui));
+    font-size: 12px;
     font-weight: 300;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -340,7 +325,7 @@ nav.scrolled {
 }
 
 .scroll-ind p {
-    font-size: calc(9px * var(--fs-label));
+    font-size: 9px;
     letter-spacing: .2em;
     text-transform: uppercase;
     color: var(--dim)
@@ -353,7 +338,7 @@ section {
 
 .sec-label {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: calc(10px * var(--fs-label));
+    font-size: 10px;
     font-weight: 300;
     letter-spacing: .22em;
     text-transform: uppercase;
@@ -383,7 +368,7 @@ section {
 }
 
 .profile-text {
-    font-size: calc(14px * var(--fs-body));
+    font-size: 14px;
     font-weight: 300;
     color: var(--off);
     line-height: 1.9
@@ -426,7 +411,7 @@ section {
 }
 
 .sl {
-    font-size: calc(10px * var(--fs-label));
+    font-size: 10px;
     font-weight: 300;
     letter-spacing: .15em;
     text-transform: uppercase;
@@ -453,7 +438,7 @@ section {
 }
 
 .t-n {
-    font-size: calc(10px * var(--fs-label));
+    font-size: 10px;
     font-weight: 300;
     letter-spacing: .2em;
     color: var(--dim);
@@ -462,7 +447,7 @@ section {
 
 .t-title {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: calc(22px * var(--fs-heading));
+    font-size: 22px;
     font-weight: 300;
     text-transform: uppercase;
     letter-spacing: .04em;
@@ -470,7 +455,7 @@ section {
 }
 
 .t-body {
-    font-size: calc(13px * var(--fs-body));
+    font-size: 13px;
     font-weight: 300;
     color: var(--off);
     line-height: 1.75
@@ -496,7 +481,7 @@ section {
 
 .tl-date {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: calc(12px * var(--fs-label));
+    font-size: 12px;
     font-weight: 300;
     letter-spacing: .1em;
     text-transform: uppercase;
@@ -524,7 +509,7 @@ section {
 
 .tl-role {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: calc(20px * var(--fs-heading));
+    font-size: 20px;
     font-weight: 300;
     text-transform: uppercase;
     letter-spacing: .04em;
@@ -532,7 +517,7 @@ section {
 }
 
 .tl-org {
-    font-size: calc(11px * var(--fs-label));
+    font-size: 11px;
     font-weight: 300;
     letter-spacing: .12em;
     text-transform: uppercase;
@@ -541,7 +526,7 @@ section {
 }
 
 .tl-desc {
-    font-size: calc(13px * var(--fs-body));
+    font-size: 13px;
     font-weight: 300;
     color: var(--off);
     line-height: 1.75
@@ -555,7 +540,7 @@ section {
 }
 
 .tag {
-    font-size: calc(10px * var(--fs-label));
+    font-size: 10px;
     font-weight: 300;
     letter-spacing: .1em;
     padding: 3px 10px;
@@ -595,7 +580,7 @@ section {
 
 .proj-lang {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: calc(11px * var(--fs-label));
+    font-size: 11px;
     font-weight: 400;
     letter-spacing: .18em;
     text-transform: uppercase;
@@ -608,7 +593,7 @@ section {
 
 .proj-title {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: calc(20px * var(--fs-heading));
+    font-size: 20px;
     font-weight: 300;
     text-transform: uppercase;
     letter-spacing: .04em;
@@ -616,7 +601,7 @@ section {
 }
 
 .proj-sub {
-    font-size: calc(11px * var(--fs-label));
+    font-size: 11px;
     font-weight: 300;
     letter-spacing: .1em;
     text-transform: uppercase;
@@ -638,7 +623,7 @@ section {
 }
 
 .proj-desc {
-    font-size: calc(13px * var(--fs-body));
+    font-size: 13px;
     font-weight: 300;
     color: var(--off);
     line-height: 1.75;
@@ -673,7 +658,7 @@ section {
 }
 
 .proj-tag {
-    font-size: calc(10px * var(--fs-label));
+    font-size: 10px;
     font-weight: 300;
     letter-spacing: .08em;
     padding: 2px 9px;
@@ -718,7 +703,7 @@ section {
 
 .cc-dot span {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: calc(10px * var(--fs-label));
+    font-size: 10px;
     font-weight: 400;
     letter-spacing: .1em;
     text-transform: uppercase;
@@ -726,7 +711,7 @@ section {
 }
 
 .cc-platform {
-    font-size: calc(9px * var(--fs-label));
+    font-size: 9px;
     font-weight: 300;
     letter-spacing: .15em;
     text-transform: uppercase;
@@ -735,7 +720,7 @@ section {
 
 .cc-title {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: calc(22px * var(--fs-heading));
+    font-size: 22px;
     font-weight: 300;
     text-transform: uppercase;
     letter-spacing: .04em;
@@ -743,7 +728,7 @@ section {
 }
 
 .cc-inst {
-    font-size: calc(11px * var(--fs-label));
+    font-size: 11px;
     font-weight: 300;
     letter-spacing: .12em;
     text-transform: uppercase;
@@ -752,7 +737,7 @@ section {
 }
 
 .cc-desc {
-    font-size: calc(13px * var(--fs-body));
+    font-size: 13px;
     font-weight: 300;
     color: var(--off);
     line-height: 1.75;
@@ -780,7 +765,7 @@ section {
 }
 
 .sk-cat {
-    font-size: calc(10px * var(--fs-label));
+    font-size: 10px;
     font-weight: 300;
     letter-spacing: .18em;
     text-transform: uppercase;
@@ -790,7 +775,7 @@ section {
 
 .sk-name {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: calc(24px * var(--fs-heading));
+    font-size: 24px;
     font-weight: 200;
     text-transform: uppercase;
     letter-spacing: .04em;
@@ -804,7 +789,7 @@ section {
 }
 
 .sk-item {
-    font-size: calc(11px * var(--fs-label));
+    font-size: 11px;
     font-weight: 300;
     letter-spacing: .08em;
     padding: 4px 12px;
@@ -830,14 +815,14 @@ section {
 
 .lang-name {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: calc(20px * var(--fs-heading));
+    font-size: 20px;
     font-weight: 300;
     text-transform: uppercase;
     margin-bottom: 4px
 }
 
 .lang-level {
-    font-size: calc(11px * var(--fs-label));
+    font-size: 11px;
     font-weight: 300;
     letter-spacing: .12em;
     text-transform: uppercase;
@@ -864,7 +849,7 @@ section {
 }
 
 .amb-n {
-    font-size: calc(10px * var(--fs-label));
+    font-size: 10px;
     font-weight: 300;
     letter-spacing: .2em;
     color: var(--dim);
@@ -873,7 +858,7 @@ section {
 
 .amb-title {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: calc(20px * var(--fs-heading));
+    font-size: 20px;
     font-weight: 300;
     text-transform: uppercase;
     letter-spacing: .04em;
@@ -882,7 +867,7 @@ section {
 }
 
 .amb-body {
-    font-size: calc(13px * var(--fs-body));
+    font-size: 13px;
     font-weight: 300;
     color: var(--off);
     line-height: 1.75
@@ -947,7 +932,7 @@ section {
 }
 
 .contact-sub {
-    font-size: calc(14px * var(--fs-body));
+    font-size: 14px;
     font-weight: 300;
     color: var(--dim);
     line-height: 1.8;
@@ -977,7 +962,7 @@ section {
 }
 
 .cl-l {
-    font-size: calc(10px * var(--fs-label));
+    font-size: 10px;
     font-weight: 300;
     letter-spacing: .15em;
     text-transform: uppercase;
@@ -986,13 +971,13 @@ section {
 }
 
 .cl-v {
-    font-size: calc(13px * var(--fs-ui));
+    font-size: 13px;
     font-weight: 300;
     color: var(--off)
 }
 
 .cl-a {
-    font-size: calc(14px * var(--fs-ui));
+    font-size: 14px;
     color: var(--dim)
 }
 
@@ -1009,7 +994,7 @@ footer {
 
 .footer-l {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: calc(13px * var(--fs-label));
+    font-size: 13px;
     font-weight: 400;
     letter-spacing: .15em;
     text-transform: uppercase;
@@ -1017,7 +1002,7 @@ footer {
 }
 
 .footer-r {
-    font-size: calc(10px * var(--fs-label));
+    font-size: 10px;
     font-weight: 300;
     color: rgba(237, 234, 225, 0.5);
     letter-spacing: .08em
@@ -1031,7 +1016,7 @@ footer {
 }
 
 .int-item {
-    font-size: calc(11px * var(--fs-label));
+    font-size: 11px;
     font-weight: 300;
     letter-spacing: .1em;
     text-transform: uppercase;
@@ -1293,9 +1278,7 @@ pas les balises -->
      </p>
      <!-- [EDIT] Ligne de disponibilité — mets à jour la période si besoin -->
      <p class="hero-avail">
-      Available for a 3-month full-time internship, June – August 2027. 
-      Also looking for a part-time student job alongside my studies until then.
-      Open to conversations in the meantime.
+      Available for a 3-month full-time internship, June – August 2027. Open to conversations before then.
      </p>
      <div class="hero-btns">
       <a class="btn-s" href="#contact">
@@ -1341,23 +1324,22 @@ pas les balises -->
       advanced skills in algorithms, Machine Learning, probability, mathematic analysis and systems architecture.
      </p>
      <p>
-      My focus lies in
+      Alongside my technical education,
+      I have developed a strong interest in both
       <strong>
-       quantitative finance, probability &amp; statistics, and applied AI,
+       AI and financial markets
       </strong>
-      with a focus on methods that hold up on real, noisy market data — 
-      from a four-project ML research series (XGBoost, NLP, reinforcement learning) 
-      on price prediction and volatility, to an automated portfolio-tracking bot 
-      and coursework in financial markets and valuation.
+      : Yale Financial Markets course on Coursera, personal 
+      stock & crypto portfolio management, automated Python tracking scripts, 
+      and study of DCF fundamentals.
      </p>
      <p>
       Multilingual (FR · EN · DE), proactive and experienced in high-performance
-      environments, I am seeking opportunities at the intersection of
+      environments, I am seeking
       <strong>
-       quantitative research, systems and data modeling, intelligent systems, AI, 
-       machine learning, and computational methods,
+       quantitative research or systematic trading opportunities
       </strong>
-      available Fall 2026-27.
+      , available Fall 2026-27.
      </p>
     </div>
     <!-- [EDIT] Statistiques rapides — modifie la valeur (.sv) et le label (.sl) -->
@@ -2058,9 +2040,9 @@ l'institution, la description et les tags -->
       </div>
       <!-- [EDIT] Description -->
       <div class="tl-desc">
-        One of the world's most demanding engineering programs, conducted entirely in English. 
+       One of the world's most demanding engineering programs, conducted entirely in English. 
         Builds deep technical foundations through rigorous coursework: Machine Learning, 
-        Signal Processing, Computer Systems, Algorithms, Probability & Statistics, 
+        ML for Signal Processing, Computer Systems, Algorithms, Probability & Statistics, 
         Cybersecurity, Artificial Intelligence, Computer Architecture, 
         Mathematical Analysis, Algebra and Software Construction. 
         The intensity of the program forges exceptional work ethic, 
@@ -2108,17 +2090,11 @@ l'institution, la description et les tags -->
                 Developed strong soft skills through daily collaboration with students 
                 from across Europe and beyond: cross-cultural communication, adaptability 
                 and autonomy — continuing an international academic journey already 
-                started in Switzerland. 
+                started in Switzerland.
             </div>
             <div class="tl-tags">
-                <span class="tag">ML for Signal Processing</span>
-                <span class="tag">Intelligent Systems</span>
-                <span class="tag">Algebra</span>
-                <span class="tag">Digital Communication</span>
-                <span class="tag">Logic for Security</span>
-                <span class="tag">Database Systems</span>
-                <span class="tag">Software Development</span>
-                <span class="tag">MATLAB</span>
+                <span class="tag">International Exchange</span>
+                <span class="tag">Denmark</span>
             </div>
         </div>
     </div>
@@ -2303,7 +2279,7 @@ l'institution, la description et les tags -->
     <div class="sk reveal">
      <div class="sk-cat">
       Languages &amp;
-      Tools
+Tools
      </div>
      <div class="sk-name">
       Development
@@ -2345,15 +2321,12 @@ l'institution, la description et les tags -->
       <span class="sk-item">
        Excel
       </span>
-      <span class="sk-item">
-       MATLAB
-      </span>
      </div>
     </div>
     <div class="sk reveal">
      <div class="sk-cat">
       Mathematics &amp;
-      Engineering
+Engineering
      </div>
      <div class="sk-name">
       Core Coursework
@@ -2392,9 +2365,6 @@ l'institution, la description et les tags -->
       <span class="sk-item">
        Machine Learning
       </span>
-      <span class="sk-item">
-       Intelligent Systems
-      </span>
      </div>
     </div>
     <div class="sk reveal">
@@ -2424,9 +2394,6 @@ l'institution, la description et les tags -->
        NumPy / Pandas
       </span>
       <span class="sk-item">
-       Pytorch
-      </span>
-      <span class="sk-item">
        Probabilities
       </span>
      </div>
@@ -2434,7 +2401,7 @@ l'institution, la description et les tags -->
     <div class="sk reveal">
      <div class="sk-cat">
       Finance &amp;
-      Markets
+Markets
      </div>
      <div class="sk-name">
       Quantitative
@@ -2466,7 +2433,7 @@ l'institution, la description et les tags -->
     <div class="sk reveal">
      <div class="sk-cat">
       Human &amp;
-      Leadership
+Leadership
      </div>
      <div class="sk-name">
       Soft Skills
@@ -2546,43 +2513,39 @@ l'institution, la description et les tags -->
    <div class="amb-row">
     <div class="amb reveal">
      <div class="amb-n">
-      A.01 - ACADEMIC
+      A.01
      </div>
      <!-- [EDIT] Future example: "MSc Financial Engineering — EPFL / HEC" -->
      <div class="amb-title">
       Complete BSc at EPFL
      </div>
      <div class="amb-body">
-      Graduate with distinction, on a foundation of AI, algorithms, 
-      systems and quantitative finance, preparing to pursue a 
-      leading Master’s in computational and quantitative disciplines.
+      Graduate with distinction, on a foundation of AI, algorithms,
+      systems and quantitative finance.
      </div>
     </div>
     <div class="amb reveal">
      <div class="amb-n">
-      A.02 - RESEARCH
+      A.02
      </div>
      <div class="amb-title">
       Quantitative Research
      </div>
      <div class="amb-body">
-      Explore systematic trading, derivatives pricing, and intelligent 
-      systems using computational modeling, data-driven methods, 
-      machine learning, and systems research, bridging quantitative finance, 
-      computer science, and complex systems.
+      Work on systematic trading and derivatives pricing problems
+      where machine learning and market structure meet.
      </div>
     </div>
     <div class="amb reveal">
      <div class="amb-n">
-      A.03 - INDUSTRY
+      A.03
      </div>
      <div class="amb-title">
-      DEEP TECH & ENTREPRENEURSHIP
+      Cross-Border Career
      </div>
      <div class="amb-body">
-      Build on the EPFL–DTU experience to develop and work on innovative 
-      deep-tech projects, combining engineering, AI, systems, 
-      and entrepreneurship to turn research and ideas into impactful technologies.
+      Build on the EPFL–DTU experience to work across Swiss and
+      European financial and tech hubs.
      </div>
     </div>
    </div>
@@ -2728,16 +2691,12 @@ Crypto
 (function () {
 const backToTop = document.getElementById('backToTop');
 const footerEl = document.querySelector('footer');
-const navEl = document.querySelector('nav');
-function onScroll() {
-    if (navEl) navEl.classList.toggle('scrolled', window.scrollY > 4);
+window.addEventListener('scroll', () => {
     if (!backToTop) return;
     backToTop.classList.toggle('visible', window.scrollY > 400);
     const overlap = window.innerHeight - footerEl.getBoundingClientRect().top;
     backToTop.style.bottom = overlap > 0 ? `calc(2rem + ${overlap}px)` : '2rem';
-}
-window.addEventListener('scroll', onScroll);
-onScroll();
+});
 })();
 
 (function () {
