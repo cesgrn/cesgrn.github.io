@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Page not found — César Garin</title>
+  <meta content="noindex" name="robots"/>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200&family=Barlow+Condensed:wght@200;300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box }
+    :root {
+      --w: #141310;
+      --off: #47443C;
+      --dim: #726F66;
+      --bg: rgb(246, 244, 239);
+      --acc: #7A5C25;
+      --r-sm: 8px
+    }
+    body {
+      background: var(--bg);
+      color: var(--w);
+      font-family: 'Barlow', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem
+    }
+    .code {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(4rem, 18vw, 9rem);
+      font-weight: 200;
+      line-height: .9;
+      letter-spacing: -.01em;
+      color: var(--off)
+    }
+    h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      font-weight: 300;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      margin: 1rem 0 .75rem
+    }
+    p {
+      font-size: 14px;
+      color: var(--off);
+      max-width: 400px;
+      line-height: 1.7;
+      margin-bottom: 2rem
+    }
+    a.btn {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: 13px 30px;
+      background: var(--w);
+      color: var(--bg);
+      border-radius: var(--r-sm);
+      text-decoration: none;
+      transition: opacity .2s
+    }
+    a.btn:hover { opacity: .85 }
+  </style>
+ </head>
+ <body>
+  <div class="code">404</div>
+  <h1>Page not found</h1>
+  <p>The page you're looking for doesn't exist or has moved.</p>
+  <a class="btn" href="/">Back to home</a>
+ </body>
+</html>
