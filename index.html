@@ -657,6 +657,11 @@ section {
     margin: 0 auto
 }
 
+.proj-diagram--rag svg {
+    max-width: 320px;
+    margin: 0 auto
+}
+
 .proj-tag {
     font-size: 10px;
     font-weight: 300;
@@ -1200,6 +1205,78 @@ html {
   to   { opacity: 1; transform: translateY(0); }
 }
 
+
+/* ── Summexa product tour ─────────────────────── */
+.sx-thumb {
+    display: block; width: 100%; padding: 0; border: 0.5px solid var(--line);
+    border-radius: var(--r-sm); overflow: hidden; background: #16150F;
+    cursor: pointer; position: relative; text-align: left; font: inherit
+}
+.sx-mini-bar { display: flex; gap: 5px; padding: 7px 10px; background: #1F1E19 }
+.sx-mini-bar i, .sx-bar i { width: 7px; height: 7px; border-radius: 50%; background: rgba(237,234,225,.25); display: block }
+.sx-thumb img { display: block; width: 100%; height: auto; transition: transform .5s ease, opacity .3s }
+.sx-thumb:hover img { transform: scale(1.02); opacity: .85 }
+.sx-thumb-hint {
+    position: absolute; right: 10px; bottom: 10px; font-size: 10px; letter-spacing: .12em;
+    text-transform: uppercase; color: #EDEAE1; background: rgba(22,21,15,.82);
+    padding: 6px 12px; border-radius: 999px; backdrop-filter: blur(6px)
+}
+.sx-thumb:focus-visible, .sx-gallery button:focus-visible { outline: 2px solid var(--acc); outline-offset: 3px }
+
+.sx-gallery {
+    position: fixed; inset: 0; z-index: 400; display: flex; flex-direction: column;
+    background-color: #16150F;
+    background-image: repeating-linear-gradient(135deg, rgba(255,255,255,.028) 0 1px, transparent 1px 15px);
+    color: #EDEAE1; opacity: 0; transition: opacity .35s ease
+}
+.sx-gallery[hidden] { display: none }
+.sx-gallery.open { opacity: 1 }
+.sx-top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.25rem 2rem }
+.sx-kicker { font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: rgba(237,234,225,.5); margin-bottom: 4px }
+.sx-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 300; font-size: 22px; letter-spacing: .04em; text-transform: uppercase }
+.sx-top-r { display: flex; align-items: center; gap: 1.25rem }
+.sx-count { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; letter-spacing: .12em; color: rgba(237,234,225,.6) }
+.sx-close, .sx-arrow {
+    width: 42px; height: 42px; border-radius: 50%; border: 0.5px solid rgba(255,255,255,.2);
+    background: rgba(255,255,255,.04); color: #EDEAE1; font-size: 18px; cursor: pointer; transition: background .2s
+}
+.sx-close:hover, .sx-arrow:hover { background: rgba(255,255,255,.12) }
+.sx-arrow:disabled { opacity: .3; cursor: default }
+.sx-track {
+    flex: 1; display: flex; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory;
+    scroll-behavior: smooth; scrollbar-width: none; overscroll-behavior-x: contain
+}
+.sx-track::-webkit-scrollbar { display: none }
+.sx-slide {
+    flex: 0 0 100%; scroll-snap-align: center; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 1.1rem; padding: 0 2rem; min-width: 0
+}
+.sx-browser {
+    width: min(1180px, 100%, calc((100vh - 270px) * 1.73)); border-radius: 10px; overflow: hidden;
+    border: 0.5px solid rgba(255,255,255,.14); box-shadow: 0 30px 80px rgba(0,0,0,.45); background: #1F1E19
+}
+.sx-bar { display: flex; align-items: center; gap: 6px; padding: 9px 12px; background: #1F1E19; border-bottom: 0.5px solid rgba(255,255,255,.08) }
+.sx-bar span { margin-left: 10px; font-size: 11px; color: rgba(237,234,225,.45); letter-spacing: .04em }
+.sx-browser img { display: block; width: 100%; height: auto; aspect-ratio: 1600 / 924; background: #222 }
+.sx-browser svg { display: block; width: 100%; height: auto }
+.sx-cap { max-width: 720px; text-align: center; font-size: 14px; line-height: 1.7; color: rgba(237,234,225,.72) }
+.sx-cap strong { display: block; font-family: 'Barlow Condensed', sans-serif; font-weight: 400; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; color: #EDEAE1; margin-bottom: 2px }
+.sx-foot { display: flex; align-items: center; justify-content: center; gap: 1.5rem; padding: 1rem 2rem 1.4rem }
+.sx-dots { display: flex; gap: 8px }
+.sx-dot { width: 8px; height: 8px; border-radius: 999px; border: 0; padding: 0; background: rgba(237,234,225,.25); cursor: pointer; transition: width .3s, background .3s }
+.sx-dot[aria-current="true"] { width: 26px; background: #C8401A }
+.sx-note { text-align: center; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: rgba(237,234,225,.4); padding-bottom: 1rem }
+body.sx-lock { overflow: hidden }
+@media (max-width: 768px) {
+    .sx-top { padding: 1rem 1rem .5rem }
+    .sx-slide { padding: 0 1rem }
+    .sx-arrow { display: none }
+    .sx-cap { font-size: 13px }
+}
+@media (prefers-reduced-motion: reduce) {
+    .sx-gallery, .sx-thumb img { transition: none }
+    .sx-track { scroll-behavior: auto }
+}
 </style>
  </head>
  <body>
@@ -1238,7 +1315,7 @@ html {
      </a>
     </li>
     <li>
-     <a download="César_Garin_CV.pdf" href="assets/Garin_Cesar_Resume.pdf" target="_blank">
+     <a download="Cesar_Garin_CV.pdf" href="assets/Garin_Cesar_Resume.pdf" target="_blank">
       Résumé
      </a>
     </li>
@@ -1272,13 +1349,15 @@ pas les balises -->
      <!-- [EDIT] Phrase de présentation principale -->
      <p class="hero-desc">
       3rd-year EPFL student,
-      combining mathematical rigor, software engineering,
-      a deep interest in AI and financial markets.
+      combining mathematical rigor, software engineering
+      and a deep interest in AI and financial markets.
       Focused on quantitative modeling and research applied to finance.
      </p>
      <!-- [EDIT] Ligne de disponibilité — mets à jour la période si besoin -->
      <p class="hero-avail">
-      Available for a 3-month full-time internship, June – August 2027. Open to conversations in the meantime.
+      <strong>2026–27:</strong> open to projects, research collaborations and part-time roles.<br/>
+      <strong>Summer 2027:</strong> available for a 3-month full-time internship, June – August.<br/>
+      Open to conversations in the meantime.
      </p>
      <div class="hero-btns">
       <a class="btn-s" href="#contact">
@@ -1308,7 +1387,7 @@ pas les balises -->
     Engineering.
     <br/>
     <em>
-     Marckets. Excellence.
+     Markets. Excellence.
     </em>
    </h2>
    <div class="profile-grid">
@@ -1321,7 +1400,7 @@ pas les balises -->
       </strong>
       in Computer &amp; Communication Sciences,
       I am building 
-      advanced skills in algorithms, Machine Learning, probability, mathematic analysis and systems architecture.
+      advanced skills in algorithms, Machine Learning, probability, mathematical analysis and systems architecture.
      </p>
      <p>
       Alongside my technical education, I have developed a strong interest in
@@ -1334,7 +1413,7 @@ pas les balises -->
       environments, I am seeking
       <strong>opportunities in AI/ML, software engineering, data and quantitative modeling,</strong>
       with an interest in building intelligent systems and data-driven solutions
-      to complex problems. Available Fall 2026-27.
+      to complex problems. Available during 2026–27 for projects and part-time roles, and for a 3-month full-time internship in June – August 2027.
      </p>
     </div>
     <!-- [EDIT] Statistiques rapides — modifie la valeur (.sv) et le label (.sl) -->
@@ -1344,7 +1423,7 @@ pas les balises -->
        EPFL
       </span>
       <span class="sl">
-       École Polytechnique Fédérlale · Lausanne
+       École Polytechnique Fédérale · Lausanne
       </span>
      </div>
      <div class="stat-row">
@@ -1358,10 +1437,10 @@ pas les balises -->
      </div>
      <div class="stat-row">
       <span class="sv">
-       6
+       9
       </span>
       <span class="sl">
-       Academic &amp; personnal projects 
+       Academic &amp; personal projects
       </span>
      </div>
      <div class="stat-row">
@@ -1377,7 +1456,15 @@ pas les balises -->
        2026–27
       </span>
       <span class="sl">
-       Availability · Fall term
+       Projects · Part-time
+      </span>
+     </div>
+     <div class="stat-row">
+      <span class="sv">
+       Summer 2027
+      </span>
+      <span class="sl">
+       Internship · Jun – Aug
       </span>
      </div>
     </div>
@@ -1416,8 +1503,8 @@ pas les balises -->
       SOFTWARE & PROJECTS
      </div>
      <div class="t-body">
-        6 projects across C, Java, Scala, Python, Verilog & Assembly — 
-        from low-level systems programming to applied Machine Learning.
+        9 projects across C, Java, Scala, Python, Verilog & Assembly — 
+        from low-level systems programming to LLM applications and applied Machine Learning.
      </div>
     </div>
     <div class="tile reveal">
@@ -1491,11 +1578,47 @@ proj-desc et les <span class="proj-tag">-->
       <span class="proj-tag">Options Pricing</span>
      </div>
     </div>
+    <!-- ============ SUMMEXA AI ============
+         [EDIT] Dépôt privé : pas de lien GitHub. Ajoute "Code available on request" ou rends-le public
+         (vérifie d'abord l'historique git pour toute clé/.env). Galerie de captures à venir.
+         ======================================== -->
+    <div class="proj-card reveal">
+     <div class="proj-header">
+      <div>
+       <div class="proj-title">Summexa AI</div>
+       <div class="proj-sub">Founder project · Prototype</div>
+      </div>
+      <span class="proj-lang">Python</span>
+     </div>
+     <div class="proj-desc">
+      Self-hosted AI business analyst for small and mid-sized companies: a local LLM (Llama 3 via Ollama)
+      answers employees' questions from their own company files, so no data ever leaves the server.
+      RAG pipeline with LangChain and ChromaDB over PDF, Word, PowerPoint, Excel and CSV; multilingual chat,
+      automated analysis reports, strategy plans and weekly email reports. Built as a multi-tenant product:
+      JWT/bcrypt auth with organization roles, Docker Compose deployment with automatic HTTPS and one-click updates,
+      and a separate Stripe licensing server for per-seat billing. Working prototype — not commercialized.
+     </div>
+     <button class="sx-thumb" type="button" data-sx-open aria-label="Open the Summexa product tour">
+      <span class="sx-mini-bar"><i></i><i></i><i></i></span>
+      <img src="assets/summexa/chat-thumb.webp" alt="Summexa chat screen showing a business analysis generated by a local LLM" width="900" height="520" loading="lazy">
+      <span class="sx-thumb-hint">View the product tour →</span>
+     </button>
+     <div class="proj-tags">
+      <span class="proj-tag">RAG</span>
+      <span class="proj-tag">LangChain</span>
+      <span class="proj-tag">Ollama · Llama 3</span>
+      <span class="proj-tag">ChromaDB</span>
+      <span class="proj-tag">FastAPI</span>
+      <span class="proj-tag">Docker</span>
+      <span class="proj-tag">Stripe</span>
+      <span class="proj-tag">Multi-tenant</span>
+     </div>
+    </div>
     <div class="proj-card reveal">
     <div class="proj-header">
         <div>
         <div class="proj-title">NanoGPT</div>
-        <div class="proj-sub">Transformer LLM · Personal — <a class="proj-link" href="https://github.com/cesgrn/nanoGPT-karpathy" target="_blank">github.com/cesgrn ↗</a></div>
+        <div class="proj-sub">Transformer LLM · Personal — <a class="proj-link" href="https://github.com/cesgrn/nanoGPT" target="_blank">github.com/cesgrn ↗</a></div>
         </div>
         <span class="proj-lang">Python</span>
     </div>
@@ -1504,7 +1627,7 @@ proj-desc et les <span class="proj-tag">-->
         "Let's build GPT" lecture. Full Transformer architecture: multi-head self-attention,
         residual connections, layer normalization and feed-forward blocks.
         Trained on the Tiny Shakespeare dataset with ~10M parameters.
-        Generates coherent Shakespeare-like text after 5 000 iterations.
+        Generates coherent Shakespeare-like text after 5,000 iterations.
     </div>
     <div class="proj-diagram proj-diagram--tall">
       <svg aria-label="Decoder-only Transformer architecture: embedding, masked self-attention and feed-forward blocks repeated N times, followed by a linear and softmax output" role="img" viewBox="0 0 250 292" xmlns="http://www.w3.org/2000/svg">
@@ -1569,7 +1692,7 @@ proj-desc et les <span class="proj-tag">-->
      <div class="proj-header">
       <div>
        <div class="proj-title">Personal Finance Project</div>
-       <div class="proj-sub">Quantitative · Personal - <a class="proj-link" href="https://github.com/cesgrn/crypto_bot" target="_blank">github.com/cesgrn ↗</a></div>
+       <div class="proj-sub">Quantitative · Personal — <a class="proj-link" href="https://github.com/cesgrn/crypto_bot" target="_blank">github.com/cesgrn ↗</a></div>
       </div>
       <span class="proj-lang">Python</span>
      </div>
@@ -1703,7 +1826,7 @@ proj-desc et les <span class="proj-tag">-->
         Computer Architecture
        </div>
        <div class="proj-sub">
-        Low level architecture · EPFL - <a class="proj-link" href="https://github.com/cesgrn/mini_RISC-V_Processor" target="_blank">github.com/cesgrn ↗</a>
+        Low-level architecture · EPFL — <a class="proj-link" href="https://github.com/cesgrn/mini_RISC-V_Processor" target="_blank">github.com/cesgrn ↗</a>
        </div>
       </div>
       <span class="proj-lang">
@@ -1712,12 +1835,13 @@ proj-desc et les <span class="proj-tag">-->
      </div>
      <div class="proj-desc">
       Design and simulation of digital circuits in Verilog,
-      implementation in RISC-V Assembly. Understanding of the CPU pipeline,
-       memory management, interrupts and low-level instruction execution.
-      Includes the design of a mini processor and a Game of Life implementation in Assembly
+      implementation in RISC-V Assembly. Built a 32-bit multicycle RV32I processor
+      (FSM controller stepping each instruction through fetch, decode, execute, memory and write-back),
+      with CSRs, M-mode interrupts and memory-mapped peripherals (LED matrix, 7-segment display, buttons).
+      Also includes a bare-metal Game of Life in RISC-V Assembly.
      </div>
      <div class="proj-diagram">
-      <svg aria-label="Single-cycle CPU datapath: program counter, instruction and data memory, register file, ALU and control logic" role="img" viewBox="0 0 800 385" xmlns="http://www.w3.org/2000/svg">
+      <svg aria-label="CPU datapath: program counter, instruction and data memory, register file, ALU and control logic" role="img" viewBox="0 0 800 385" xmlns="http://www.w3.org/2000/svg">
        <g fill="none" opacity="0.5" stroke="var(--dim)" stroke-dasharray="4,3" stroke-width="1">
         <rect height="375" width="475" x="165" y="5"></rect>
        </g>
@@ -1783,7 +1907,7 @@ proj-desc et les <span class="proj-tag">-->
       </svg>
      </div>
      <div class="proj-diagram">
-      <svg aria-label="5-stage RISC-V pipeline: Fetch, Decode, Execute, Memory, Writeback" role="img" viewBox="0 0 650 100" xmlns="http://www.w3.org/2000/svg">
+      <svg aria-label="Multicycle RISC-V instruction phases: Fetch, Decode, Execute, Memory, Writeback" role="img" viewBox="0 0 650 100" xmlns="http://www.w3.org/2000/svg">
        <g fill="none" stroke="var(--dim)" stroke-width="1">
         <rect height="48" width="100" x="10" y="20"></rect>
         <rect height="48" width="100" x="140" y="20"></rect>
@@ -1824,7 +1948,7 @@ proj-desc et les <span class="proj-tag">-->
        RISC-V
       </span>
       <span class="proj-tag">
-       Pipeline CPU
+       Multicycle CPU
       </span>
       <span class="proj-tag">
        Verilog HDL
@@ -1894,7 +2018,7 @@ design patterns · EPFL
       Object-oriented software design: inheritance, 
       polymorphism, encapsulation, design patterns (Factory, Observer, Strategy). 
       Development of complex Java projects with dependency management and MVC architecture. 
-      Includes a grid-based mini game project a routing algorithm for the Lausanne public transport network.
+      Includes a grid-based mini game project and a routing algorithm for the Lausanne public transport network.
      </div>
      <div class="proj-tags">
       <span class="proj-tag">
@@ -1910,7 +2034,7 @@ design patterns · EPFL
        Inheritance
       </span>
       <span class="proj-tag">
-       Polymorphisme
+       Polymorphism
       </span>
      </div>
     </div>
@@ -2017,7 +2141,7 @@ l'institution, la description et les tags -->
     <div class="tl-item reveal">
      <!-- [EDIT] Date on the left -->
      <div class="tl-date">
-      Sept 2024 — Jul 2027
+      Sept 2024 — Jun 2027
      </div>
      <div class="tl-sep">
      </div>
@@ -2185,7 +2309,7 @@ l'institution, la description et les tags -->
     </div>
     <div class="tl-item reveal">
      <div class="tl-date">
-      Feb. 2023
+      Jan — Mar 2024
      </div>
      <div class="tl-sep">
      </div>
@@ -2233,7 +2357,7 @@ l'institution, la description et les tags -->
     </div>
     <div class="tl-item reveal">
      <div class="tl-date">
-      Mai — Jul. 2022
+      May — Jul. 2022
      </div>
      <div class="tl-sep">
      </div>
@@ -2386,7 +2510,13 @@ Engineering
        NumPy / Pandas
       </span>
       <span class="sk-item">
-       Probabilities
+       Probability
+      </span>
+      <span class="sk-item">
+       RAG / LLM Engineering
+      </span>
+      <span class="sk-item">
+       PyTorch
       </span>
      </div>
     </div>
@@ -2403,10 +2533,10 @@ Markets
        Market Finance
       </span>
       <span class="sk-item">
-       Valuation DCF
+       DCF Valuation
       </span>
       <span class="sk-item">
-       Trading Quant
+       Quant Trading
       </span>
       <span class="sk-item">
        Private Equity
@@ -2602,7 +2732,7 @@ Crypto
       <br/>
       Opportunities
       <br/>
-      Fall 2026-27.
+      2026 – 2027.
      </div>
      <!-- [EDIT] Availability subtext -->
      <p class="contact-sub">
@@ -2610,6 +2740,10 @@ Crypto
         and quantitative research, with a focus on building intelligent systems 
         and data-driven solutions. Interested in applying algorithms, 
         machine learning, and computational methods to challenging real-world problems.
+     </p>
+     <p class="contact-sub" style="margin-top:1.1rem">
+        <strong>Fall 2026–27</strong> — projects &amp; part-time roles.<br/>
+        <strong>Summer 2027</strong> — 3-month internship, Jun – Aug.
      </p>
     </div>
     <!-- [EDIT] Contact links — edit href="" and the .cl-v text -->
@@ -2658,7 +2792,7 @@ Crypto
        →
       </span>
      </a>
-     <a class="clink" download="César_Garin_CV.pdf" href="assets/Garin_Cesar_Resume.pdf" target="_blank">
+     <a class="clink" download="Cesar_Garin_CV.pdf" href="assets/Garin_Cesar_Resume.pdf" target="_blank">
       <span class="cl-l">
        Résumé
       </span>
@@ -2681,6 +2815,101 @@ Crypto
     © 2026 · EPFL · Lausanne, Switzerland
    </span>
   </footer>
+
+  <!-- ============ SUMMEXA PRODUCT TOUR (overlay) ============
+       [EDIT] Captures dans assets/summexa/ (landing, login, chat, admin + chat-thumb).
+       Lien direct : https://cesgrn.github.io/#summexa
+       ========================================================= -->
+  <div class="sx-gallery" id="summexa" role="dialog" aria-modal="true" aria-labelledby="sxTitle" hidden>
+   <div class="sx-top">
+    <div>
+     <div class="sx-kicker">Product tour · demo data</div>
+     <div class="sx-title" id="sxTitle">Summexa AI</div>
+    </div>
+    <div class="sx-top-r">
+     <span class="sx-count" aria-live="polite"><span id="sxIdx">1</span> / 5</span>
+     <button class="sx-close" type="button" aria-label="Close the product tour">✕</button>
+    </div>
+   </div>
+   <div class="sx-track" tabindex="-1">
+     <figure class="sx-slide" aria-label="1 of 5">
+      <div class="sx-browser"><div class="sx-bar"><i></i><i></i><i></i><span>localhost:8000/landing</span></div><img data-src="assets/summexa/landing.webp" alt="Summexa landing page: private, on-premise AI for small businesses" width="1600" height="924"></div>
+      <figcaption class="sx-cap"><strong>01 · Landing page</strong>Product positioning, pricing and roadmap — bilingual EN / FR.</figcaption>
+     </figure>
+     <figure class="sx-slide" aria-label="2 of 5">
+      <div class="sx-browser"><div class="sx-bar"><i></i><i></i><i></i><span>localhost:8000/login</span></div><img data-src="assets/summexa/login.webp" alt="Summexa sign-in screen" width="1600" height="924"></div>
+      <figcaption class="sx-cap"><strong>02 · Sign in</strong>JWT sessions, bcrypt-hashed passwords, rate-limited login and a forced password change on first sign-in.</figcaption>
+     </figure>
+     <figure class="sx-slide" aria-label="3 of 5">
+      <div class="sx-browser"><div class="sx-bar"><i></i><i></i><i></i><span>localhost:8000/app</span></div><img data-src="assets/summexa/chat.webp" alt="Summexa chat screen with a generated financial summary, trends and insights" width="1600" height="924"></div>
+      <figcaption class="sx-cap"><strong>03 · AI assistant</strong>A six-part business analysis written by Llama 3 running locally, from the company's own files — nothing leaves the server.</figcaption>
+     </figure>
+     <figure class="sx-slide" aria-label="4 of 5">
+      <div class="sx-browser"><div class="sx-bar"><i></i><i></i><i></i><span>localhost:8000/admin</span></div><img data-src="assets/summexa/admin.webp" alt="Summexa admin dashboard listing client accounts" width="1600" height="924"></div>
+      <figcaption class="sx-cap"><strong>04 · Admin dashboard</strong>Account management, bulk CSV onboarding and report tracking for each client.</figcaption>
+     </figure>
+     <figure class="sx-slide" aria-label="5 of 5">
+      <div class="sx-browser"><div class="sx-bar"><i></i><i></i><i></i><span>architecture</span></div>
+       <svg viewBox="0 0 900 420" role="img" aria-label="Deployment architecture: the employee browser reaches nginx with HTTPS, which forwards to the Summexa FastAPI app; the app uses Ollama with Llama 3, ChromaDB and local files, all inside the client's own server; an updater sidecar applies updates; only a license key and seat count go to the external license server" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="sxArr" markerHeight="7" markerUnits="userSpaceOnUse" markerWidth="7" orient="auto" refX="6" refY="3"><path d="M0,0 L6,3 L0,6 Z" fill="rgba(237,234,225,.55)"></path></marker></defs>
+        <rect x="185" y="15" width="705" height="300" rx="10" fill="none" stroke="rgba(237,234,225,.3)" stroke-dasharray="5,4"></rect>
+        <text x="205" y="40" fill="rgba(237,234,225,.5)" font-family="'Barlow Condensed', sans-serif" font-size="11" letter-spacing="2">CLIENT'S OWN SERVER · DOCKER COMPOSE</text>
+        <g fill="none" stroke="rgba(237,234,225,.55)" stroke-width="1" marker-end="url(#sxArr)">
+         <line x1="160" y1="178" x2="201" y2="178"></line>
+         <line x1="355" y1="178" x2="391" y2="178"></line>
+         <path d="M605,150 L630,150 L630,71 L656,71"></path>
+         <line x1="605" y1="151" x2="656" y2="151"></line>
+         <path d="M605,205 L630,205 L630,231 L656,231"></path>
+        </g>
+        <g fill="none" stroke="#C8401A" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#sxArr)">
+         <line x1="500" y1="236" x2="500" y2="253"></line>
+         <path d="M395,222 L300,222 L300,375 L224,375"></path>
+        </g>
+        <g fill="#1F1E19" stroke="rgba(237,234,225,.4)" stroke-width="1">
+         <rect x="20" y="150" width="140" height="56" rx="6"></rect>
+         <rect x="205" y="150" width="150" height="56" rx="6"></rect>
+         <rect x="395" y="120" width="210" height="116" rx="6" stroke="#C8401A"></rect>
+         <rect x="660" y="45" width="210" height="52" rx="6"></rect>
+         <rect x="660" y="125" width="210" height="52" rx="6"></rect>
+         <rect x="660" y="205" width="210" height="52" rx="6"></rect>
+         <rect x="395" y="257" width="210" height="44" rx="6"></rect>
+         <rect x="20" y="350" width="200" height="50" rx="6"></rect>
+        </g>
+        <g fill="#EDEAE1" font-family="'Barlow Condensed', sans-serif" font-size="14" font-weight="500" letter-spacing="1" text-anchor="middle">
+         <text x="90" y="183">BROWSER</text>
+         <text x="280" y="175">NGINX</text>
+         <text x="500" y="168">SUMMEXA APP</text>
+         <text x="765" y="76">OLLAMA · LLAMA 3</text>
+         <text x="765" y="156">CHROMADB</text>
+         <text x="765" y="236">FILES + JSON DATA</text>
+         <text x="500" y="284">UPDATER SIDECAR</text>
+         <text x="120" y="380">LICENSE SERVER</text>
+        </g>
+        <g fill="rgba(237,234,225,.55)" font-family="'Barlow', sans-serif" font-size="11" text-anchor="middle">
+         <text x="280" y="193">HTTPS · Let's Encrypt</text>
+         <text x="500" y="188">FastAPI · auth · RAG</text>
+         <text x="500" y="204">reports · exports</text>
+         <text x="765" y="90">local LLM + embeddings</text>
+         <text x="765" y="170">per-file vector stores</text>
+         <text x="765" y="250">users, chats, plans</text>
+         <text x="120" y="394">FastAPI · Stripe</text>
+        </g>
+        <g fill="#C8401A" font-family="'Barlow', sans-serif" font-size="10.5">
+         <text x="310" y="330">license key + seat count only</text>
+         <text x="508" y="249">update signal</text>
+        </g>
+       </svg>
+      </div>
+      <figcaption class="sx-cap"><strong>05 · Architecture</strong>One command deploys the whole stack on the client's hardware, with automatic HTTPS and one-click updates.</figcaption>
+     </figure>
+   </div>
+   <div class="sx-foot">
+    <button class="sx-arrow" type="button" data-sx-step="-1" aria-label="Previous screen">←</button>
+    <div class="sx-dots" role="tablist"></div>
+    <button class="sx-arrow" type="button" data-sx-step="1" aria-label="Next screen">→</button>
+   </div>
+   <p class="sx-note">Sample company data · prototype, not commercialized</p>
+  </div>
   <!-- [EDIT] Back to top button -->
   <a class="back-to-top" href="#home" id="backToTop" aria-label="Back to top">
    ↑
@@ -2727,6 +2956,93 @@ window.addEventListener('scroll', () => {
     }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
 
     sections.forEach(sec => spyObserver.observe(sec));
+})();
+
+
+(function () {
+    const g = document.getElementById('summexa');
+    if (!g) return;
+    const track = g.querySelector('.sx-track');
+    const slides = [...g.querySelectorAll('.sx-slide')];
+    const dotsWrap = g.querySelector('.sx-dots');
+    const idxEl = document.getElementById('sxIdx');
+    const prev = g.querySelector('[data-sx-step="-1"]');
+    const next = g.querySelector('[data-sx-step="1"]');
+    let current = 0, lastFocus = null;
+
+    const dots = slides.map((_, i) => {
+        const d = document.createElement('button');
+        d.type = 'button'; d.className = 'sx-dot';
+        d.setAttribute('aria-label', 'Go to screen ' + (i + 1));
+        d.addEventListener('click', () => go(i));
+        dotsWrap.appendChild(d);
+        return d;
+    });
+
+    function setActive(i) {
+        current = i;
+        idxEl.textContent = i + 1;
+        dots.forEach((d, k) => d.setAttribute('aria-current', k === i ? 'true' : 'false'));
+        prev.disabled = i === 0;
+        next.disabled = i === slides.length - 1;
+    }
+    function go(i) {
+        i = Math.max(0, Math.min(slides.length - 1, i));
+        track.scrollTo({ left: i * track.clientWidth });
+        setActive(i);
+    }
+    function open(start) {
+        lastFocus = document.activeElement;
+        g.querySelectorAll('img[data-src]').forEach(img => { img.src = img.dataset.src; img.removeAttribute('data-src'); });
+        g.hidden = false;
+        document.body.classList.add('sx-lock');
+        requestAnimationFrame(() => {
+            g.classList.add('open');
+            track.style.scrollBehavior = 'auto';
+            track.scrollLeft = (start || 0) * track.clientWidth;
+            track.style.scrollBehavior = '';
+            setActive(start || 0);
+            g.querySelector('.sx-close').focus();
+        });
+        if (location.hash !== '#summexa') history.replaceState(null, '', '#summexa');
+    }
+    function close() {
+        g.classList.remove('open');
+        document.body.classList.remove('sx-lock');
+        setTimeout(() => { g.hidden = true; }, 300);
+        if (location.hash === '#summexa') history.replaceState(null, '', location.pathname + location.search);
+        if (lastFocus) lastFocus.focus();
+    }
+
+    document.querySelectorAll('[data-sx-open]').forEach(b => b.addEventListener('click', () => open(0)));
+    g.querySelector('.sx-close').addEventListener('click', close);
+    prev.addEventListener('click', () => go(current - 1));
+    next.addEventListener('click', () => go(current + 1));
+
+    let raf;
+    track.addEventListener('scroll', () => {
+        cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(() => {
+            const i = Math.round(track.scrollLeft / track.clientWidth);
+            if (i !== current) setActive(i);
+        });
+    });
+    window.addEventListener('resize', () => { if (!g.hidden) track.scrollLeft = current * track.clientWidth; });
+
+    document.addEventListener('keydown', e => {
+        if (g.hidden) return;
+        if (e.key === 'Escape') close();
+        else if (e.key === 'ArrowRight') { e.preventDefault(); go(current + 1); }
+        else if (e.key === 'ArrowLeft') { e.preventDefault(); go(current - 1); }
+        else if (e.key === 'Tab') {
+            const f = [...g.querySelectorAll('button:not([disabled])')];
+            const first = f[0], last = f[f.length - 1];
+            if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+            else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        }
+    });
+
+    if (location.hash === '#summexa') open(0);
 })();
 
 const observer = new IntersectionObserver((entries) => {
