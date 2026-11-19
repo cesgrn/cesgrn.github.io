@@ -20,6 +20,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@900&text=C%C3%A9sar%20Garin&display=swap" rel="stylesheet">
 <script>
 (function () { try {
   var t = localStorage.getItem('cg-theme'); if (t) document.documentElement.dataset.theme = t;
@@ -128,7 +129,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .me .ph:active{transform:scale(.92);transition:transform .08s}
 .me .ph.hid img{opacity:0}
 .me-txt{display:block;min-width:0}
-.me-txt b{color:color-mix(in srgb,var(--ink) 34%,transparent);transition:color .25s ease}
+.me-txt b{font:900 15px/1 'Unbounded',var(--sans);letter-spacing:-.02em;color:color-mix(in srgb,var(--ink) 34%,transparent);transition:color .25s ease}
 .me-txt:hover b,.me-txt:focus-visible b{color:var(--ink)}
 .mecard{position:fixed;z-index:60;top:10px;left:clamp(10px,1.6vw,20px);width:min(330px,calc(100vw - 20px));padding:16px;border-radius:20px;background:var(--bg);border:1px solid var(--line2);box-shadow:0 30px 80px -30px rgba(0,0,0,.45),0 2px 8px rgba(0,0,0,.08);visibility:hidden;clip-path:circle(0 at 30px 30px)}
 .mecard.open{visibility:visible;clip-path:none}
