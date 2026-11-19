@@ -151,7 +151,10 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
    ===================================================================== */
 .sec-row{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:clamp(56px,8vw,110px) 0 16px;font-size:13px}
 .sec-row b{font-weight:500}
-.works{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(10px,1.2vw,16px)}
+.works{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:clamp(10px,1.2vw,16px)}
+.works .w{grid-column:span 3}
+.works .w.sm{grid-column:span 2}
+.w.sm .w-cap{font-size:13px}
 .w{display:block;text-align:left;cursor:pointer}
 .w-media{position:relative;aspect-ratio:4/3;border-radius:14px;overflow:hidden;background:var(--card);border:1px solid var(--line);isolation:isolate}
 .w-media > *{transition:transform .9s var(--ease)}
@@ -160,6 +163,9 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .w-cap b{font-weight:500}
 .w-cap .t{color:var(--ink2)}
 .w-cap .m{color:var(--dim);white-space:nowrap;font-size:12.5px}
+.sig{position:absolute;inset:0;background:#0E0E0E}
+.sig canvas{width:100%;height:100%;display:block}
+
 .w .open{position:absolute;right:14px;bottom:14px;z-index:3;display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:999px;background:rgba(15,15,15,.72);color:#fff;font:500 12px/1 var(--sans);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);opacity:0;transform:translateY(6px);transition:opacity .3s,transform .4s var(--spring)}
 .w:hover .open,.w:focus-visible .open{opacity:1;transform:none}
 /* covers */
@@ -185,7 +191,8 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .life canvas{width:100%;height:100%;display:block}
 .sheet-life canvas{cursor:crosshair}
 .life .lbl{position:absolute;left:14px;top:14px;font:400 10.5px/1 var(--mono);color:#6f6f6f;letter-spacing:.08em;pointer-events:none}
-@media (max-width:760px){ .works{grid-template-columns:1fr} }
+@media (max-width:1000px){ .works{grid-template-columns:repeat(2,minmax(0,1fr))} .works .w,.works .w.sm{grid-column:span 1} .works .w.sm:last-child{grid-column:1/-1} .works .w.sm:last-child .w-media{aspect-ratio:16/7} }
+@media (max-width:760px){ .works{grid-template-columns:1fr} .works .w.sm:last-child{grid-column:auto} .works .w.sm:last-child .w-media{aspect-ratio:4/3} }
 
 /* coursework list */
 .list{border-top:1px solid var(--line)}
@@ -444,6 +451,41 @@ details.more li{margin:5px 0}
 .verd.key .q{color:var(--acc)}
 .note .btn{margin-top:14px;height:36px;font-size:13px}
 @media (max-width:860px){ .finds{grid-template-columns:1fr} .rtab th:nth-child(3),.rtab td:nth-child(3){display:none} }
+.dc-sec{margin-top:clamp(36px,5vw,56px)}
+.dc-sec > h3{font:500 clamp(22px,2.4vw,30px)/1.1 var(--sans);letter-spacing:-.035em;margin:0 0 8px}
+.dc-sec > p{margin:0 0 6px;color:var(--ink2);font-size:15px;max-width:68ch}
+.dc-k{font:500 11.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--acc);margin:0 0 10px}
+.chain{margin:26px 0 0;padding:18px;border-radius:14px;background:var(--bg2);border:1px solid var(--line)}
+.chain svg{width:100%;height:auto;display:block}
+.chain .pulse{fill:var(--acc)}
+.plot{margin:18px 0 0;padding:18px;border-radius:14px;border:1px solid var(--line)}
+.plot svg{width:100%;height:auto;display:block}
+.plot .gl{stroke:var(--line);stroke-width:1}
+.plot .ax{fill:var(--dim);font:500 10px var(--mono)}
+.plot .cv{fill:none;stroke:var(--acc);stroke-width:2.2;stroke-linejoin:round}
+.plot .ar{fill:var(--acc);opacity:.08}
+.plot .mk{fill:var(--acc)}
+.plot .ml{fill:var(--ink);font:500 11px var(--sans)}
+.plot .zl{stroke:var(--line2);stroke-width:1}
+.plot .tap{fill:var(--dim);transition:y .55s cubic-bezier(.22,1,.36,1),height .55s cubic-bezier(.22,1,.36,1)}
+.plot .tap.main{fill:var(--acc)}
+.plot .tv{fill:var(--ink2);font:500 10px var(--mono)}
+.eq-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.eq-out{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:14px}
+.eq-out div{background:var(--bg);padding:12px 14px}
+.eq-out b{display:block;font:500 22px/1 var(--sans);letter-spacing:-.03em}
+.eq-out span{display:block;font-size:12px;color:var(--dim);margin-top:6px}
+.eq-out .hi b{color:var(--acc)}
+.plot input[type=range]{width:100%;margin:14px 0 0;accent-color:var(--acc);cursor:pointer}
+.checks{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:8px}
+.checks li{display:grid;grid-template-columns:22px minmax(0,1fr);gap:8px;font-size:14.5px;color:var(--ink2)}
+.checks li::before{content:"✓";color:var(--live);font-weight:600}
+.checks b{color:var(--ink);font-weight:500}
+.mini-tab{border-collapse:collapse;font:500 12.5px var(--mono);margin-top:10px}
+.mini-tab td,.mini-tab th{padding:7px 12px;border-bottom:1px solid var(--line);text-align:right}
+.mini-tab th{color:var(--dim);font-weight:500}
+.mini-tab td:first-child,.mini-tab th:first-child{text-align:left;color:var(--dim)}
+@media (max-width:860px){ .eq-out{grid-template-columns:1fr} .mini-tab{font-size:11px} .mini-tab td,.mini-tab th{padding:6px 7px} }
 .lesson{margin:20px 0 0;padding:18px 20px;border-radius:14px;background:var(--bg2)}
 .lesson p{margin:0;font-size:14.5px;color:var(--ink2)}
 .lesson q{display:block;margin-top:12px;font:400 italic clamp(19px,1.8vw,23px)/1.35 var(--serif);color:var(--ink)}
@@ -643,22 +685,30 @@ details.more li{margin:5px 0}
       <div class="w-cap"><span><b>Summexa AI</b> <span class="t">— Self-hosted AI business analyst</span></span><span class="m">Founder project · 2026</span></div>
     </button>
 
-    <button class="w rv" type="button" data-sheet="nanogpt">
+    <button class="w sm rv" type="button" data-sheet="nanogpt">
       <div class="w-media">
         <div class="term scale" data-type><span class="p">$ python model.py --sample</span>
 <span class="out"></span><span class="cur"></span></div>
         <span class="term-lbl">ILLUSTRATIVE SAMPLE</span>
         <span class="open">Architecture ↗</span>
       </div>
-      <div class="w-cap"><span><b>NanoGPT</b> <span class="t">— A Transformer language model from scratch</span></span><span class="m">Personal · 2026</span></div>
+      <div class="w-cap"><span><b>NanoGPT</b> <span class="t">— A Transformer LM from scratch</span></span><span class="m">Personal · 2026</span></div>
     </button>
 
-    <button class="w rv" type="button" data-sheet="riscv" style="--d:80ms">
+    <button class="w sm rv" type="button" data-sheet="riscv" style="--d:80ms">
       <div class="w-media">
         <div class="life scale" data-life><canvas aria-hidden="true"></canvas><span class="lbl">GAME OF LIFE · RISC-V ASSEMBLY</span></div>
         <span class="open">Datapath ↗</span>
       </div>
-      <div class="w-cap"><span><b>Mini RISC-V Processor</b> <span class="t">— 32-bit multicycle CPU in Verilog</span></span><span class="m">EPFL · 2025</span></div>
+      <div class="w-cap"><span><b>Mini RISC-V Processor</b> <span class="t">— 32-bit CPU in Verilog</span></span><span class="m">EPFL · 2025</span></div>
+    </button>
+
+    <button class="w sm rv" type="button" data-sheet="digcom" style="--d:160ms">
+      <div class="w-media">
+        <div class="sig scale" data-sig><canvas aria-label="Live simulation: noisy channel output on top, symbols recovered by the MMSE equalizer below"></canvas></div>
+        <span class="open">Transmission chain ↗</span>
+      </div>
+      <div class="w-cap"><span><b>Digital Communication</b> <span class="t">— Markov source to MMSE equalizer</span></span><span class="m">DTU · 2026</span></div>
     </button>
   </div>
 
@@ -867,6 +917,62 @@ details.more li{margin:5px 0}
   <div class="links"><a class="btn" href="https://github.com/cesgrn/mini_RISC-V_Processor" target="_blank" rel="noopener">github.com/cesgrn/mini_RISC-V_Processor <span>↗</span></a></div>
 </template>
 
+<template id="t-digcom">
+  <div class="kick reveal" style="--d:200ms">Signal processing · DTU 34231 Digital Communication 1 <span class="lang">MATLAB</span></div>
+  <h2 class="sh-h reveal" style="--d:260ms">Digital <em>Communication</em></h2>
+  <p class="sh-lead reveal" style="--d:320ms">A complete transmission chain, analysed by hand and verified by simulation: a four-state Markov source, shown to be an FIR line code driven by binary white noise, a noisy channel, and a 7-tap linear MMSE equalizer that recovers the transmitted symbols. Every theoretical result is checked against a 10,000-symbol simulation.</p>
+  <div class="metrics reveal" style="--d:380ms">
+    <div class="metric hi"><b>0.3387</b><span>Error variance predicted by theory (Wiener–Hopf)</span></div>
+    <div class="metric"><b>0.3375</b><span>Error variance measured in simulation — within 0.4%</span></div>
+    <div class="metric"><b>−66%</b><span>Error variance vs. no receiver (σ² = 1)</span></div>
+  </div>
+  <figure class="chain reveal" style="--d:440ms">
+    <svg class="dg" viewBox="0 0 860 128" role="img" aria-label="Transmission chain: binary symbols x_k, line code h = [2, -0.5, -0.25], additive Gaussian noise of variance 2, channel [1, 0.25], 7-tap linear MMSE equalizer, sign decision" data-chain></svg>
+  </figure>
+
+  <section class="dc-sec">
+    <p class="dc-k">1 · The source</p>
+    <h3>A Markov source is secretly a filter</h3>
+    <p>The source has four states and emits a value on each transition. Its stationary distribution is uniform, and its autocorrelation vanishes after two lags because every eigenvalue of Q other than 1 is zero.</p>
+    <table class="mini-tab"><thead><tr><th>|k|</th><th>0</th><th>1</th><th>2</th><th>≥ 3</th></tr></thead><tbody><tr><td>R<sub>Y</sub>(k)</td><td>4.3125</td><td>−0.875</td><td>−0.5</td><td>0</td></tr></tbody></table>
+    <p style="margin-top:14px">Reading each state as the memory of the last two inputs shows the source is exactly an FIR filter <b style="font-weight:500;color:var(--ink)">y<sub>k</sub> = 2x<sub>k</sub> − 0.5x<sub>k−1</sub> − 0.25x<sub>k−2</sub></b> driven by fair ±1 coin flips — verified on all eight transitions. Both routes give the same exact power spectrum:</p>
+    <div class="plot">
+      <h4 class="blk-h">Power spectrum S<sub>Y</sub>(f) = 10⁻⁵ (4.3125 − 1.75 cos 2πfT − cos 4πfT)</h4>
+      <p class="blk-s">T = 10 µs. The negative taps cancel the main tap at low frequency, so the power sits at high frequencies.</p>
+      <svg viewBox="0 0 640 230" role="img" aria-label="Power spectrum rising from 1.56e-5 at 0 Hz to a maximum of about 5.70e-5 near 32 kHz, then 5.06e-5 at 50 kHz" data-spec></svg>
+    </div>
+  </section>
+
+  <section class="dc-sec">
+    <p class="dc-k">2 · Channel &amp; equalizer</p>
+    <h3>Undoing the channel with a 7-tap MMSE equalizer</h3>
+    <p>Gaussian noise (σ² = 2) is added and the signal passes through the channel [1, 0.25]. The receiver estimates each symbol from seven consecutive outputs; the optimal taps solve the Wiener–Hopf equations, a 7×7 Toeplitz system built from the autocorrelations. Since x<sub>k</sub> also affects z<sub>k+2</sub> and z<sub>k+3</sub>, the receiver works with a three-symbol delay.</p>
+    <div class="plot" data-eq>
+      <div class="eq-top"><div><h4 class="blk-h">Try it: change the noise level</h4><p class="blk-s">The same Wiener–Hopf system as in the report, re-solved live in your browser.</p></div><span class="sw-c">Noise σ² <b data-s2>2.0</b></span></div>
+      <svg viewBox="0 0 640 210" role="img" aria-label="Bar chart of the seven equalizer coefficients c-3 to c3" data-taps></svg>
+      <input type="range" min="0.1" max="5" step="0.1" value="2" data-noise aria-label="Noise variance">
+      <div class="eq-out">
+        <div class="hi"><b data-err>0.3387</b><span>Error variance σ<sub>e</sub>²</span></div>
+        <div><b data-red>−66%</b><span>vs. no receiver</span></div>
+        <div><b data-c0>0.327</b><span>Main tap c₀ — shrinks as noise grows</span></div>
+      </div>
+      <p class="sw-note" data-eqnote></p>
+    </div>
+  </section>
+
+  <section class="dc-sec">
+    <p class="dc-k">3 · Simulation</p>
+    <h3>Theory, checked by simulation</h3>
+    <p>The full chain was simulated in MATLAB with 10,000 symbols (seed 1):</p>
+    <ul class="checks">
+      <li><span><b>Right output values:</b> all eight possible values appear, each with frequency ≈ 1/8 (within the binomial spread of ±33 counts).</span></li>
+      <li><span><b>Right state machine:</b> 0 invalid consecutive pairs out of 9,997 — and flipping a single sample is caught as exactly 2 invalid pairs.</span></li>
+      <li><span><b>Right equalizer:</b> error variance 0.3375 measured vs 0.3387 predicted, and a mean error of −0.011 ≈ 0.</span></li>
+      <li><span><b>Symbol decisions:</b> 816 errors out of 9,988 symbols (8.2%) — high because the noise is strong and the MMSE estimator minimises the squared error, not the decision error.</span></li>
+    </ul>
+  </section>
+  <ul class="tags"><li class="tag">Markov chains</li><li class="tag">Autocorrelation</li><li class="tag">Wiener–Khinchin</li><li class="tag">FIR filters</li><li class="tag">z-transform</li><li class="tag">Wiener–Hopf</li><li class="tag">MMSE equalizer</li><li class="tag">MATLAB</li><li class="tag">Monte Carlo</li></ul>
+</template>
 <template id="t-finance">
   <div class="kick reveal" style="--d:200ms">Quantitative · Personal <span class="lang">Python</span></div>
   <h2 class="sh-h reveal" style="--d:260ms">Personal Finance <em>Project</em></h2>
@@ -1063,6 +1169,110 @@ function life(box, opts = {}) {
   return () => { paused = true; clearInterval(timer); timer = null; };
 }
 $$('.works [data-life]').forEach(b => life(b));
+
+/* Digital Communication cover: the real chain running live
+   x ±1 → line code [2, −0.5, −0.25] → + noise (σ² = 2) → channel [1, 0.25] → 7-tap MMSE equalizer (Table 6) → sign */
+$$('[data-sig]').forEach(box => {
+  const cv = $('canvas', box), g = cv.getContext('2d');
+  const C = [-0.0055, -0.0184, -0.0298, 0.3270, -0.0348, 0.0415, -0.0011];   // c_-3 … c_3 (report, Table 6)
+  const r = rng(20261119), sig = Math.sqrt(2), GAIN = 0.654;                  // mean estimate = c0 · h0 ≈ 0.654
+  let X = [], Z = [], P = [];
+  let x1 = 0, x2 = 0, yPrev = 0, nPrev = 0, total = 0, errs = 0, rawErrs = 0;
+  const NB = 40, LO = -2.1, HI = 2.1, histP = [new Array(NB).fill(0), new Array(NB).fill(0)];
+  const pushSample = () => {
+    const x = r() < .5 ? -1 : 1, y = 2 * x - .5 * x1 - .25 * x2, n = sig * gauss(r);
+    const z = (y + n) + .25 * (yPrev + nPrev);
+    x2 = x1; x1 = x; yPrev = y; nPrev = n;
+    X.push(x); Z.push(z);
+    const k = Z.length - 1, m = k - 3;                    // estimate of x_m needs z_{m+3} … z_{m-3}
+    if (m >= 3) {
+      let v = 0; for (let j = -3; j <= 3; j++) v += C[j + 3] * Z[m - j]; P[m] = v; total++;
+      if (Math.sign(v) !== X[m]) errs++;
+      if (Math.sign(Z[m]) !== X[m]) rawErrs++;            // deciding directly on the noisy channel output
+      const bi = Math.floor((v / GAIN - LO) / (HI - LO) * NB); if (bi >= 0 && bi < NB) histP[X[m] > 0 ? 1 : 0][bi]++;
+    }
+  };
+  for (let i = 0; i < 3000; i++) pushSample();               // warm up: counters and histograms start near steady state
+  { const cut = Z.length - 200; X = X.slice(cut); Z = Z.slice(cut); P = P.slice(cut); }
+  const step = 15;
+  let off = 0, last = performance.now(), run = false, raf = 0;
+  const colors = () => { const cs = getComputedStyle(root); return { acc: cs.getPropertyValue('--acc-d').trim() || '#93A6FF' }; };
+  let col = colors(); document.addEventListener('themechange', () => { col = colors(); draw(); });
+  function size() { const d = Math.min(2, devicePixelRatio || 1); cv.width = Math.round(cv.clientWidth * d); cv.height = Math.round(cv.clientHeight * d); g.setTransform(d, 0, 0, d, 0, 0); }
+  function draw() {
+    const w = cv.clientWidth, h = cv.clientHeight; if (!w) return;
+    const small = w < 520, pad = 16, strip = small ? 46 : 84, right = w - pad - strip - (small ? 8 : 18);
+    const half = h / 2, topMid = half * .58, botMid = half + half * .52, ampT = half * .075, ampB = half * .26;
+    g.clearRect(0, 0, w, h);
+    g.font = `500 ${small ? 9.5 : 10.5}px "Geist Mono", ui-monospace, monospace`;
+    // panel titles
+    g.fillStyle = '#6f6f6f';
+    g.fillText(small ? 'CHANNEL OUTPUT zₖ · σ² = 2' : 'CHANNEL OUTPUT zₖ — NOISE σ² = 2, THE SYMBOLS OVERLAP', pad, 22);
+    g.fillText(small ? 'AFTER THE MMSE EQUALIZER' : 'AFTER THE 7-TAP MMSE EQUALIZER — DECISION = SIGN', pad, half + 20);
+    g.strokeStyle = 'rgba(255,255,255,.06)'; g.lineWidth = 1; g.beginPath(); g.moveTo(0, half); g.lineTo(w, half); g.stroke();
+    // guides (bottom)
+    const yP = botMid - ampB, yM = botMid + ampB;
+    g.strokeStyle = 'rgba(255,255,255,.07)'; [yP, yM].forEach(y => { g.beginPath(); g.moveTo(pad, y); g.lineTo(right, y); g.stroke(); });
+    g.setLineDash([4, 5]); g.strokeStyle = 'rgba(255,255,255,.16)'; g.beginPath(); g.moveTo(pad, botMid); g.lineTo(w - pad, botMid); g.stroke(); g.setLineDash([]);
+    const n = Z.length, vis = Math.ceil((right - pad) / step) + 2, i0 = Math.max(0, n - vis);
+    const LEAD = 5;                                   // newest samples (and the 3-sample equalizer delay) stay hidden past the edge
+    const xAt = i => right + LEAD * step - (n - 1 - i) * step - off;
+    // top: noisy waveform, clipped to the top panel
+    g.save(); g.beginPath(); g.rect(0, 30, right + 4, half - 36); g.clip();
+    g.beginPath(); for (let i = i0; i < n; i++) { const X0 = xAt(i), Y0 = topMid - Z[i] * ampT; i === i0 ? g.moveTo(X0, Y0) : g.lineTo(X0, Y0); }
+    g.strokeStyle = 'rgba(216,216,216,.32)'; g.lineWidth = 1.2; g.stroke();
+    for (let i = i0; i < n; i++) { g.fillStyle = 'rgba(216,216,216,.6)'; g.beginPath(); g.arc(xAt(i), topMid - Z[i] * ampT, 1.8, 0, 7); g.fill(); }
+    g.restore();
+    // bottom: estimates coloured by the symbol actually sent; red ring = wrong decision
+    g.save(); g.beginPath(); g.rect(0, half + 28, right + 6, half - 32); g.clip();
+    for (let i = i0; i < n; i++) {
+      if (P[i] === undefined) continue;
+      const X0 = xAt(i), Y0 = botMid - P[i] / GAIN * ampB, ok = Math.sign(P[i]) === X[i];
+      g.fillStyle = X[i] > 0 ? col.acc : 'rgba(230,230,230,.85)'; g.beginPath(); g.arc(X0, Y0, 2.8, 0, 7); g.fill();
+      if (!ok) { g.strokeStyle = '#FF5F57'; g.lineWidth = 1.6; g.beginPath(); g.arc(X0, Y0, 6, 0, 7); g.stroke(); }
+    }
+    g.restore();
+    // right fade: new samples glide in from behind it
+    const rf = g.createLinearGradient(right - 56, 0, right + 8, 0); rf.addColorStop(0, 'rgba(14,14,14,0)'); rf.addColorStop(1, '#0E0E0E'); g.fillStyle = rf; g.fillRect(right - 56, 28, 64 + 2, h - 28);
+    // left fade
+    const fade = g.createLinearGradient(0, 0, 56, 0); fade.addColorStop(0, '#0E0E0E'); fade.addColorStop(1, 'rgba(14,14,14,0)'); g.fillStyle = fade; g.fillRect(0, 28, 56, h - 28);
+    // live histograms of the equalized estimates, one per transmitted symbol
+    const sx = w - pad - strip, K = [1, 4, 6, 4, 1];
+    const sm = histP.map(hh => hh.map((_, i) => { let t = 0, ws = 0; K.forEach((kw, j) => { const q = i + j - 2; if (q >= 0 && q < NB) { t += hh[q] * kw; ws += kw; } }); return t / ws; }));
+    const mx = Math.max(1, ...sm[0], ...sm[1]);
+    g.save(); g.beginPath(); g.rect(sx - 2, half + 26, strip + 8, half - 28); g.clip();
+    [[1, col.acc], [0, 'rgba(230,230,230,.85)']].forEach(([cl, c]) => {
+      g.beginPath(); g.moveTo(sx, botMid - HI * ampB);
+      for (let bI = NB - 1; bI >= 0; bI--) { const v = LO + (bI + .5) / NB * (HI - LO), y = botMid - v * ampB; g.lineTo(sx + sm[cl][bI] / mx * strip, y); }
+      g.lineTo(sx, botMid - LO * ampB); g.closePath();
+      g.globalAlpha = .25; g.fillStyle = c; g.fill(); g.globalAlpha = .95; g.strokeStyle = c; g.lineWidth = 1.3; g.stroke(); g.globalAlpha = 1;
+    });
+    g.restore();
+    g.strokeStyle = 'rgba(255,255,255,.12)'; g.beginPath(); g.moveTo(sx, half + 30); g.lineTo(sx, h - 8); g.stroke();
+    if (!small) { g.fillStyle = '#7a7a7a'; g.textAlign = 'right'; g.fillText('sent +1', sx - 8, yP + 4); g.fillText('sent −1', sx - 8, yM + 4); g.textAlign = 'left'; }
+    // counters
+    if (total > 0 && small) {
+      g.font = '500 9.5px "Geist Mono", ui-monospace, monospace';
+      g.fillStyle = '#8e8e8e'; const a1 = `errors: sign(zₖ) ${(rawErrs / total * 100).toFixed(1)}% · `; g.fillText(a1, pad, h - 12);
+      g.fillStyle = col.acc; g.fillText(`equalizer ${(errs / total * 100).toFixed(1)}%`, pad + g.measureText(a1).width, h - 12);
+    } else if (total > 0) {
+      g.textAlign = 'right'; g.font = '500 11px "Geist Mono", ui-monospace, monospace';
+      const t1 = `with equalizer ${(errs / total * 100).toFixed(1)}%`, t2 = `sign(zₖ) alone ${(rawErrs / total * 100).toFixed(1)}%  ·  `;
+      g.fillStyle = col.acc; g.fillText(t1, w - pad, 22);
+      g.fillStyle = '#8e8e8e'; g.fillText(t2, w - pad - g.measureText(t1).width, 22);
+      g.fillStyle = '#5f5f5f'; g.fillText(`symbol error rate over ${total.toLocaleString('en')} symbols`, w - pad, 38);
+      g.textAlign = 'left';
+    }
+  }
+  function loop(t) {
+    const dt = Math.min(64, t - last); last = t; off += dt * .06;
+    while (off >= step) { off -= step; pushSample(); if (Z.length > 3000) { const cut = Z.length - 600; X = X.slice(cut); Z = Z.slice(cut); P = P.slice(cut); } }
+    draw(); if (run) raf = requestAnimationFrame(loop);
+  }
+  size(); draw();
+  if (!REDUCE) whenVisible(box, () => { if (!run) { run = true; last = performance.now(); raf = requestAnimationFrame(loop); } }, () => { run = false; cancelAnimationFrame(raf); });
+  addEventListener('resize', () => { size(); draw(); });
+});
 
 /* ---------------- swipe: trackpad (two fingers), touch and mouse drag ---------------- */
 function swipeable(el, prev, next) {
@@ -1411,15 +1621,77 @@ function initTour(rootEl) {
   go(0);
 }
 
+
+/* ---------------- Digital Communication project ---------------- */
+function initDigcom(root) {
+  // transmission chain
+  const ch = $('[data-chain]', root);
+  if (ch) {
+    const B = [[10, 'SYMBOLS', 'xₖ ∈ {±1}'], [150, 'LINE CODE', 'h = [2, −0.5, −0.25]'], [330, '+ NOISE', 'Gaussian, σ² = 2'], [470, 'CHANNEL', 'h = [1, 0.25]'], [610, 'MMSE EQUALIZER', '7 taps, delay 3'], [770, 'DECISION', 'sign(·) → x̂ₖ']];
+    const Wd = [110, 150, 110, 110, 130, 80];
+    let h = '';
+    B.forEach((b, i) => { const x = b[0], w = Wd[i], hl = i === 4;
+      h += `<rect class="f${hl ? ' hl' : ''}" x="${x}" y="34" width="${w}" height="56" rx="8"/><text class="t" x="${x + w / 2}" y="57" text-anchor="middle">${b[1]}</text><text class="t2" x="${x + w / 2}" y="75" text-anchor="middle">${b[2]}</text>`;
+      if (i < B.length - 1) { const x1 = x + w, x2 = B[i + 1][0]; h += `<line class="s" x1="${x1 + 3}" y1="62" x2="${x2 - 6}" y2="62"/><path class="s" d="M${x2 - 6} 58 L${x2 - 2} 62 L${x2 - 6} 66"/>`; } });
+    h += '<text class="t2" x="10" y="20">TRANSMITTER</text><text class="t2" x="330" y="20">CHANNEL</text><text class="t2" x="610" y="20">RECEIVER</text>';
+    h += '<circle class="pulse" r="4" cx="10" cy="62"><animate attributeName="cx" values="10;850" dur="3.2s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.08;.9;1" dur="3.2s" repeatCount="indefinite"/></circle>';
+    ch.innerHTML = h;
+    if (REDUCE) $$('animate', ch).forEach(a => a.remove());
+  }
+  // spectrum
+  const sp = $('[data-spec]', root);
+  if (sp) {
+    const W = 640, H = 230, L = 48, R = 14, T0 = 14, Bm = 30, T = 1e-5;
+    const S = f => 1e-5 * (4.3125 - 1.75 * Math.cos(2 * Math.PI * f * T) - Math.cos(4 * Math.PI * f * T));
+    const X = f => L + f / 50000 * (W - L - R), Y = v => T0 + (6e-5 - v) / 4.5e-5 * (H - T0 - Bm);
+    let d = '', pk = [0, 0];
+    for (let i = 0; i <= 200; i++) { const f = i * 250, v = S(f); if (v > pk[1]) pk = [f, v]; d += `${i ? 'L' : 'M'}${X(f).toFixed(1)} ${Y(v).toFixed(1)} `; }
+    let g = '';
+    for (let v = 2; v <= 6; v++) g += `<line class="gl" x1="${L}" x2="${W - R}" y1="${Y(v * 1e-5)}" y2="${Y(v * 1e-5)}"/><text class="ax" x="${L - 8}" y="${Y(v * 1e-5) + 3}" text-anchor="end">${v}e-5</text>`;
+    for (let f = 0; f <= 50; f += 10) g += `<text class="ax" x="${X(f * 1000)}" y="${H - 10}" text-anchor="middle">${f} kHz</text>`;
+    sp.innerHTML = g + `<path class="ar" d="${d} L${X(50000)} ${Y(1.5e-5)} L${X(0)} ${Y(1.5e-5)} Z"/><path class="cv" d="${d}"/>
+      <circle class="mk" cx="${X(pk[0])}" cy="${Y(pk[1])}" r="4.5"/><text class="ml" x="${X(pk[0])}" y="${Y(pk[1]) - 12}" text-anchor="middle">max ≈ ${(pk[1] * 1e5).toFixed(2)}e-5 at ${(pk[0] / 1000).toFixed(0)} kHz</text>
+      <circle class="mk" cx="${X(0)}" cy="${Y(S(0))}" r="4"/><text class="ml" x="${X(0) + 10}" y="${Y(S(0)) - 8}">1.56e-5 at 0 Hz</text>`;
+    const cv = $('.cv', sp); if (!REDUCE) { const len = cv.getTotalLength(); cv.style.strokeDasharray = len; cv.style.strokeDashoffset = len; cv.animate([{ strokeDashoffset: len }, { strokeDashoffset: 0 }], { duration: 1600, delay: 500, easing: 'cubic-bezier(.22,1,.36,1)', fill: 'forwards' }); }
+  }
+  // live Wiener–Hopf equalizer
+  const eq = $('[data-eq]', root);
+  if (eq) {
+    const solve = (A, b) => { const n = b.length, M = A.map((r, i) => [...r, b[i]]);
+      for (let c = 0; c < n; c++) { let p = c; for (let r = c + 1; r < n; r++) if (Math.abs(M[r][c]) > Math.abs(M[p][c])) p = r; [M[c], M[p]] = [M[p], M[c]];
+        for (let r = c + 1; r < n; r++) { const k = M[r][c] / M[c][c]; for (let j = c; j <= n; j++) M[r][j] -= k * M[c][j]; } }
+      const x = Array(n).fill(0); for (let r = n - 1; r >= 0; r--) { let s = M[r][n]; for (let j = r + 1; j < n; j++) s -= M[r][j] * x[j]; x[r] = s / M[r][r]; } return x; };
+    const Rs = [4.14453125, 0.0234375, -0.75, -0.125, 0, 0, 0], bv = [-0.0625, -0.375, 0, 2, 0, 0, 0];
+    const svg = $('[data-taps]', eq), W = 640, H = 210, mid = 160, sc = 290, L = 40;
+    const lab = ['c₋₃', 'c₋₂', 'c₋₁', 'c₀', 'c₁', 'c₂', 'c₃'], bw = 46, gap = (W - L - 7 * bw) / 7;
+    svg.innerHTML = `<line class="zl" x1="${L - 10}" x2="${W - 6}" y1="${mid}" y2="${mid}"/><text class="ax" x="${L - 14}" y="${mid + 3}" text-anchor="end">0</text>` +
+      lab.map((l, i) => { const x = L + gap / 2 + i * (bw + gap); return `<rect class="tap${i === 3 ? ' main' : ''}" x="${x}" y="${mid}" width="${bw}" height="0" rx="4"/><text class="tv" x="${x + bw / 2}" y="${mid}" text-anchor="middle"></text><text class="ax" x="${x + bw / 2}" y="${H - 6}" text-anchor="middle">${l}</text>`; }).join('');
+    const bars = $$('.tap', svg), vals = $$('.tv', svg), inp = $('[data-noise]', eq);
+    const upd = () => {
+      const s2 = +inp.value, Rz = Rs.slice(); Rz[0] += 1.0625 * s2; Rz[1] += 0.25 * s2;
+      const A = Rz.map((_, i) => Rz.map((__, j) => Rz[Math.abs(i - j)])), c = solve(A, bv);
+      const err = 1 - c.reduce((t, v, i) => t + v * bv[i], 0);
+      c.forEach((v, i) => { const hgt = Math.abs(v) * sc, y = v >= 0 ? mid - hgt : mid; bars[i].setAttribute('y', y.toFixed(1)); bars[i].setAttribute('height', Math.max(1, hgt).toFixed(1));
+        vals[i].setAttribute('y', (v >= 0 ? y - 6 : mid + hgt + 13).toFixed(1)); vals[i].textContent = v.toFixed(3); });
+      $('[data-s2]', eq).textContent = s2.toFixed(1); $('[data-err]', eq).textContent = err.toFixed(4);
+      $('[data-red]', eq).textContent = '−' + Math.round((1 - err) * 100) + '%'; $('[data-c0]', eq).textContent = c[3].toFixed(3);
+      $('[data-eqnote]', eq).innerHTML = Math.abs(s2 - 2) < 1e-9 ? 'This is the report’s case: <b>the same coefficients as Table 6</b>, and σ<sub>e</sub>² = 0.3387 — matched by the simulation’s 0.3375.' :
+        s2 < 2 ? 'Less noise: the receiver can trust the observations more, so the main tap grows and the error drops.' : 'More noise: the estimate is shrunk further towards zero — trusting noisy observations less is what minimises the mean-square error.';
+    };
+    inp.addEventListener('input', upd); upd();
+  }
+}
+
 /* ---------------- sheet: opens from the clicked card ---------------- */
 const sheet = $('#sheet'), shBody = $('#shBody'), shTitle = $('#shTitle');
-const TITLES = { ml: ['ML × Quant Finance', 'Research'], summexa: ['Summexa AI', 'Founder project'], nanogpt: ['NanoGPT', 'Personal'], riscv: ['Mini RISC-V Processor', 'EPFL'], finance: ['Personal Finance Project', 'Personal'], ai: ['Artificial Intelligence', 'EPFL'], swc: ['Software Construction', 'EPFL'], oop: ['Object-Oriented Programming', 'EPFL'], sys: ['Systems Programming', 'EPFL'], yale: ['Financial Markets', 'Coursera'] };
+const TITLES = { ml: ['ML × Quant Finance', 'Research'], summexa: ['Summexa AI', 'Founder project'], nanogpt: ['NanoGPT', 'Personal'], riscv: ['Mini RISC-V Processor', 'EPFL'], digcom: ['Digital Communication', 'DTU'], finance: ['Personal Finance Project', 'Personal'], ai: ['Artificial Intelligence', 'EPFL'], swc: ['Software Construction', 'EPFL'], oop: ['Object-Oriented Programming', 'EPFL'], sys: ['Systems Programming', 'EPFL'], yale: ['Financial Markets', 'Coursera'] };
 let fromRect = null, phaseT = null, closing = false, stopSheetLife = null;
 function openSheet(key, el) {
   shBody.innerHTML = $('#t-' + key).innerHTML;
   shTitle.innerHTML = `${TITLES[key][0]} <span>· ${TITLES[key][1]}</span>`;
   if (key === 'ml') initML(shBody);
   if (key === 'summexa') initTour(shBody);
+  if (key === 'digcom') initDigcom(shBody);
   if (stopSheetLife) { stopSheetLife(); stopSheetLife = null; }
   const sl = $('[data-life-sheet]', shBody); if (sl) requestAnimationFrame(() => { stopSheetLife = life(sl, { W: 64, H: 28, interactive: true }); });
   const ph = $('[data-phases]', shBody); clearInterval(phaseT);
@@ -1451,7 +1723,7 @@ addEventListener('keydown', e => { if (e.key === 'Escape' && info.classList.cont
 const kd = $('#cmdk'), kIn = $('#kIn'), kList = $('#kList');
 const CMDS = [
   ['ML × Quant Finance', 'Project', () => openSheet('ml')], ['Summexa AI', 'Project', () => openSheet('summexa')],
-  ['NanoGPT', 'Project', () => openSheet('nanogpt')], ['Mini RISC-V Processor', 'Project', () => openSheet('riscv')],
+  ['NanoGPT', 'Project', () => openSheet('nanogpt')], ['Mini RISC-V Processor', 'Project', () => openSheet('riscv')], ['Digital Communication · DTU', 'Project', () => openSheet('digcom')],
   ['Info — profile, background, skills', 'View', () => setView('info')], ['Contact', 'Section', () => $('#contact').scrollIntoView({ behavior: 'smooth' })],
   ['Copy email address', 'Action', async () => { if (await copyText('cesar.garin@epfl.ch')) toast('Email copied ✓'); }],
   ['Open GitHub', 'Link', () => window.open('https://github.com/cesgrn', '_blank', 'noopener')],
