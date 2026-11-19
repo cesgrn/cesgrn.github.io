@@ -154,9 +154,8 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
    ===================================================================== */
 .sec-row{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:clamp(56px,8vw,110px) 0 16px;font-size:13px}
 .sec-row b{font-weight:500}
-.works{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:clamp(10px,1.2vw,16px)}
-.works .w{grid-column:span 3}
-.works .w.sm{grid-column:span 2}
+.works{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(10px,1.2vw,16px)}
+.works .w,.works .w.sm{grid-column:span 4}
 .w.sm .w-cap{font-size:13px}
 .w{display:block;text-align:left;cursor:pointer}
 .w-media{position:relative;aspect-ratio:4/3;border-radius:14px;overflow:hidden;background:var(--card);border:1px solid var(--line);isolation:isolate}
@@ -168,6 +167,38 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .w-cap .m{color:var(--dim);white-space:nowrap;font-size:12.5px}
 .sig{position:absolute;inset:0;background:var(--vis-bg);transition:background-color .4s}
 .sig canvas{width:100%;height:100%;display:block}
+.stft{position:absolute;inset:0;background:var(--vis-bg);transition:background-color .4s}
+.stft canvas{width:100%;height:100%;display:block}
+/* ML for Signal Processing sheet */
+.opts{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.opts button{font:500 11.5px/1 var(--mono);padding:8px 11px;border-radius:999px;border:1px solid var(--line);color:var(--ink2);transition:background-color .2s,color .2s,border-color .2s,transform .25s var(--spring)}
+.opts button:hover{border-color:var(--line2);color:var(--ink)}
+.opts button:active{transform:scale(.94)}
+.opts button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.opts-row{display:flex;flex-wrap:wrap;gap:6px 22px;align-items:center}
+.opts-row .opts{margin-top:10px}
+.opts-l{font:500 10.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--dim);margin:14px 0 0}
+.stft-box{position:relative;margin-top:14px;border-radius:12px;overflow:hidden;background:var(--vis-bg);aspect-ratio:16/7;transition:background-color .4s}
+.stft-box canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.stft-read{display:flex;flex-wrap:wrap;gap:4px 18px;margin-top:12px;font:500 12px/1.4 var(--mono);color:var(--dim)}
+.stft-read b{color:var(--acc);font-weight:500}
+.plot .cv2{fill:none;stroke:var(--ink);stroke-width:1.4;stroke-dasharray:5 4;opacity:.55}
+.plot .band{fill:var(--acc);opacity:.07}
+.plot .lg{font:500 10.5px var(--mono);fill:var(--ink2)}
+.plot .ln-lms{fill:none;stroke:var(--ink2);stroke-width:1.5}
+.plot .ln-nlms{fill:none;stroke:var(--dim);stroke-width:1.5;stroke-dasharray:4 3}
+.plot .ln-rls{fill:none;stroke:var(--acc);stroke-width:2}
+.plot .sp{fill:var(--ink);opacity:.05}
+.anc-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.anc-top .btn{height:34px;font-size:12.5px;padding:0 14px}
+.bars3{display:grid;gap:10px;margin-top:16px}
+.bars3 > div{display:grid;grid-template-columns:52px minmax(0,1fr) 120px;gap:12px;align-items:center;font:500 12px/1 var(--mono);color:var(--ink2)}
+.bars3 i{display:block;height:8px;border-radius:8px;background:var(--line2);position:relative;overflow:hidden}
+.bars3 i::after{content:"";position:absolute;inset:0;width:var(--v);border-radius:8px;background:var(--ink2)}
+.bars3 .hi i::after{background:var(--acc)}
+.bars3 .hi{color:var(--ink)}
+.bars3 span:last-child{text-align:right}
+@media (max-width:860px){ .bars3 > div{grid-template-columns:44px minmax(0,1fr) 92px} .stft-box{aspect-ratio:4/3} }
 
 .w .open{position:absolute;right:14px;bottom:14px;z-index:3;display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:999px;background:rgba(15,15,15,.72);color:#fff;font:500 12px/1 var(--sans);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);opacity:0;transform:translateY(6px);transition:opacity .3s,transform .4s var(--spring)}
 .w:hover .open,.w:focus-visible .open{opacity:1;transform:none}
@@ -195,8 +226,9 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .life canvas{width:100%;height:100%;display:block}
 .sheet-life canvas{cursor:crosshair}
 .life .lbl{position:absolute;left:14px;top:14px;font:400 10.5px/1 var(--mono);color:var(--vis-dim);letter-spacing:.08em;pointer-events:none}
-@media (max-width:1000px){ .works{grid-template-columns:repeat(2,minmax(0,1fr))} .works .w,.works .w.sm{grid-column:span 1} .works .w.sm:last-child{grid-column:1/-1} .works .w.sm:last-child .w-media{aspect-ratio:16/7} }
-@media (max-width:760px){ .works{grid-template-columns:1fr} .works .w.sm:last-child{grid-column:auto} .works .w.sm:last-child .w-media{aspect-ratio:4/3} }
+@media (min-width:1001px){ .works .w-cap{flex-direction:column;gap:3px;font-size:13px} .works .term{padding-top:40px} }
+@media (max-width:1000px){ .works{grid-template-columns:repeat(2,minmax(0,1fr))} .works .w,.works .w.sm{grid-column:span 1} }
+@media (max-width:760px){ .works{grid-template-columns:1fr} }
 
 /* coursework list */
 .list{border-top:1px solid var(--line)}
@@ -715,6 +747,13 @@ details.more li{margin:5px 0}
       </div>
       <div class="w-cap"><span><b>Digital Communication</b> <span class="t">— Signal chain &amp; MMSE equalizer</span></span><span class="m">DTU · 2026</span></div>
     </button>
+    <button class="w sm rv" type="button" data-sheet="mlsp" style="--d:240ms">
+      <div class="w-media">
+        <div class="stft scale" data-stft><canvas aria-label="Live spectrogram of a drum-machine loop: two square-wave tones with odd harmonics and a broadband noise burst, computed with a short-time Fourier transform"></canvas></div>
+        <span class="open">Spectrogram ↗</span>
+      </div>
+      <div class="w-cap"><span><b>ML for Signal Processing</b> <span class="t">— Wiener, STFT &amp; adaptive filters</span></span><span class="m">DTU · 2026</span></div>
+    </button>
   </div>
 
   <div class="sec-row"><b>Coursework &amp; more</b><span class="dim">EPFL · Personal · Coursera</span></div>
@@ -978,6 +1017,83 @@ details.more li{margin:5px 0}
   </section>
   <ul class="tags"><li class="tag">Markov chains</li><li class="tag">Autocorrelation</li><li class="tag">Wiener–Khinchin</li><li class="tag">FIR filters</li><li class="tag">z-transform</li><li class="tag">Wiener–Hopf</li><li class="tag">MMSE equalizer</li><li class="tag">MATLAB</li><li class="tag">Monte Carlo</li></ul>
 </template>
+<template id="t-mlsp">
+  <div class="kick reveal" style="--d:200ms">Signal processing · DTU 02471 Machine Learning for Signal Processing <span class="lang">MATLAB</span></div>
+  <h2 class="sh-h reveal" style="--d:260ms">Machine Learning for <em>Signal Processing</em></h2>
+  <p class="sh-lead reveal" style="--d:320ms">A problem set on the statistical side of signal processing. It starts with the theory (filters written as linear algebra, the bias–variance trade-off, autocorrelation of random processes), then three hands-on problems: a Wiener filter that denoises a narrowband signal, a time–frequency analysis of a drum-machine recording, and adaptive noise cancellation with LMS, NLMS and RLS.</p>
+  <div class="metrics reveal" style="--d:380ms">
+    <div class="metric hi"><b>+5.75 dB</b><span>SNR gain of the 48-tap Wiener filter: MSE from 0.0402 down to 0.0107</span></div>
+    <div class="metric"><b>N = 1024</b><span>STFT window that separates every hit in time and still resolves its harmonics</span></div>
+    <div class="metric"><b>+43.1 dB</b><span>Noise cancellation with RLS: from −16.5 dB (speech almost inaudible) to 26.6 dB</span></div>
+  </div>
+
+  <section class="dc-sec">
+    <p class="dc-k">1 · Wiener filtering</p>
+    <h3>A filter learned from data</h3>
+    <p>A narrowband signal (750–1250 Hz) is buried in white noise at 8 kHz. The Wiener filter is the FIR filter that minimises the mean-square error. Its taps solve the normal equations Σ<sub>x</sub>θ = p, built from autocorrelations estimated on 32,000 samples. Choosing the length on a train/test split shows the MSE flattening beyond <b style="font-weight:500;color:var(--ink)">L = 48 taps (6 ms)</b>, with no sign of overfitting.</p>
+    <div class="plot" data-wiener>
+      <div class="eq-top"><div><h4 class="blk-h">Try it: change the filter length</h4><p class="blk-s">The normal equations, solved live on an idealised version of the signal: a flat band plus white noise at the report’s SNR.</p></div><span class="sw-c">L = <b data-lv>48</b> taps</span></div>
+      <svg viewBox="0 0 640 230" role="img" aria-label="Magnitude response of the FIR Wiener filter compared with the ideal non-causal Wiener filter" data-hresp></svg>
+      <input type="range" min="0" max="10" step="1" value="6" data-len aria-label="Filter length">
+      <div class="eq-out">
+        <div class="hi"><b data-mse>−19.0 dB</b><span>Model MSE (input −14.0 dB)</span></div>
+        <div><b data-gain>+5.0 dB</b><span>SNR gain in the model</span></div>
+        <div><b data-res>167 Hz</b><span>Resolution f<sub>s</sub>/L: why short filters can’t make sharp edges</span></div>
+      </div>
+      <p class="sw-note" data-wnote></p>
+    </div>
+    <table class="mini-tab" style="margin-top:18px"><thead><tr><th>Report, L = 48</th><th>MSE</th><th>SNR</th></tr></thead><tbody><tr><td>Noisy input</td><td>0.0402</td><td>3.17 dB</td></tr><tr><td>Wiener output</td><td>0.0107</td><td>8.92 dB</td></tr><tr><td>Improvement</td><td>× 3.76</td><td>+5.75 dB</td></tr></tbody></table>
+    <p style="margin-top:14px">The FIR filter acts as a data-driven band-pass filter. It stays far less selective than the ideal Wiener filter for two reasons. First, its limited length. Second, causality: it only sees past samples, which is why the MSE stops improving around −19.7 dB even for very long filters.</p>
+  </section>
+
+  <section class="dc-sec">
+    <p class="dc-k">2 · Time–frequency analysis</p>
+    <h3>Reading a drum machine from its spectrogram</h3>
+    <p>A 22.05 kHz recording, analysed with the short-time Fourier transform. The window length N sets the trade-off: time resolution N/F<sub>s</sub> against frequency resolution F<sub>s</sub>/N. Short windows smear the harmonics into vertical bands, and long ones blur the hits into each other.</p>
+    <div class="plot" data-stftx>
+      <div class="eq-top"><div><h4 class="blk-h">Try it: choose the window</h4><p class="blk-s">A real STFT, computed in your browser on a loop re-synthesised from the three instrument signatures measured in the report.</p></div></div>
+      <div class="opts-row">
+        <div><p class="opts-l">Window length N</p><div class="opts" data-n><button type="button" data-v="128">128</button><button type="button" data-v="256">256</button><button type="button" data-v="512">512</button><button type="button" data-v="1024" aria-pressed="true">1024</button><button type="button" data-v="2048">2048</button><button type="button" data-v="4096">4096</button></div></div>
+        <div><p class="opts-l">Window</p><div class="opts" data-win><button type="button" data-v="hann" aria-pressed="true">Hann</button><button type="button" data-v="rect">Rectangular</button></div></div>
+      </div>
+      <div class="stft-box"><canvas aria-label="Spectrogram of the drum loop, 0 to 11 kHz over 4 seconds"></canvas></div>
+      <div class="stft-read"><span>Δt = <b data-dt>46.4 ms</b></span><span>Δf = <b data-df>21.5 Hz</b></span><span>Overlap 75%</span></div>
+      <p class="sw-note" data-snote></p>
+    </div>
+    <table class="mini-tab" style="margin-top:18px"><thead><tr><th>Instrument</th><th>Spectrum</th><th>Length</th><th>Steps</th></tr></thead><tbody><tr><td>A · low</td><td>odd harmonics, 780 Hz</td><td>30–50 ms</td><td>1, 5</td></tr><tr><td>B · high</td><td>odd harmonics, 1.55 kHz</td><td>30–50 ms</td><td>2, 6, 8</td></tr><tr><td>C · noise</td><td>broadband to 10 kHz</td><td>≈ 200 ms</td><td>3, 4, 7</td></tr></tbody></table>
+    <p style="margin-top:14px">Odd harmonics only are the signature of a square-wave oscillator, typical of vintage drum machines. The 8-step pattern A–B–C–C–A–B–C–B repeats every ≈ 1.9 s, with a step of ≈ 0.24 s. The final choice was a Hann window of 1024 samples (46 ms): about the length of one hit, five times shorter than the gap between hits, and fine enough to resolve each harmonic. Its sidelobes (≈ −31 dB) also avoid the leakage of the rectangular window.</p>
+  </section>
+
+  <section class="dc-sec">
+    <p class="dc-k">3 · Adaptive filtering</p>
+    <h3>Cancelling noise that changed on the way</h3>
+    <p>Speech is recorded by a primary microphone together with noise that travelled through an unknown acoustic path h. A reference microphone hears the noise alone. An adaptive FIR filter w learns h, so that its estimate of the noise can be subtracted. The error that drives the adaptation, b = p − w∗η, is also the output: once w = h, it is the clean speech. This only works because the speech is uncorrelated with the noise. Otherwise the filter would also cancel part of the speech.</p>
+    <figure class="chain"><svg class="dg" viewBox="0 0 860 150" role="img" aria-label="Adaptive noise cancellation: the noise passes through an unknown path h to the primary microphone, which also records the speech; the reference noise feeds an adaptive filter w whose output is subtracted; the error b is the cleaned speech and drives the update of w" data-anc-dg></svg></figure>
+    <div class="plot" data-anc>
+      <div class="anc-top"><div><h4 class="blk-h">Misalignment ‖w − h‖² / ‖h‖² over time</h4><p class="blk-s">A toy re-run in your browser: the same three algorithms and settings (μ = 0.02/(Mσ²), μ̃ = 0.02, λ = 0.9999) on synthetic speech and noise. Speech is present in the shaded region.</p></div><button class="btn" type="button" data-run>Run again <span>↻</span></button></div>
+      <svg viewBox="0 0 640 230" role="img" aria-label="Misalignment in dB of LMS, NLMS and RLS over 4 seconds" data-mis></svg>
+    </div>
+    <p style="margin-top:16px">Results in the report, measured over the second half of the signal (input SNR −16.5 dB):</p>
+    <div class="bars3">
+      <div><span>LMS</span><i style="--v:73%"></i><span>19.6 dB · 0.01 s</span></div>
+      <div><span>NLMS</span><i style="--v:67%"></i><span>17.9 dB · 0.01 s</span></div>
+      <div class="hi"><span>RLS</span><i style="--v:100%"></i><span>26.6 dB · 0.05 s</span></div>
+    </div>
+    <p style="margin-top:16px">RLS converges far faster and is barely disturbed by the speech, thanks to its long memory (λ = 0.9999, about 1.25 s). It costs O(M²) per sample instead of O(M), and was 5× slower here. Once the speech stops, the same memory slows it down: LMS and NLMS fall below it, to about −92 dB.</p>
+  </section>
+
+  <section class="dc-sec">
+    <p class="dc-k">4 · Theory</p>
+    <h3>Also in the set</h3>
+    <div class="finds">
+      <div><b>y = Xθ</b><span>Signal processing is linear algebra: an FIR convolution is a matrix–vector product, where X is the Toeplitz matrix of delayed input samples.</span></div>
+      <div><b>Biased can beat unbiased</b><span>MSE = variance + bias². Shrinking an unbiased estimator by α* = −σ²/(σ² + θ₀²) always lowers the MSE, most of all in noisy, data-poor settings.</span></div>
+      <div><b>Every norm is convex</b><span>Proved from the triangle inequality and absolute homogeneity alone, on the convex domain ℝˡ.</span></div>
+      <div><b>r<sub>y</sub>(−2) = 73/36</b><span>Autocorrelation of an AR(1) process plus a constant: σ²a<sup>|k|</sup>/(1 − a²) + b², evaluated at a = 0.8, b = 0.5.</span></div>
+    </div>
+  </section>
+  <ul class="tags"><li class="tag">Wiener filter</li><li class="tag">Normal equations</li><li class="tag">Bias–variance</li><li class="tag">Autocorrelation</li><li class="tag">STFT</li><li class="tag">Window functions</li><li class="tag">LMS / NLMS</li><li class="tag">RLS</li><li class="tag">MATLAB</li></ul>
+</template>
 <template id="t-finance">
   <div class="kick reveal" style="--d:200ms">Quantitative · Personal <span class="lang">Python</span></div>
   <h2 class="sh-h reveal" style="--d:260ms">Personal Finance <em>Project</em></h2>
@@ -1230,7 +1346,7 @@ $$('[data-sig]').forEach(box => {
     for (let i = i0; i < n; i++) { g.fillStyle = ink(.6); g.beginPath(); g.arc(xAt(i), topMid - Z[i] * ampT, 1.8, 0, 7); g.fill(); }
     g.restore();
     // bottom: estimates coloured by the symbol actually sent; red ring = wrong decision
-    g.save(); g.beginPath(); g.rect(0, half + 28, right + 6, half - 32); g.clip();
+    g.save(); g.beginPath(); g.rect(0, half + 28, right + 6, half - 32 - (small ? 22 : 0)); g.clip();
     for (let i = i0; i < n; i++) {
       if (P[i] === undefined) continue;
       const X0 = xAt(i), Y0 = botMid - P[i] / GAIN * ampB, ok = Math.sign(P[i]) === X[i];
@@ -1276,6 +1392,148 @@ $$('[data-sig]').forEach(box => {
     draw(); if (run) raf = requestAnimationFrame(loop);
   }
   size(); draw();
+  if (!REDUCE) whenVisible(box, () => { if (!run) { run = true; last = performance.now(); raf = requestAnimationFrame(loop); } }, () => { run = false; cancelAnimationFrame(raf); });
+  addEventListener('resize', () => { size(); draw(); });
+});
+
+/* ---------------- ML for Signal Processing: synth, FFT and colour ramp shared by the card and the sheet ---------------- */
+const DSP = (() => {
+  const FS = 22050, STEP = 3.81 / 16, PAT = 'ABCCABCB';      // report: 17 onsets over 3.81 s, pattern A–B–C–C–A–B–C–B
+  function fft(re, im) {
+    const n = re.length;
+    for (let i = 1, j = 0; i < n; i++) { let b = n >> 1; for (; j & b; b >>= 1) j ^= b; j ^= b; if (i < j) { let t = re[i]; re[i] = re[j]; re[j] = t; t = im[i]; im[i] = im[j]; im[j] = t; } }
+    for (let len = 2; len <= n; len <<= 1) {
+      const a = -2 * Math.PI / len, wr = Math.cos(a), wi = Math.sin(a), hl = len >> 1;
+      for (let i = 0; i < n; i += len) {
+        let cr = 1, ci = 0;
+        for (let k = 0; k < hl; k++) {
+          const p = i + k, q = p + hl, tr = re[q] * cr - im[q] * ci, ti = re[q] * ci + im[q] * cr;
+          re[q] = re[p] - tr; im[q] = im[p] - ti; re[p] += tr; im[p] += ti;
+          const t = cr * wr - ci * wi; ci = cr * wi + ci * wr; cr = t;
+        }
+      }
+    }
+  }
+  // one hit of each instrument, from the signatures in Table 1 of the report
+  function hit(type, r) {
+    const len = Math.round(FS * (type === 'C' ? .26 : .07)), out = new Float32Array(len), f0 = type === 'A' ? 780 : 1550;
+    let lp = 0;
+    for (let i = 0; i < len; i++) {
+      const t = i / FS; let v = 0;
+      if (type === 'C') { lp += .6 * ((r() * 2 - 1) - lp); v = .16 * lp * Math.exp(-t / .05); }       // broadband noise burst, ≈ 200 ms
+      else { for (let k = 1; k * f0 < 10500; k += 2) v += Math.sin(2 * Math.PI * k * f0 * t) / k; v *= (type === 'A' ? .7 : .55) * Math.exp(-t / .016); }   // square wave: odd harmonics
+      v += .45 * Math.sin(2 * Math.PI * 70 * t) * Math.exp(-t / .006);                                 // low-frequency attack transient
+      out[i] = v * Math.min(1, i / 12);
+    }
+    return out;
+  }
+  let H = null;
+  const hits = () => H || (H = { A: hit('A', rng(7)), B: hit('B', rng(8)), C: hit('C', rng(9)) });
+  function render(dur, t0, loop) {
+    const n = Math.round(FS * dur), y = new Float32Array(n), h = hits(), r = rng(3);
+    for (let k = 0; ; k++) {
+      const s = Math.round(FS * (t0 + k * STEP)); if (s >= n) break;
+      const hh = h[PAT[k % 8]];
+      for (let i = 0; i < hh.length; i++) { const q = s + i; if (q < n) y[q] += hh[i]; else if (loop) y[q - n] += hh[i]; }
+    }
+    for (let i = 0; i < n; i++) y[i] += 2e-4 * (r() * 2 - 1);
+    return y;
+  }
+  const win = (N, type) => { const w = new Float32Array(N); for (let i = 0; i < N; i++) w[i] = type === 'rect' ? 1 : .5 - .5 * Math.cos(2 * Math.PI * i / N); return w; };
+  // colour ramp read from the theme: background → accent → ink
+  const cx = document.createElement('canvas').getContext('2d');
+  const rgbOf = c => { cx.fillStyle = '#000'; cx.fillStyle = c; const s = cx.fillStyle; if (s[0] === '#') return [1, 3, 5].map(i => parseInt(s.slice(i, i + 2), 16)); const m = s.match(/[\d.]+/g); return m ? m.slice(0, 3).map(Number) : [0, 0, 0]; };
+  function ramp() {
+    const cs = getComputedStyle(root), v = k => cs.getPropertyValue(k).trim();
+    const a = rgbOf(v('--vis-bg') || '#0E0E0E'), b = rgbOf(v('--acc') || '#93A6FF'), c = rgbOf(v('--vis-ink') || '#D8D8D8'), L = new Uint8ClampedArray(256 * 3);
+    for (let i = 0; i < 256; i++) {
+      const t = i / 255, lo = t < .62, p = lo ? a : b, q = lo ? b : c, u = lo ? t / .62 : (t - .62) / .38, e = u * u * (3 - 2 * u);
+      for (let j = 0; j < 3; j++) L[i * 3 + j] = p[j] + (q[j] - p[j]) * e;
+    }
+    return L;
+  }
+  return { FS, STEP, PAT, fft, render, win, ramp };
+})();
+
+/* ML for Signal Processing cover: a live spectrogram (Hann, N = 1024, 75% overlap) of the drum-machine loop, computed frame by frame */
+$$('[data-stft]').forEach(box => {
+  const cv = $('canvas', box), g = cv.getContext('2d');
+  const { FS, STEP, PAT } = DSP, N = 1024, HOP = 256, ROWS = 128, COLS = Math.round(4 * FS / HOP);   // 4 s on screen, as in the report
+  const dB = new Float32Array(COLS * ROWS), lab = new Array(COLS).fill('');
+  const off = document.createElement('canvas'); off.width = COLS; off.height = ROWS;
+  const og = off.getContext('2d'), col1 = og.createImageData(1, ROWS);
+  const W = DSP.win(N, 'hann'), re = new Float32Array(N), im = new Float32Array(N);
+  let sig = null, lut = null, head = 0, pos = 0, acc = 0, run = false, raf = 0, last = 0, TOP = 0, ready = false;
+  const RANGE = 74;
+  const cols = () => { const cs = getComputedStyle(root), v = k => cs.getPropertyValue(k).trim(); return { bg: v('--vis-bg') || '#0E0E0E', bgr: v('--vis-bg-rgb') || '14,14,14', rgb: v('--vis-rgb') || '216,216,216', dim: v('--vis-dim') || '#6F6F6F', acc: v('--acc') || '#93A6FF' }; };
+  let col = cols();
+  function paint(c) {
+    const d = col1.data, base = c * ROWS;
+    for (let r = 0; r < ROWS; r++) {
+      let t = (dB[base + r] - (TOP - RANGE)) / RANGE; t = t < 0 ? 0 : t > 1 ? 1 : t;
+      const i = (t * 255) | 0, o = (ROWS - 1 - r) * 4;
+      d[o] = lut[i * 3]; d[o + 1] = lut[i * 3 + 1]; d[o + 2] = lut[i * 3 + 2]; d[o + 3] = 255;
+    }
+    og.putImageData(col1, c, 0);
+  }
+  function pushCol(doPaint = true) {
+    const L = sig.length;
+    for (let i = 0; i < N; i++) { re[i] = sig[(pos + i) % L] * W[i]; im[i] = 0; }
+    DSP.fft(re, im);
+    const base = head * ROWS;
+    for (let r = 0; r < ROWS; r++) {                 // 512 bins → 128 rows, max-pooled so harmonic lines stay crisp
+      let m = 0; for (let b = r * 4; b < r * 4 + 4; b++) { const p = re[b] * re[b] + im[b] * im[b]; if (p > m) m = p; }
+      dB[base + r] = 10 * Math.log10(m + 1e-14);
+    }
+    const c0 = pos + N / 2, c1 = c0 + HOP; let s = '';  // which instrument starts under the window centre
+    for (let k = 0; k < 8; k++) { let o = Math.round(FS * k * STEP); while (o < c0) o += L; if (o < c1) s = PAT[k]; }
+    lab[head] = s;
+    if (doPaint) paint(head);
+    head = (head + 1) % COLS; pos = (pos + HOP) % L;
+  }
+  function init() {
+    sig = DSP.render(8 * STEP, 0, true); lut = DSP.ramp();
+    for (let i = 0; i < COLS; i++) pushCol(false);
+    let mx = -1e9; for (let i = 0; i < dB.length; i++) if (dB[i] > mx) mx = dB[i];
+    TOP = mx - 3; for (let c = 0; c < COLS; c++) paint(c); ready = true;
+  }
+  function size() { const d = Math.min(2, devicePixelRatio || 1); cv.width = Math.round(cv.clientWidth * d); cv.height = Math.round(cv.clientHeight * d); g.setTransform(d, 0, 0, d, 0, 0); }
+  function draw() {
+    const w = cv.clientWidth, h = cv.clientHeight; if (!w || !ready) return;
+    const small = w < 520, pad = 16, top = 32, bot = 26, sh = h - top - bot, cw = w / (COLS - 3);
+    g.clearRect(0, 0, w, h);
+    g.imageSmoothingEnabled = true;
+    // ring buffer → screen; the newest column slides in from the right edge
+    const xAge = a => w - acc * cw - a * cw, n1 = COLS - head;
+    g.drawImage(off, head, 0, n1, ROWS, xAge(COLS - 1), top, n1 * cw + .6, sh);
+    if (head > 0) g.drawImage(off, 0, 0, head, ROWS, xAge(head - 1), top, head * cw, sh);
+    // instrument letters under their onsets
+    g.font = `500 ${small ? 9.5 : 10.5}px "Geist Mono", ui-monospace, monospace`; g.textAlign = 'center';
+    for (let i = 0; i < COLS; i++) {
+      if (!lab[i]) continue;
+      const a = (head - 1 - i + COLS) % COLS, x = xAge(a) + cw / 2;
+      if (x < 10 || x > w - 10) continue;
+      g.fillStyle = `rgba(${col.rgb},.18)`; g.fillRect(x - .5, top + sh + 3, 1, 5);
+      g.fillStyle = lab[i] === 'C' ? col.dim : col.acc; g.fillText(lab[i], x, h - 7);
+    }
+    g.textAlign = 'left';
+    // edge fades
+    const lf = g.createLinearGradient(0, 0, 56, 0); lf.addColorStop(0, col.bg); lf.addColorStop(1, `rgba(${col.bgr},0)`); g.fillStyle = lf; g.fillRect(0, top - 1, 56, sh + 2);
+    const rf = g.createLinearGradient(w - 36, 0, w, 0); rf.addColorStop(0, `rgba(${col.bgr},0)`); rf.addColorStop(1, col.bg); g.fillStyle = rf; g.fillRect(w - 36, top - 1, 36, sh + 2);
+    // labels
+    g.fillStyle = col.dim;
+    g.fillText(small ? 'SPECTROGRAM · HANN N = 1024' : 'LIVE SPECTROGRAM — HANN WINDOW N = 1024, 75% OVERLAP', pad, 21);
+    if (!small) { g.textAlign = 'right'; g.fillText('0 – 11 kHz · 4 s', w - pad, 21); g.textAlign = 'left'; }
+    g.font = `500 ${small ? 8.5 : 9.5}px "Geist Mono", ui-monospace, monospace`;
+    [[10000, '10 kHz'], [5000, '5 kHz'], [780, '780 Hz']].forEach(([f, t]) => { const y = top + sh * (1 - f / (FS / 2)); if (small && f === 780) return; g.fillStyle = col.dim; g.fillText(t, pad - 6, y + 3); });
+  }
+  function loop(t) {
+    const dt = Math.min(64, t - last); last = t; acc += dt / 1000 * FS / HOP;
+    while (acc >= 1) { acc -= 1; pushCol(); }
+    draw(); if (run) raf = requestAnimationFrame(loop);
+  }
+  init(); size(); draw();
+  document.addEventListener('themechange', () => { col = cols(); lut = DSP.ramp(); for (let c = 0; c < COLS; c++) paint(c); draw(); });
   if (!REDUCE) whenVisible(box, () => { if (!run) { run = true; last = performance.now(); raf = requestAnimationFrame(loop); } }, () => { run = false; cancelAnimationFrame(raf); });
   addEventListener('resize', () => { size(); draw(); });
 });
@@ -1688,9 +1946,218 @@ function initDigcom(root) {
   }
 }
 
+/* ---------------- ML for Signal Processing project ---------------- */
+let mlspOff = null;
+function initMlsp(el) {
+  if (mlspOff) { mlspOff(); mlspOff = null; }
+  const offs = [];
+  const visc = () => { const cs = getComputedStyle(root), v = k => cs.getPropertyValue(k).trim(); return { rgb: v('--vis-rgb') || '216,216,216', bg: v('--vis-bg') || '#0E0E0E' }; };
+  const fmt = (v, d = 1) => (v < 0 ? '−' : '') + Math.abs(v).toFixed(d);
+
+  /* 1 · Wiener filter — normal equations on an idealised signal: flat band 750–1250 Hz + white noise at the report's SNR */
+  const wb = $('[data-wiener]', el);
+  if (wb) {
+    const fs = 8000, f1 = 750, f2 = 1250, sw = .0402, ps = sw * Math.pow(10, .317), Ls = [1, 2, 4, 8, 16, 32, 48, 64, 128, 256, 512];
+    const rs = k => k === 0 ? ps : ps * (Math.sin(2 * Math.PI * f2 * k / fs) - Math.sin(2 * Math.PI * f1 * k / fs)) / (2 * Math.PI * k * (f2 - f1) / fs);
+    const cache = {};
+    const solve = L => {
+      if (cache[L]) return cache[L];
+      const r = Array.from({ length: L }, (_, k) => rs(k)), A = new Float64Array(L * L);
+      for (let i = 0; i < L; i++) for (let j = 0; j < L; j++) A[i * L + j] = r[Math.abs(i - j)] + (i === j ? sw : 0);
+      for (let j = 0; j < L; j++) {                     // Cholesky: Σx = G Gᵀ (symmetric Toeplitz, positive definite)
+        let s = A[j * L + j]; for (let k = 0; k < j; k++) s -= A[j * L + k] * A[j * L + k];
+        const d = Math.sqrt(s); A[j * L + j] = d;
+        for (let i = j + 1; i < L; i++) { let t = A[i * L + j]; for (let k = 0; k < j; k++) t -= A[i * L + k] * A[j * L + k]; A[i * L + j] = t / d; }
+      }
+      const y = new Float64Array(L), th = new Float64Array(L);
+      for (let i = 0; i < L; i++) { let t = r[i]; for (let k = 0; k < i; k++) t -= A[i * L + k] * y[k]; y[i] = t / A[i * L + i]; }
+      for (let i = L - 1; i >= 0; i--) { let t = y[i]; for (let k = i + 1; k < L; k++) t -= A[k * L + i] * th[k]; th[i] = t / A[i * L + i]; }
+      let mse = ps; for (let i = 0; i < L; i++) mse -= th[i] * r[i];
+      return (cache[L] = { th, mse });
+    };
+    const svg = $('[data-hresp]', wb), X = f => 46 + f / 4000 * 580, Y = d => 16 + (5 - Math.max(-60, Math.min(5, d))) / 65 * 180;
+    let s = `<rect class="band" x="${X(f1)}" y="16" width="${X(f2) - X(f1)}" height="180"/>`;
+    [0, -20, -40, -60].forEach(d => s += `<line class="gl" x1="46" x2="626" y1="${Y(d)}" y2="${Y(d)}"/><text class="ax" x="40" y="${Y(d) + 3}" text-anchor="end">${fmt(d, 0)}</text>`);
+    [0, 1000, 2000, 3000, 4000].forEach(f => s += `<text class="ax" x="${X(f)}" y="214" text-anchor="middle">${f ? f / 1000 + ' kHz' : '0 Hz'}</text>`);
+    s += `<text class="ax" x="${X(1000)}" y="208" text-anchor="middle" dy="-196">signal band</text>`;
+    const Ss = ps / (2 * (f2 - f1) / fs), Hin = 20 * Math.log10(Ss / (Ss + sw));
+    s += `<path class="cv2" d="M${X(0)},${Y(-60)} L${X(f1)},${Y(-60)} L${X(f1)},${Y(Hin)} L${X(f2)},${Y(Hin)} L${X(f2)},${Y(-60)} L${X(4000)},${Y(-60)}"/>`;
+    s += `<path class="cv" data-fir style="transition:d .5s cubic-bezier(.22,1,.36,1)"/>`;
+    s += `<g transform="translate(440 34)"><line x1="0" x2="18" y1="0" y2="0" class="cv"/><text class="lg" x="24" y="3.5">FIR Wiener, causal</text><line x1="0" x2="18" y1="16" y2="16" class="cv2"/><text class="lg" x="24" y="19.5">ideal, non-causal</text></g>`;
+    svg.innerHTML = s;
+    const firPath = th => {
+      let d = '';
+      for (let i = 0; i <= 290; i++) {
+        const f = i / 290 * 4000, om = 2 * Math.PI * f / fs; let a = 0, b = 0;
+        for (let l = 0; l < th.length; l++) { a += th[l] * Math.cos(om * l); b -= th[l] * Math.sin(om * l); }
+        d += (i ? 'L' : 'M') + X(f).toFixed(1) + ',' + Y(10 * Math.log10(a * a + b * b + 1e-12)).toFixed(1);
+      }
+      return d;
+    };
+    const sl = $('[data-len]', wb), up = () => {
+      const L = Ls[+sl.value], { th, mse } = solve(L), md = 10 * Math.log10(mse);
+      $('[data-lv]', wb).textContent = L;
+      $('[data-mse]', wb).textContent = fmt(md) + ' dB';
+      $('[data-gain]', wb).textContent = '+' + (10 * Math.log10(sw / mse)).toFixed(1) + ' dB';
+      $('[data-res]', wb).textContent = Math.round(fs / L).toLocaleString('en') + ' Hz';
+      $('[data-fir]', svg).setAttribute('d', firPath(th));
+      $('[data-wnote]', wb).textContent = L < 8 ? 'Too short to isolate a 500 Hz band: the filter can only tilt the spectrum, so little noise is removed.'
+        : L < 48 ? 'The passband sharpens and the MSE still drops quickly.'
+        : L === 48 ? 'The report’s choice: the shortest filter whose test MSE is within 1% of the best.'
+        : 'Longer filters barely help: the limit is now causality, not the number of taps.';
+    };
+    sl.addEventListener('input', up); up();
+  }
+
+  /* 2 · STFT explorer — a real short-time Fourier transform of the re-synthesised loop */
+  const sx = $('[data-stftx]', el);
+  if (sx) {
+    const { FS } = DSP, y = DSP.render(4, .08, false), cv = $('canvas', sx), g = cv.getContext('2d');
+    const off = document.createElement('canvas'), og = off.getContext('2d');
+    let N = 1024, wt = 'hann', lut = DSP.ramp(), P = null, C = 0, R = 0, mx = 0;
+    const NOTES = {
+      128: 'Sharp in time, but each harmonic is smeared into a wide vertical band: the two tones cannot be told apart.',
+      256: 'Still sharp in time, still too coarse in frequency to read the harmonic structure.',
+      512: 'Getting there: the hits stay separate, but the harmonic lines are still wide.',
+      1024: 'The report’s choice: about one hit long, five times shorter than the gap between hits, and fine enough to resolve each harmonic.',
+      2048: 'Thin harmonic lines, but the window is now comparable to the 0.24 s step: the noise bursts blur into their neighbours.',
+      4096: 'Finest frequency lines, but each window spans most of a step: the events smear into each other in time.' };
+    const compute = () => {
+      const hop = N / 4, w = DSP.win(N, wt), re = new Float32Array(N), im = new Float32Array(N), nf = Math.floor((y.length - N) / hop) + 1, nb = N / 2;
+      C = Math.min(nf, 900); R = Math.min(nb, 256); P = new Float32Array(C * R).fill(-1e9); mx = -1e9;
+      for (let f = 0; f < nf; f++) {
+        const s0 = f * hop, c = Math.floor(f * C / nf);
+        for (let i = 0; i < N; i++) { re[i] = y[s0 + i] * w[i]; im[i] = 0; }
+        DSP.fft(re, im);
+        for (let b = 0; b < nb; b++) {
+          const v = 10 * Math.log10(re[b] * re[b] + im[b] * im[b] + 1e-14), k = c * R + Math.floor(b * R / nb);
+          if (v > P[k]) P[k] = v; if (v > mx) mx = v;
+        }
+      }
+    };
+    const paint = () => {
+      off.width = C; off.height = R;
+      const img = og.createImageData(C, R), d = img.data, lo = mx - 72;
+      for (let c = 0; c < C; c++) for (let r = 0; r < R; r++) {
+        let t = (P[c * R + r] - lo) / 72; t = t < 0 ? 0 : t > 1 ? 1 : t;
+        const i = (t * 255) | 0, o = ((R - 1 - r) * C + c) * 4;
+        d[o] = lut[i * 3]; d[o + 1] = lut[i * 3 + 1]; d[o + 2] = lut[i * 3 + 2]; d[o + 3] = 255;
+      }
+      og.putImageData(img, 0, 0); draw();
+    };
+    const draw = () => {
+      const dpr = Math.min(2, devicePixelRatio || 1), w = cv.clientWidth, h = cv.clientHeight; if (!w) return;
+      cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr); g.setTransform(dpr, 0, 0, dpr, 0, 0);
+      g.imageSmoothingEnabled = true; g.imageSmoothingQuality = 'high';
+      const bt = 20; g.drawImage(off, 0, 0, w, h - bt);
+      const vc = visc(); g.fillStyle = vc.bg; g.fillRect(0, h - bt, w, bt);
+      g.font = '500 9.5px "Geist Mono", ui-monospace, monospace'; g.fillStyle = `rgba(${vc.rgb},.55)`;
+      for (let t = 0; t <= 4; t++) { g.textAlign = t === 0 ? 'left' : t === 4 ? 'right' : 'center'; g.fillText(t + ' s', (t / 4) * w + (t === 0 ? 6 : t === 4 ? -6 : 0), h - 6); }
+      g.textAlign = 'left'; g.fillStyle = `rgba(${vc.rgb},.7)`;
+      [[10000, '10 kHz'], [5000, '5 kHz']].forEach(([f, t]) => g.fillText(t, 8, (h - bt) * (1 - f / (FS / 2)) + 3));
+    };
+    const update = () => {
+      compute(); paint();
+      $('[data-dt]', sx).textContent = (N / FS * 1000).toFixed(1) + ' ms';
+      $('[data-df]', sx).textContent = (FS / N).toFixed(1) + ' Hz';
+      $('[data-snote]', sx).textContent = wt === 'rect' ? 'Rectangular window: its sidelobes (≈ −13 dB) leak every hit across the whole frequency axis, which hides the harmonic peaks. The tapered Hann window keeps them at ≈ −31 dB.' : NOTES[N];
+    };
+    const pick = (grp, fn) => $$('button', grp).forEach(b => b.addEventListener('click', () => { $$('button', grp).forEach(x => x.setAttribute('aria-pressed', x === b)); fn(b.dataset.v); update(); }));
+    pick($('[data-n]', sx), v => N = +v); pick($('[data-win]', sx), v => wt = v);
+    requestAnimationFrame(update);
+    const th = () => { lut = DSP.ramp(); paint(); }, rz = () => draw();
+    document.addEventListener('themechange', th); addEventListener('resize', rz);
+    offs.push(() => { document.removeEventListener('themechange', th); removeEventListener('resize', rz); });
+  }
+
+  /* 3 · Adaptive noise cancellation — diagram */
+  const dg = $('[data-anc-dg]', el);
+  if (dg) {
+    const box = (x, y, w, t1, t2, hl) => `<rect class="f${hl ? ' hl' : ''}" x="${x}" y="${y}" width="${w}" height="44" rx="8"/><text class="t" x="${x + w / 2}" y="${y + 19}" text-anchor="middle">${t1}</text><text class="t2" x="${x + w / 2}" y="${y + 34}" text-anchor="middle">${t2}</text>`;
+    const ar = d => `<path class="s" d="${d}" marker-end="url(#ah)"/>`;
+    dg.innerHTML = `<defs><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L8,4 L0,8 z" fill="var(--dim)"/></marker></defs>`
+      + box(10, 20, 120, 'NOISE', 'η(n)') + box(190, 20, 150, 'PATH h', 'unknown acoustics')
+      + ar('M130,42 L188,42') + ar('M340,42 L385,42')
+      + `<circle class="f" cx="400" cy="42" r="13"/><text class="t" x="400" y="46" text-anchor="middle">+</text><text class="t2" x="400" y="11" text-anchor="middle">speech x(n)</text>` + ar('M400,15 L400,27')
+      + ar('M413,42 L565,42') + `<text class="t2" x="490" y="35" text-anchor="middle">primary p(n)</text>`
+      + `<circle class="f hl" cx="580" cy="42" r="13"/><text class="t" x="580" y="46" text-anchor="middle">−</text>`
+      + ar('M593,42 L698,42') + box(700, 20, 150, 'OUTPUT b(n)', '≈ clean speech', true)
+      + `<path class="s" d="M70,64 L70,112 L418,112" marker-end="url(#ah)"/><text class="t2" x="240" y="105" text-anchor="middle">reference d(n) = η(n)</text>`
+      + box(420, 90, 130, 'ADAPTIVE w', 'LMS · NLMS · RLS', true)
+      + ar('M550,112 L580,112 L580,57') + `<text class="t2" x="594" y="96">a(n)</text>`
+      + `<path class="s hl" d="M650,42 L650,140 L485,140 L485,136" stroke-dasharray="4 3" marker-end="url(#ah)"/><text class="t2" x="660" y="132">update from b(n)</text>`;
+  }
+
+  /* 3 · Adaptive noise cancellation — a toy re-run of LMS, NLMS and RLS with the report's settings */
+  const an = $('[data-anc]', el);
+  if (an) {
+    const svg = $('[data-mis]', an), X = t => 46 + t / 4 * 580, Y = d => 16 + Math.min(1, Math.max(0, -d / 100)) * 180;
+    let runs = 0, anim = 0;
+    const simulate = seed => {
+      const fs = 8000, n = 32000, M = 16, r = rng(seed);
+      const h = new Float64Array(M); let hn = 0;                       // unknown band-pass acoustic path
+      for (let k = 0; k < M; k++) { const m = k - (M - 1) / 2, bp = m === 0 ? 2 * (2000 - 300) / fs : (Math.sin(2 * Math.PI * 2000 * m / fs) - Math.sin(2 * Math.PI * 300 * m / fs)) / (Math.PI * m); h[k] = bp * (.54 - .46 * Math.cos(2 * Math.PI * k / (M - 1))) * (1 + .3 * (r() - .5)); hn += h[k] * h[k]; }
+      const eta = new Float64Array(n), v = new Float64Array(n), x = new Float64Array(n);
+      for (let i = 0; i < n; i++) eta[i] = gauss(r);
+      for (let i = 0; i < n; i++) { let s = 0; for (let k = 0; k < M && k <= i; k++) s += h[k] * eta[i - k]; v[i] = s; }
+      let t = Math.round(.4 * fs); const s0 = t;                     // speech-like syllables from 0.4 s to ≈ 3.5 s
+      while (t < 3.5 * fs) {
+        const len = Math.round((.12 + .18 * r()) * fs), f0 = 110 + 110 * r();
+        for (let i = 0; i < len && t + i < n; i++) { const tt = i / fs, env = Math.sin(Math.PI * i / len) ** 2; let s = 0; for (let k = 1; k * f0 < 3000; k++) s += Math.sin(2 * Math.PI * k * f0 * tt) / (k * (1 + Math.abs(k * f0 - 700) / 600)); x[t + i] = env * s; }
+        t += len + Math.round((.04 + .11 * r()) * fs);
+      }
+      const s1 = Math.min(t, n);
+      let ex = 0, ev = 0; for (let i = 0; i < n; i++) { ex += x[i] * x[i]; ev += v[i] * v[i]; }
+      const g = Math.sqrt(ev / ex * Math.pow(10, -1.5)); for (let i = 0; i < n; i++) x[i] *= g;   // SNR at the primary microphone: −15 dB
+      const p = new Float64Array(n); for (let i = 0; i < n; i++) p[i] = x[i] + v[i];
+      const D = 40, out = { lms: [], nlms: [], rls: [], s0: s0 / fs, s1: s1 / fs };
+      const wl = new Float64Array(M), wn = new Float64Array(M), wr = new Float64Array(M), d = new Float64Array(M);
+      const Pm = new Float64Array(M * M); for (let i = 0; i < M; i++) Pm[i * M + i] = 100;
+      const Pd = new Float64Array(M), kk = new Float64Array(M), lam = .9999, mu = .02 / M, mub = .02;
+      const mis = w => { let e = 0; for (let k = 0; k < M; k++) e += (w[k] - h[k]) ** 2; return 10 * Math.log10(e / hn + 1e-12); };
+      let en = 0;
+      for (let i = 0; i < n; i++) {
+        for (let k = M - 1; k > 0; k--) d[k] = d[k - 1]; d[0] = eta[i];
+        en += eta[i] * eta[i] - (i >= M ? eta[i - M] * eta[i - M] : 0);
+        let al = 0, aN = 0, aR = 0; for (let k = 0; k < M; k++) { al += wl[k] * d[k]; aN += wn[k] * d[k]; aR += wr[k] * d[k]; }
+        const bl = p[i] - al, bn = p[i] - aN, br = p[i] - aR, sN = mub / (1e-6 + en);
+        for (let k = 0; k < M; k++) { wl[k] += mu * bl * d[k]; wn[k] += sN * bn * d[k]; }
+        let den = lam;                                                  // RLS
+        for (let a = 0; a < M; a++) { let s = 0; for (let b = 0; b < M; b++) s += Pm[a * M + b] * d[b]; Pd[a] = s; den += d[a] * s; }
+        for (let a = 0; a < M; a++) { kk[a] = Pd[a] / den; wr[a] += kk[a] * br; }
+        for (let a = 0; a < M; a++) for (let b = a; b < M; b++) { const v2 = (Pm[a * M + b] - kk[a] * Pd[b]) / lam; Pm[a * M + b] = v2; Pm[b * M + a] = v2; }
+        if (i % D === 0) { out.lms.push(mis(wl)); out.nlms.push(mis(wn)); out.rls.push(mis(wr)); }
+      }
+      return out;
+    };
+    const draw = () => {
+      cancelAnimationFrame(anim);
+      const o = simulate(20261025 + 977 * runs++), K = o.lms.length;
+      let s = `<rect class="sp" x="${X(o.s0)}" y="16" width="${X(o.s1) - X(o.s0)}" height="180"/>`;
+      [0, -20, -40, -60, -80, -100].forEach(d => s += `<line class="gl" x1="46" x2="626" y1="${Y(d)}" y2="${Y(d)}"/><text class="ax" x="40" y="${Y(d) + 3}" text-anchor="end">${fmt(d, 0)}</text>`);
+      [0, 1, 2, 3, 4].forEach(t => s += `<text class="ax" x="${X(t)}" y="214" text-anchor="middle">${t} s</text>`);
+      s += `<text class="ax" x="${(X(o.s0) + X(o.s1)) / 2}" y="30" text-anchor="middle">speech present</text>`;
+      s += `<path class="ln-lms" data-l="lms"/><path class="ln-nlms" data-l="nlms"/><path class="ln-rls" data-l="rls"/>`;
+      s += `<g transform="translate(520 176)"><rect x="-10" y="-12" width="104" height="30" rx="6" fill="var(--bg)" opacity=".85"/><line x1="0" x2="14" y1="0" y2="0" class="ln-lms"/><text class="lg" x="18" y="3.5">LMS</text><line x1="50" x2="64" y1="0" y2="0" class="ln-nlms"/><text class="lg" x="68" y="3.5">NLMS</text><line x1="0" x2="14" y1="12" y2="12" class="ln-rls"/><text class="lg" x="18" y="15.5">RLS</text></g>`;
+      svg.innerHTML = s;
+      const paths = ['lms', 'nlms', 'rls'].map(k => [$(`[data-l="${k}"]`, svg), o[k]]);
+      const path = (a, m) => { let d = ''; for (let i = 0; i < m; i++) d += (i ? 'L' : 'M') + X(i * 40 / 8000).toFixed(1) + ',' + Y(a[i]).toFixed(1); return d; };
+      if (REDUCE) { paths.forEach(([p, a]) => p.setAttribute('d', path(a, K))); return; }
+      const t0 = performance.now(), T = 1800;
+      const step = t => { const u = Math.min(1, (t - t0) / T), m = Math.max(2, Math.round(K * (1 - Math.pow(1 - u, 2)))); paths.forEach(([p, a]) => p.setAttribute('d', path(a, m))); if (u < 1 && sheet.open) anim = requestAnimationFrame(step); };
+      anim = requestAnimationFrame(step);
+    };
+    let started = false;
+    whenVisible(svg, () => { if (!started) { started = true; draw(); } });
+    $('[data-run]', an).addEventListener('click', draw);
+    offs.push(() => cancelAnimationFrame(anim));
+  }
+  mlspOff = () => offs.forEach(f => f());
+}
+
 /* ---------------- sheet: opens from the clicked card ---------------- */
 const sheet = $('#sheet'), shBody = $('#shBody'), shTitle = $('#shTitle');
-const TITLES = { ml: ['ML × Quant Finance', 'Research'], summexa: ['Summexa AI', 'Founder project'], nanogpt: ['NanoGPT', 'Personal'], riscv: ['Mini RISC-V Processor', 'EPFL'], digcom: ['Digital Communication', 'DTU'], finance: ['Personal Finance Project', 'Personal'], ai: ['Artificial Intelligence', 'EPFL'], swc: ['Software Construction', 'EPFL'], oop: ['Object-Oriented Programming', 'EPFL'], sys: ['Systems Programming', 'EPFL'], yale: ['Financial Markets', 'Coursera'] };
+const TITLES = { ml: ['ML × Quant Finance', 'Research'], summexa: ['Summexa AI', 'Founder project'], nanogpt: ['NanoGPT', 'Personal'], riscv: ['Mini RISC-V Processor', 'EPFL'], digcom: ['Digital Communication', 'DTU'], mlsp: ['ML for Signal Processing', 'DTU'], finance: ['Personal Finance Project', 'Personal'], ai: ['Artificial Intelligence', 'EPFL'], swc: ['Software Construction', 'EPFL'], oop: ['Object-Oriented Programming', 'EPFL'], sys: ['Systems Programming', 'EPFL'], yale: ['Financial Markets', 'Coursera'] };
 let fromRect = null, phaseT = null, closing = false, stopSheetLife = null;
 function openSheet(key, el) {
   shBody.innerHTML = $('#t-' + key).innerHTML;
@@ -1698,6 +2165,7 @@ function openSheet(key, el) {
   if (key === 'ml') initML(shBody);
   if (key === 'summexa') initTour(shBody);
   if (key === 'digcom') initDigcom(shBody);
+  if (key === 'mlsp') initMlsp(shBody); else if (mlspOff) { mlspOff(); mlspOff = null; }
   if (stopSheetLife) { stopSheetLife(); stopSheetLife = null; }
   const sl = $('[data-life-sheet]', shBody); if (sl) requestAnimationFrame(() => { stopSheetLife = life(sl, { W: 64, H: 28, interactive: true }); });
   const ph = $('[data-phases]', shBody); clearInterval(phaseT);
@@ -1710,7 +2178,7 @@ function openSheet(key, el) {
   }
 }
 function closeSheet() {
-  if (closing || !sheet.open) return; closing = true; clearInterval(phaseT); if (stopSheetLife) { stopSheetLife(); stopSheetLife = null; }
+  if (closing || !sheet.open) return; closing = true; clearInterval(phaseT); if (mlspOff) { mlspOff(); mlspOff = null; } if (stopSheetLife) { stopSheetLife(); stopSheetLife = null; }
   const done = () => { sheet.close(); closing = false; if (!info.classList.contains('open')) document.body.classList.remove('lock'); };
   if (fromRect && !REDUCE) {
     const r = fromRect, ins = `inset(${r.top}px ${innerWidth - r.right}px ${innerHeight - r.bottom}px ${r.left}px round 14px)`;
@@ -1729,7 +2197,7 @@ addEventListener('keydown', e => { if (e.key === 'Escape' && info.classList.cont
 const kd = $('#cmdk'), kIn = $('#kIn'), kList = $('#kList');
 const CMDS = [
   ['ML × Quant Finance', 'Project', () => openSheet('ml')], ['Summexa AI', 'Project', () => openSheet('summexa')],
-  ['NanoGPT', 'Project', () => openSheet('nanogpt')], ['Mini RISC-V Processor', 'Project', () => openSheet('riscv')], ['Digital Communication · DTU', 'Project', () => openSheet('digcom')],
+  ['NanoGPT', 'Project', () => openSheet('nanogpt')], ['Mini RISC-V Processor', 'Project', () => openSheet('riscv')], ['Digital Communication · DTU', 'Project', () => openSheet('digcom')], ['ML for Signal Processing · DTU', 'Project', () => openSheet('mlsp')],
   ['Info — profile, background, skills', 'View', () => setView('info')], ['Contact', 'Section', () => $('#contact').scrollIntoView({ behavior: 'smooth' })],
   ['Copy email address', 'Action', async () => { if (await copyText('cesar.garin@epfl.ch')) toast('Email copied ✓'); }],
   ['Open GitHub', 'Link', () => window.open('https://github.com/cesgrn', '_blank', 'noopener')],
