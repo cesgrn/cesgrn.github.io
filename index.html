@@ -39,6 +39,7 @@
   --mono:'Geist Mono', ui-monospace, Menlo, monospace;
   --ease:cubic-bezier(.2,.8,.2,1); --spring:cubic-bezier(.34,1.56,.64,1);
   --acc:var(--acc-l); color-scheme:light;
+  --vis-bg:#F4F4F3; --vis-bg-rgb:244,244,243; --vis-ink:#16161A; --vis-rgb:22,22,26; --vis-dim:#8E8E93; --vis-err:#E5484D;
 }
 /* accent options: light / dark pairs */
 [data-accent="cobalt"] {--acc-l:#2F4BE0; --acc-d:#93A6FF}
@@ -51,6 +52,7 @@
     --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.16); --chip:rgba(255,255,255,.06);
     --paper:#F5F5F4; --glow:0 0 32px rgba(255,255,255,.22);
     --acc:var(--acc-d); color-scheme:dark;
+    --vis-bg:#0E0E0E; --vis-bg-rgb:14,14,14; --vis-ink:#D8D8D8; --vis-rgb:216,216,216; --vis-dim:#6F6F6F; --vis-err:#FF5F57;
   }
 }
 :root[data-theme="dark"]{
@@ -58,6 +60,7 @@
   --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.16); --chip:rgba(255,255,255,.06);
   --paper:#F5F5F4; --glow:0 0 32px rgba(255,255,255,.22);
   --acc:var(--acc-d); color-scheme:dark;
+  --vis-bg:#0E0E0E; --vis-bg-rgb:14,14,14; --vis-ink:#D8D8D8; --vis-rgb:216,216,216; --vis-dim:#6F6F6F; --vis-err:#FF5F57;
 }
 
 /* =====================================================================
@@ -163,7 +166,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .w-cap b{font-weight:500}
 .w-cap .t{color:var(--ink2)}
 .w-cap .m{color:var(--dim);white-space:nowrap;font-size:12.5px}
-.sig{position:absolute;inset:0;background:#0E0E0E}
+.sig{position:absolute;inset:0;background:var(--vis-bg);transition:background-color .4s}
 .sig canvas{width:100%;height:100%;display:block}
 
 .w .open{position:absolute;right:14px;bottom:14px;z-index:3;display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:999px;background:rgba(15,15,15,.72);color:#fff;font:500 12px/1 var(--sans);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);opacity:0;transform:translateY(6px);transition:opacity .3s,transform .4s var(--spring)}
@@ -181,16 +184,17 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .mini-view{position:relative;aspect-ratio:1600/924}
 .mini-view img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;opacity:0;transition:opacity .6s var(--ease)}
 .mini-view img.on{opacity:1}
-.term{position:absolute;inset:0;padding:22px 24px 40px;scrollbar-width:none;-webkit-mask-image:linear-gradient(transparent 0,#000 44px);mask-image:linear-gradient(transparent 0,#000 44px);background:#0E0E0E;color:#d8d8d8;font:400 13px/1.6 var(--mono);white-space:pre-wrap;overflow:hidden}
-.term .p{color:#6f6f6f}
-.term .cur{display:inline-block;width:7px;height:15px;background:var(--acc-d);vertical-align:-2px;animation:blink 1s steps(1) infinite}
+.term{position:absolute;inset:0;padding:22px 24px 40px;scrollbar-width:none;background:var(--vis-bg);color:var(--vis-ink);font:400 13px/1.6 var(--mono);transition:background-color .4s,color .4s;white-space:pre-wrap;overflow:hidden}
+.term .p{color:var(--vis-dim)}
+.term .cur{display:inline-block;width:7px;height:15px;background:var(--acc);vertical-align:-2px;animation:blink 1s steps(1) infinite}
 @keyframes blink{50%{opacity:0}}
-.term-lbl{position:absolute;z-index:2;right:14px;top:14px;font:400 10.5px/1 var(--mono);color:#5a5a5a;letter-spacing:.08em;pointer-events:none}
+.term-top{position:absolute;left:0;right:0;top:0;height:46px;z-index:1;pointer-events:none;background:linear-gradient(rgb(var(--vis-bg-rgb)) 15%,rgba(var(--vis-bg-rgb),0))}
+.term-lbl{position:absolute;z-index:2;right:14px;top:14px;font:400 10.5px/1 var(--mono);color:var(--vis-dim);letter-spacing:.08em;pointer-events:none}
 .term .lbl{font-size:10.5px;color:#5a5a5a;letter-spacing:.08em}
-.life{position:absolute;inset:0;background:#0E0E0E}
+.life{position:absolute;inset:0;background:var(--vis-bg);transition:background-color .4s}
 .life canvas{width:100%;height:100%;display:block}
 .sheet-life canvas{cursor:crosshair}
-.life .lbl{position:absolute;left:14px;top:14px;font:400 10.5px/1 var(--mono);color:#6f6f6f;letter-spacing:.08em;pointer-events:none}
+.life .lbl{position:absolute;left:14px;top:14px;font:400 10.5px/1 var(--mono);color:var(--vis-dim);letter-spacing:.08em;pointer-events:none}
 @media (max-width:1000px){ .works{grid-template-columns:repeat(2,minmax(0,1fr))} .works .w,.works .w.sm{grid-column:span 1} .works .w.sm:last-child{grid-column:1/-1} .works .w.sm:last-child .w-media{aspect-ratio:16/7} }
 @media (max-width:760px){ .works{grid-template-columns:1fr} .works .w.sm:last-child{grid-column:auto} .works .w.sm:last-child .w-media{aspect-ratio:4/3} }
 
@@ -545,8 +549,8 @@ details.more li{margin:5px 0}
 .phase.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .life.sheet-life{position:relative;inset:auto;aspect-ratio:16/7;border-radius:14px;overflow:hidden;margin-top:12px}
 .life-ctl{position:absolute;right:12px;top:10px;display:flex;gap:6px}
-.life-ctl button{font:500 11px/1 var(--mono);padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.08);color:#d8d8d8;transition:background-color .2s,transform .2s var(--ease)}
-.life-ctl button:hover{background:rgba(255,255,255,.16)}
+.life-ctl button{font:500 11px/1 var(--mono);padding:7px 10px;border-radius:999px;background:rgba(var(--vis-rgb),.08);color:var(--vis-ink);transition:background-color .2s,transform .2s var(--ease)}
+.life-ctl button:hover{background:rgba(var(--vis-rgb),.16)}
 .life-ctl button:active{transform:scale(.94)}
 @media (max-width:860px){
   .fig-cap{flex-direction:column;gap:10px;min-height:156px}
@@ -689,6 +693,7 @@ details.more li{margin:5px 0}
       <div class="w-media">
         <div class="term scale" data-type><span class="p">$ python model.py --sample</span>
 <span class="out"></span><span class="cur"></span></div>
+        <span class="term-top" aria-hidden="true"></span>
         <span class="term-lbl">ILLUSTRATIVE SAMPLE</span>
         <span class="open">Architecture ↗</span>
       </div>
@@ -708,7 +713,7 @@ details.more li{margin:5px 0}
         <div class="sig scale" data-sig><canvas aria-label="Live simulation: noisy channel output on top, symbols recovered by the MMSE equalizer below"></canvas></div>
         <span class="open">Transmission chain ↗</span>
       </div>
-      <div class="w-cap"><span><b>Digital Communication</b> <span class="t">— Markov source to MMSE equalizer</span></span><span class="m">DTU · 2026</span></div>
+      <div class="w-cap"><span><b>Digital Communication</b> <span class="t">— Signal chain &amp; MMSE equalizer</span></span><span class="m">DTU · 2026</span></div>
     </button>
   </div>
 
@@ -1152,7 +1157,7 @@ function life(box, opts = {}) {
     const d = Math.min(2, devicePixelRatio || 1), w = c.clientWidth, h = c.clientHeight; if (!w) return;
     if (c.width !== Math.round(w * d)) { c.width = Math.round(w * d); c.height = Math.round(h * d); }
     g.setTransform(d, 0, 0, d, 0, 0); g.clearRect(0, 0, w, h);
-    const cw = w / W, ch = h / H; g.fillStyle = getComputedStyle(root).getPropertyValue('--acc-d').trim() || '#93A6FF';
+    const cw = w / W, ch = h / H; g.fillStyle = getComputedStyle(root).getPropertyValue('--acc').trim() || '#2F4BE0';
     for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) if (grid[y * W + x]) g.fillRect(x * cw + 1, y * ch + 1, cw - 2, ch - 2);
   }
   const step = () => { const n = new Uint8Array(W * H); for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) { let s = 0; for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++) if (dx || dy) s += grid[((y + dy + H) % H) * W + ((x + dx + W) % W)]; const a = grid[y * W + x]; n[y * W + x] = (a && (s === 2 || s === 3)) || (!a && s === 3) ? 1 : 0; } grid = n; draw(); };
@@ -1196,7 +1201,8 @@ $$('[data-sig]').forEach(box => {
   { const cut = Z.length - 200; X = X.slice(cut); Z = Z.slice(cut); P = P.slice(cut); }
   const step = 15;
   let off = 0, last = performance.now(), run = false, raf = 0;
-  const colors = () => { const cs = getComputedStyle(root); return { acc: cs.getPropertyValue('--acc-d').trim() || '#93A6FF' }; };
+  const colors = () => { const cs = getComputedStyle(root), v = k => cs.getPropertyValue(k).trim(); return { acc: v('--acc') || '#2F4BE0', bg: v('--vis-bg') || '#0E0E0E', bgr: v('--vis-bg-rgb') || '14,14,14', rgb: v('--vis-rgb') || '216,216,216', dim: v('--vis-dim') || '#6F6F6F', err: v('--vis-err') || '#FF5F57' }; };
+  const ink = a => `rgba(${col.rgb},${a})`;
   let col = colors(); document.addEventListener('themechange', () => { col = colors(); draw(); });
   function size() { const d = Math.min(2, devicePixelRatio || 1); cv.width = Math.round(cv.clientWidth * d); cv.height = Math.round(cv.clientHeight * d); g.setTransform(d, 0, 0, d, 0, 0); }
   function draw() {
@@ -1206,61 +1212,61 @@ $$('[data-sig]').forEach(box => {
     g.clearRect(0, 0, w, h);
     g.font = `500 ${small ? 9.5 : 10.5}px "Geist Mono", ui-monospace, monospace`;
     // panel titles
-    g.fillStyle = '#6f6f6f';
+    g.fillStyle = col.dim;
     g.fillText(small ? 'CHANNEL OUTPUT zₖ · σ² = 2' : 'CHANNEL OUTPUT zₖ — NOISE σ² = 2, THE SYMBOLS OVERLAP', pad, 22);
     g.fillText(small ? 'AFTER THE MMSE EQUALIZER' : 'AFTER THE 7-TAP MMSE EQUALIZER — DECISION = SIGN', pad, half + 20);
-    g.strokeStyle = 'rgba(255,255,255,.06)'; g.lineWidth = 1; g.beginPath(); g.moveTo(0, half); g.lineTo(w, half); g.stroke();
+    g.strokeStyle = ink(.08); g.lineWidth = 1; g.beginPath(); g.moveTo(0, half); g.lineTo(w, half); g.stroke();
     // guides (bottom)
     const yP = botMid - ampB, yM = botMid + ampB;
-    g.strokeStyle = 'rgba(255,255,255,.07)'; [yP, yM].forEach(y => { g.beginPath(); g.moveTo(pad, y); g.lineTo(right, y); g.stroke(); });
-    g.setLineDash([4, 5]); g.strokeStyle = 'rgba(255,255,255,.16)'; g.beginPath(); g.moveTo(pad, botMid); g.lineTo(w - pad, botMid); g.stroke(); g.setLineDash([]);
+    g.strokeStyle = ink(.1); [yP, yM].forEach(y => { g.beginPath(); g.moveTo(pad, y); g.lineTo(right, y); g.stroke(); });
+    g.setLineDash([4, 5]); g.strokeStyle = ink(.22); g.beginPath(); g.moveTo(pad, botMid); g.lineTo(w - pad, botMid); g.stroke(); g.setLineDash([]);
     const n = Z.length, vis = Math.ceil((right - pad) / step) + 2, i0 = Math.max(0, n - vis);
     const LEAD = 5;                                   // newest samples (and the 3-sample equalizer delay) stay hidden past the edge
     const xAt = i => right + LEAD * step - (n - 1 - i) * step - off;
     // top: noisy waveform, clipped to the top panel
     g.save(); g.beginPath(); g.rect(0, 30, right + 4, half - 36); g.clip();
     g.beginPath(); for (let i = i0; i < n; i++) { const X0 = xAt(i), Y0 = topMid - Z[i] * ampT; i === i0 ? g.moveTo(X0, Y0) : g.lineTo(X0, Y0); }
-    g.strokeStyle = 'rgba(216,216,216,.32)'; g.lineWidth = 1.2; g.stroke();
-    for (let i = i0; i < n; i++) { g.fillStyle = 'rgba(216,216,216,.6)'; g.beginPath(); g.arc(xAt(i), topMid - Z[i] * ampT, 1.8, 0, 7); g.fill(); }
+    g.strokeStyle = ink(.32); g.lineWidth = 1.2; g.stroke();
+    for (let i = i0; i < n; i++) { g.fillStyle = ink(.6); g.beginPath(); g.arc(xAt(i), topMid - Z[i] * ampT, 1.8, 0, 7); g.fill(); }
     g.restore();
     // bottom: estimates coloured by the symbol actually sent; red ring = wrong decision
     g.save(); g.beginPath(); g.rect(0, half + 28, right + 6, half - 32); g.clip();
     for (let i = i0; i < n; i++) {
       if (P[i] === undefined) continue;
       const X0 = xAt(i), Y0 = botMid - P[i] / GAIN * ampB, ok = Math.sign(P[i]) === X[i];
-      g.fillStyle = X[i] > 0 ? col.acc : 'rgba(230,230,230,.85)'; g.beginPath(); g.arc(X0, Y0, 2.8, 0, 7); g.fill();
-      if (!ok) { g.strokeStyle = '#FF5F57'; g.lineWidth = 1.6; g.beginPath(); g.arc(X0, Y0, 6, 0, 7); g.stroke(); }
+      g.fillStyle = X[i] > 0 ? col.acc : ink(.8); g.beginPath(); g.arc(X0, Y0, 2.8, 0, 7); g.fill();
+      if (!ok) { g.strokeStyle = col.err; g.lineWidth = 1.6; g.beginPath(); g.arc(X0, Y0, 6, 0, 7); g.stroke(); }
     }
     g.restore();
     // right fade: new samples glide in from behind it
-    const rf = g.createLinearGradient(right - 56, 0, right + 8, 0); rf.addColorStop(0, 'rgba(14,14,14,0)'); rf.addColorStop(1, '#0E0E0E'); g.fillStyle = rf; g.fillRect(right - 56, 28, 64 + 2, h - 28);
+    const rf = g.createLinearGradient(right - 56, 0, right + 8, 0); rf.addColorStop(0, `rgba(${col.bgr},0)`); rf.addColorStop(1, col.bg); g.fillStyle = rf; g.fillRect(right - 56, 28, 64 + 2, h - 28);
     // left fade
-    const fade = g.createLinearGradient(0, 0, 56, 0); fade.addColorStop(0, '#0E0E0E'); fade.addColorStop(1, 'rgba(14,14,14,0)'); g.fillStyle = fade; g.fillRect(0, 28, 56, h - 28);
+    const fade = g.createLinearGradient(0, 0, 56, 0); fade.addColorStop(0, col.bg); fade.addColorStop(1, `rgba(${col.bgr},0)`); g.fillStyle = fade; g.fillRect(0, 28, 56, h - 28);
     // live histograms of the equalized estimates, one per transmitted symbol
     const sx = w - pad - strip, K = [1, 4, 6, 4, 1];
     const sm = histP.map(hh => hh.map((_, i) => { let t = 0, ws = 0; K.forEach((kw, j) => { const q = i + j - 2; if (q >= 0 && q < NB) { t += hh[q] * kw; ws += kw; } }); return t / ws; }));
     const mx = Math.max(1, ...sm[0], ...sm[1]);
     g.save(); g.beginPath(); g.rect(sx - 2, half + 26, strip + 8, half - 28); g.clip();
-    [[1, col.acc], [0, 'rgba(230,230,230,.85)']].forEach(([cl, c]) => {
+    [[1, col.acc], [0, ink(.8)]].forEach(([cl, c]) => {
       g.beginPath(); g.moveTo(sx, botMid - HI * ampB);
       for (let bI = NB - 1; bI >= 0; bI--) { const v = LO + (bI + .5) / NB * (HI - LO), y = botMid - v * ampB; g.lineTo(sx + sm[cl][bI] / mx * strip, y); }
       g.lineTo(sx, botMid - LO * ampB); g.closePath();
       g.globalAlpha = .25; g.fillStyle = c; g.fill(); g.globalAlpha = .95; g.strokeStyle = c; g.lineWidth = 1.3; g.stroke(); g.globalAlpha = 1;
     });
     g.restore();
-    g.strokeStyle = 'rgba(255,255,255,.12)'; g.beginPath(); g.moveTo(sx, half + 30); g.lineTo(sx, h - 8); g.stroke();
-    if (!small) { g.fillStyle = '#7a7a7a'; g.textAlign = 'right'; g.fillText('sent +1', sx - 8, yP + 4); g.fillText('sent −1', sx - 8, yM + 4); g.textAlign = 'left'; }
+    g.strokeStyle = ink(.15); g.beginPath(); g.moveTo(sx, half + 30); g.lineTo(sx, h - 8); g.stroke();
+    if (!small) { g.fillStyle = col.dim; g.textAlign = 'right'; g.fillText('sent +1', sx - 8, yP + 4); g.fillText('sent −1', sx - 8, yM + 4); g.textAlign = 'left'; }
     // counters
     if (total > 0 && small) {
       g.font = '500 9.5px "Geist Mono", ui-monospace, monospace';
-      g.fillStyle = '#8e8e8e'; const a1 = `errors: sign(zₖ) ${(rawErrs / total * 100).toFixed(1)}% · `; g.fillText(a1, pad, h - 12);
+      g.fillStyle = col.dim; const a1 = `errors: sign(zₖ) ${(rawErrs / total * 100).toFixed(1)}% · `; g.fillText(a1, pad, h - 12);
       g.fillStyle = col.acc; g.fillText(`equalizer ${(errs / total * 100).toFixed(1)}%`, pad + g.measureText(a1).width, h - 12);
     } else if (total > 0) {
       g.textAlign = 'right'; g.font = '500 11px "Geist Mono", ui-monospace, monospace';
       const t1 = `with equalizer ${(errs / total * 100).toFixed(1)}%`, t2 = `sign(zₖ) alone ${(rawErrs / total * 100).toFixed(1)}%  ·  `;
       g.fillStyle = col.acc; g.fillText(t1, w - pad, 22);
-      g.fillStyle = '#8e8e8e'; g.fillText(t2, w - pad - g.measureText(t1).width, 22);
-      g.fillStyle = '#5f5f5f'; g.fillText(`symbol error rate over ${total.toLocaleString('en')} symbols`, w - pad, 38);
+      g.fillStyle = col.dim; g.fillText(t2, w - pad - g.measureText(t1).width, 22);
+      g.fillStyle = col.dim; g.fillText(`symbol error rate over ${total.toLocaleString('en')} symbols`, w - pad, 38);
       g.textAlign = 'left';
     }
   }
