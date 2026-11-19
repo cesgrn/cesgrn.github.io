@@ -116,9 +116,81 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   .hdr{grid-template-columns:1fr auto}
   .hdr .seg{grid-column:1/-1;grid-row:2;justify-self:center}
   .hdr-r .emo,.hdr-r .sep{display:none}
-  .me span{display:none}
+  .me .me-txt{display:none}
 }
 
+/* ---- contact card that unfolds from the photo ---- */
+.me .ph{position:relative;display:block;width:30px;height:30px;flex:none;border-radius:50%;cursor:pointer}
+.me .ph img{display:block;transition:opacity .15s}
+.me .ph::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:1.5px solid var(--acc);opacity:0;transform:scale(.8);transition:opacity .3s,transform .45s var(--spring)}
+.me .ph:hover::after,.me .ph:focus-visible::after{opacity:.9;transform:scale(1)}
+.me .ph:focus-visible{outline:none}
+.me .ph:active{transform:scale(.92);transition:transform .08s}
+.me .ph.hid img{opacity:0}
+.me-txt{display:block;min-width:0}
+.me-txt b{color:color-mix(in srgb,var(--ink) 34%,transparent);transition:color .25s ease}
+.me-txt:hover b,.me-txt:focus-visible b{color:var(--ink)}
+.mecard{position:fixed;z-index:60;top:10px;left:clamp(10px,1.6vw,20px);width:min(330px,calc(100vw - 20px));padding:16px;border-radius:20px;background:var(--bg);border:1px solid var(--line2);box-shadow:0 30px 80px -30px rgba(0,0,0,.45),0 2px 8px rgba(0,0,0,.08);visibility:hidden;clip-path:circle(0 at 30px 30px)}
+.mecard.open{visibility:visible;clip-path:none}
+.mc-top{display:flex;align-items:center;gap:14px}
+.mc-top img{width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:50% 25%;box-shadow:0 0 0 1px var(--line2);transform-origin:0 0}
+.mc-top b{display:block;font:500 17px/1.2 var(--sans);letter-spacing:-.02em}
+.mc-top span{display:block;font-size:13px;color:var(--dim);margin-top:2px}
+.mc-meta{display:grid;gap:7px;margin:14px 0 12px;padding:12px 0;border-block:1px solid var(--line);font:500 12px/1.3 var(--mono);color:var(--ink2)}
+.mc-meta div{display:flex;align-items:center;gap:9px}
+.mc-meta .live{width:7px;height:7px;border-radius:50%;background:var(--live);box-shadow:0 0 0 3px color-mix(in srgb,var(--live) 22%,transparent);flex:none;margin:0 2px}
+.mc-meta svg{width:11px;height:11px;fill:none;stroke:var(--dim);stroke-width:2;flex:none}
+.mc-act{display:grid;gap:2px}
+.mc-act a,.mc-act button{display:grid;grid-template-columns:20px minmax(0,1fr) auto;align-items:center;gap:12px;width:100%;padding:10px 10px;border-radius:12px;text-align:left;font-size:14px;color:var(--ink);transition:background-color .2s,transform .35s var(--spring)}
+.mc-act a:hover,.mc-act button:hover,.mc-act a:focus-visible,.mc-act button:focus-visible{background:var(--chip);transform:translateX(3px)}
+.mc-act a:active,.mc-act button:active{transform:scale(.97);transition-duration:.08s}
+.mc-act svg{width:18px;height:18px;fill:color-mix(in srgb,var(--ink) 45%,transparent)}
+.mc-act small{font:500 11.5px/1 var(--mono);color:var(--dim);white-space:nowrap}
+.mc-act .ok small{color:var(--live)}
+.mc-foot{margin:10px 2px 0;font:500 10.5px/1 var(--mono);letter-spacing:.06em;color:var(--dim);display:flex;justify-content:space-between}
+.mc-foot .k-tap{display:none}
+@media (hover:none){ .mc-foot .k-esc{display:none} .mc-foot .k-tap{display:inline} }
+.mecard .st{opacity:0;transform:translateY(8px)}
+.mecard.open .st{opacity:1;transform:none;transition:opacity .4s var(--ease),transform .55s var(--spring);transition-delay:calc(140ms + var(--i) * 45ms)}
+
+/* ---- idea 2: badges orbiting out of the photo ---- */
+.orbit{position:fixed;inset:0;z-index:60;pointer-events:none}
+.orb-arcs{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.orb-arcs circle{fill:none;stroke:var(--line2);stroke-width:1;stroke-dasharray:3 6;animation:orbSpin 30s linear infinite}
+@keyframes orbSpin{to{stroke-dashoffset:-180}}
+.orb{position:absolute;left:0;top:0;pointer-events:auto;cursor:pointer;will-change:transform}
+.orb:hover,.orb:focus-visible{z-index:2}
+.orb-in{display:flex;align-items:center;gap:7px;white-space:nowrap;padding:8px 12px;border-radius:999px;background:var(--bg);border:1px solid var(--line2);box-shadow:0 10px 30px -12px rgba(0,0,0,.35);font:500 12.5px/1 var(--sans);color:var(--ink);animation:orbFloat 4.2s ease-in-out infinite alternate;animation-delay:var(--fd);transition:scale .35s var(--spring),border-color .2s,background-color .2s}
+.orb:hover .orb-in,.orb:focus-visible .orb-in{scale:1.08;border-color:var(--acc)}
+.orb:active .orb-in{scale:.95;transition-duration:.08s}
+.orb-in i{width:6px;height:6px;border-radius:50%;background:var(--acc);flex:none}
+.orb-in i.live{width:7px;height:7px;background:var(--live);box-shadow:0 0 0 3px color-mix(in srgb,var(--live) 22%,transparent)}
+.orb-in::after{content:attr(data-tip);position:absolute;left:50%;top:calc(100% + 8px);translate:-50% -4px;font:500 11px/1 var(--mono);padding:6px 8px;border-radius:7px;background:var(--ink);color:var(--bg);opacity:0;pointer-events:none;transition:opacity .2s,translate .3s var(--spring)}
+.orb:hover .orb-in::after,.orb:focus-visible .orb-in::after{opacity:1;translate:-50% 0}
+@keyframes orbFloat{from{translate:0 -2px}to{translate:0 3px}}
+
+/* ---- idea 4: the photo flips over into a little card ---- */
+.flip{position:fixed;z-index:61;perspective:1000px;visibility:hidden}
+.flip.open{visibility:visible}
+.fl-in{position:relative;width:100%;height:100%;transform-style:preserve-3d}
+.fl-f,.fl-b{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden}
+.fl-f{border-radius:50%;box-shadow:0 0 0 1px var(--line2)}
+.fl-f img{width:100%;height:100%;object-fit:cover;object-position:50% 25%;display:block}
+.fl-b{transform:rotateY(180deg);border-radius:20px;background:var(--bg);border:1px solid var(--line2);box-shadow:0 30px 80px -30px rgba(0,0,0,.45),0 2px 8px rgba(0,0,0,.08)}
+.fl-c{position:absolute;left:0;top:0;width:var(--cw);padding:18px 18px 16px}
+.fl-c h3{margin:0;font:400 italic 30px/1 var(--serif);letter-spacing:-.01em}
+.fl-c h3 em{color:var(--acc)}
+.fl-c p{margin:10px 0 0;font-size:14px;line-height:1.5;color:var(--ink2)}
+.fl-c .row{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.fl-c .btn{height:36px;font-size:13px;padding:0 14px}
+.fl-c .btn.pri{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.fl-c .btn.pri:hover{background:var(--ink);opacity:.88}
+.fl-c .ok{color:var(--live)}
+.fl-c small{display:block;margin-top:14px;font:500 10.5px/1 var(--mono);letter-spacing:.06em;color:var(--dim)}
+.fl-c .st{opacity:0;transform:translateY(6px);transition:opacity .25s,transform .25s}
+.flip.shown .fl-c .st{opacity:1;transform:none;transition:opacity .45s var(--ease),transform .6s var(--spring);transition-delay:calc(var(--i) * 50ms)}
+
+.burst{position:fixed;inset:0;width:100vw;height:100vh;z-index:60;pointer-events:none}
 /* =====================================================================
    HERO — headline inside a window (after Perry Wang)
    ===================================================================== */
@@ -642,12 +714,42 @@ details.more li{margin:5px 0}
   <symbol id="i-cv" viewBox="0 0 24 24"><path d="M6.5 1.5h7.8l6.2 6.2v12.6a2.2 2.2 0 0 1-2.2 2.2H6.5a2.2 2.2 0 0 1-2.2-2.2V3.7a2.2 2.2 0 0 1 2.2-2.2z" mask="url(#m-cv)"/></symbol>
 </svg>
 
+
+<!-- ============================ CONTACT CARD (from the header photo) ============================ -->
+<div class="mecard" id="meCard" role="dialog" aria-label="Contact card" aria-modal="false">
+  <div class="mc-top"><img src="assets/photo.jpg" alt="César Garin" width="128" height="128" data-mc-ph><div class="st" style="--i:0"><b>César Garin</b><span>CS student · EPFL / DTU</span></div></div>
+  <div class="mc-meta st" style="--i:1">
+    <div><span class="live"></span>Available Jun – Aug 2027</div>
+    <div><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span data-mc-time>Copenhagen</span></div>
+  </div>
+  <div class="mc-act">
+    <button type="button" class="st" style="--i:2" data-mc-copy><svg aria-hidden="true"><use href="#i-mail"/></svg><span>cesar.garin@epfl.ch</span><small>Copy</small></button>
+    <a class="st" style="--i:3" href="https://linkedin.com/in/césar-garin" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-in"/></svg><span>LinkedIn</span><small>↗</small></a>
+    <a class="st" style="--i:4" href="https://github.com/cesgrn" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-gh"/></svg><span>GitHub</span><small>↗</small></a>
+    <a class="st" style="--i:5" href="assets/Garin_Cesar_Resume.pdf" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-cv"/></svg><span>Résumé</span><small>PDF ↗</small></a>
+  </div>
+  <div class="mc-foot st" style="--i:6"><span class="k-esc">ESC TO CLOSE</span><span class="k-tap">TAP OUTSIDE TO CLOSE</span><span>EPFL · DTU</span></div>
+</div>
+
+<!-- ============================ PHOTO FLIP CARD ============================ -->
+<div class="flip" id="flip" role="dialog" aria-label="Say hi">
+  <div class="fl-in">
+    <div class="fl-f"><img src="assets/photo.jpg" alt="" width="128" height="128"></div>
+    <div class="fl-b"><div class="fl-c">
+      <h3 class="st" style="--i:0">Hi, I’m <em>César.</em></h3>
+      <p class="st" style="--i:1">3rd-year Computer Science student at EPFL, on exchange at DTU. I like building at the edge of machine learning, data systems and finance.</p>
+      <div class="row st" style="--i:2"><a class="btn pri" href="mailto:cesar.garin@epfl.ch">Say hello <span>↗</span></a><button class="btn" type="button" data-fl-copy>Copy email</button></div>
+      <small class="st" style="--i:3">CLICK MY PHOTO TO FLIP IT BACK</small>
+    </div></div>
+  </div>
+</div>
+
 <!-- ============================ HEADER ============================ -->
 <header class="hdr" id="hdr">
-  <a class="me" href="#top" aria-label="César Garin — back to top">
-    <img src="assets/photo.jpg" alt="" width="60" height="60">
-    <span><b>César Garin</b><span>CS student · EPFL / DTU</span></span>
-  </a>
+  <div class="me">
+    <button class="ph" type="button" id="meBtn" aria-expanded="false" aria-controls="meCard" aria-label="César Garin — open contact card"><img src="assets/photo.jpg" alt="" width="60" height="60"></button>
+    <a class="me-txt" href="#top" aria-label="César Garin — back to top"><b>César Garin</b></a>
+  </div>
   <nav class="seg" aria-label="Views">
     <span class="thumb" aria-hidden="true"></span>
     <button type="button" id="segWork" aria-pressed="true">Work</button>
@@ -2189,6 +2291,245 @@ sheet.addEventListener('cancel', e => { e.preventDefault(); closeSheet(); });
 sheet.addEventListener('keydown', e => { if (!['ArrowLeft', 'ArrowRight'].includes(e.key) || e.target.closest('.tab, input')) return; const b = $(`#shBody [data-step="${e.key === 'ArrowLeft' ? -1 : 1}"]`); if (b) { e.preventDefault(); b.click(); } });
 sheet.addEventListener('click', e => { if (e.target.closest('[data-close]')) closeSheet(); });
 $$('[data-sheet]').forEach(b => b.addEventListener('click', () => { openSheet(b.dataset.sheet, b.querySelector('.w-media') || b); }));
+
+/* ---------------- header photo: which animation runs on click ('card' | 'orbit') ---------------- */
+const ME_FX = { card: true, orbit: false, confetti: false, flip: false };   // which photo effects are on
+const meFx = {};
+
+/* ---------------- idea 1 · contact card: unfolds from the header photo ---------------- */
+(() => {
+  if (!ME_FX.card) return;
+  const btn = $('#meBtn'), card = $('#meCard'), small = $('img', btn), big = $('[data-mc-ph]', card), tEl = $('[data-mc-time]', card), cp = $('[data-mc-copy]', card);
+  let open = false, busy = null, clock = 0;
+  const fmt = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Copenhagen', hour: '2-digit', minute: '2-digit' });
+  const tick = () => { tEl.textContent = `Copenhagen · ${fmt.format(new Date())} local time`; };
+  // geometry: the circle starts on the header photo, the big photo starts exactly over it
+  const geo = () => {
+    const a = small.getBoundingClientRect(), c = card.getBoundingClientRect(), b = big.getBoundingClientRect();
+    const cx = a.left + a.width / 2 - c.left, cy = a.top + a.height / 2 - c.top, R = Math.hypot(Math.max(cx, c.width - cx), Math.max(cy, c.height - cy)) + 4;
+    return { from: `circle(${a.width / 2}px at ${cx}px ${cy}px)`, to: `circle(${R}px at ${cx}px ${cy}px)`, ph: `translate(${a.left - b.left}px, ${a.top - b.top}px) scale(${a.width / b.width})` };
+  };
+  function show() {
+    if (open) return; open = true; if (busy) busy.cancel();
+    btn.setAttribute('aria-expanded', 'true'); btn.classList.add('hid'); card.classList.add('open'); tick(); clock = setInterval(tick, 15000);
+    if (!REDUCE) {
+      const g = geo();
+      busy = card.animate({ clipPath: [g.from, g.to] }, { duration: 620, easing: 'cubic-bezier(.2,.8,.2,1)' });
+      busy.onfinish = () => { busy = null; };
+      big.animate({ transform: [g.ph, 'none'] }, { duration: 680, easing: 'cubic-bezier(.34,1.3,.64,1)' });
+    }
+    setTimeout(() => { if (open) cp.focus({ preventScroll: true }); }, 250);
+  }
+  function hide(refocus) {
+    if (!open) return; open = false; clearInterval(clock);
+    const done = () => { card.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); btn.classList.remove('hid'); busy = null; };
+    if (REDUCE) done();
+    else {
+      const g = geo(); if (busy) busy.cancel();
+      $$('.st', card).forEach(e => { e.style.transitionDelay = '0ms'; e.style.opacity = '0'; });
+      big.animate({ transform: ['none', g.ph] }, { duration: 420, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'forwards' }).onfinish = a => a.target.cancel();
+      busy = card.animate({ clipPath: [g.to, g.from] }, { duration: 420, easing: 'cubic-bezier(.4,0,.2,1)' });
+      busy.onfinish = () => { done(); $$('.st', card).forEach(e => { e.style.transitionDelay = ''; e.style.opacity = ''; }); };
+    }
+    if (refocus) btn.focus({ preventScroll: true });
+  }
+  btn.addEventListener('click', e => { e.stopPropagation(); open ? hide() : show(); });
+  document.addEventListener('pointerdown', e => { if (open && !card.contains(e.target) && !btn.contains(e.target)) hide(); });
+  addEventListener('keydown', e => { if (e.key === 'Escape' && open) { e.stopImmediatePropagation(); hide(true); } }, true);
+  cp.addEventListener('click', async () => {
+    if (await copyText('cesar.garin@epfl.ch')) { cp.classList.add('ok'); $('small', cp).textContent = 'Copied ✓'; setTimeout(() => { cp.classList.remove('ok'); $('small', cp).textContent = 'Copy'; }, 1800); }
+    else location.href = 'mailto:cesar.garin@epfl.ch';
+  });
+  addEventListener('scroll', () => { if (open && scrollY > 400) hide(); }, { passive: true });
+})();
+
+/* ---------------- idea 2 · badges that orbit out of the photo ---------------- */
+(() => {
+  if (!ME_FX.orbit) return;
+  const btn = $('#meBtn'), ph = btn;
+  btn.removeAttribute('aria-controls'); btn.setAttribute('aria-label', 'César Garin — show highlights');
+  const R1 = 110, R2 = 200, R3 = 290;
+  // [label, tooltip, orbit radius, preferred angle (deg, 0 = right, 90 = down), action, dot]
+  const B = [
+    ['EPFL', 'Computer Science · 3rd year', R1, 25, () => setView('info')],
+    ['DTU', 'Exchange · Copenhagen', R1, 62, () => openSheet('mlsp')],
+    ['Open to internships', '3 months · Jun – Aug 2027', R2, 12, () => $('#contact').scrollIntoView({ behavior: 'smooth' }), 'live'],
+    ['Python', 'ML · quant finance · NanoGPT', R2, 44, () => openSheet('nanogpt')],
+    ['Verilog · RISC-V', '32-bit CPU from scratch', R2, 74, () => openSheet('riscv')],
+    ['ML × Finance', 'Deep hedging · 4 chapters', R3, 22, () => openSheet('ml')],
+    ['C · Java · Scala', 'EPFL systems & software', R3, 52, () => openSheet('sys')]];
+  const wrap = document.createElement('div'); wrap.className = 'orbit'; wrap.hidden = true;
+  wrap.innerHTML = `<svg class="orb-arcs" aria-hidden="true"><circle r="${R1}"/><circle r="${R2}"/></svg>` +
+    B.map((b, k) => `<button type="button" class="orb" data-k="${k}"><span class="orb-in" data-tip="${b[1]}" style="--fd:${-k * .6}s"><i class="${b[5] || ''}"></i>${b[0]}</span></button>`).join('');
+  document.body.append(wrap);
+  const chips = $$('.orb', wrap), arcs = $('.orb-arcs', wrap);
+  let open = false, anims = [];
+  const center = () => { const r = ph.getBoundingClientRect(); return [r.left + r.width / 2, r.top + r.height / 2]; };
+  const rad = d => d * Math.PI / 180, backOut = u => 1 + 2.2 * Math.pow(u - 1, 3) + 1.2 * Math.pow(u - 1, 2), cubOut = u => 1 - Math.pow(1 - u, 3);
+  // final spot of each chip, kept inside the viewport
+  // each chip starts at its preferred angle and slides along its orbit until it overlaps nothing
+  const place = () => {
+    const [cx, cy] = center(), M = 9, used = new Set();
+    const taken = [$('.me-txt'), innerWidth > 760 && $('.hdr .seg'), $('.hdr-r')].filter(e => e && e.offsetWidth).map(e => e.getBoundingClientRect()).map(r => ({ x: r.left, y: r.top, w: r.width, h: r.height }));
+    const hit = q => taken.some(t => q.x < t.x + t.w + M && q.x + q.w + M > t.x && q.y < t.y + t.h + M && q.y + q.h + M > t.y);
+    const lastA = {};
+    const out = chips.map((c, k) => {
+      const w = c.offsetWidth, h = c.offsetHeight;
+      let r = B[k][2], a, q = null;
+      for (let ring = 0; ring < 6 && !q; ring++) {                    // no room on this orbit → try the next one out
+        r = B[k][2] + ring * 90;
+        for (a = Math.max(ring ? 6 : B[k][3], (lastA[r] ?? -99) + 4); a <= 98; a += 2) {
+          const x = cx + r * Math.cos(rad(a)) - w / 2, y = cy + r * Math.sin(rad(a)) - h / 2, t = { x, y, w, h };
+          if (x >= 8 && x + w <= innerWidth - 8 && !hit(t)) { q = t; break; }
+        }
+      }
+      if (!q) { a = 90; q = { x: 8, y: cy + r - h / 2, w, h }; }
+      lastA[r] = a; taken.push(q); used.add(r);
+      c.style.left = q.x + 'px'; c.style.top = q.y + 'px';
+      return { x: q.x, y: q.y, w, h, r, a, cx, cy };
+    });
+    arcs.innerHTML = [...used].sort((u, v) => u - v).map((r, i) => `<circle cx="${cx}" cy="${cy}" r="${r}" style="animation-duration:${30 + i * 14}s;animation-direction:${i % 2 ? 'reverse' : 'normal'}"/>`).join('');
+    return out;
+  };
+  // keyframes along a spiral: the chip leaves the photo and swings round to its slot
+  const path = (P, inward) => {
+    const f = [];
+    for (let i = 0; i <= 14; i++) {
+      const u = i / 14, ur = inward ? 1 - u : u;
+      const r = P.r * (inward ? ur : backOut(ur)), a = rad(P.a - 75 * (1 - (inward ? ur : cubOut(ur))));
+      const px = P.cx + r * Math.cos(a) - P.w / 2, py = P.cy + r * Math.sin(a) - P.h / 2, s = .25 + .75 * Math.min(1, ur * 1.4);
+      f.push({ transform: `translate(${px - P.x}px, ${py - P.y}px) scale(${s})`, opacity: Math.min(1, ur * 3) });
+    }
+    return f;
+  };
+  function show() {
+    if (open) return; open = true; anims.forEach(a => a.cancel()); anims = [];
+    wrap.hidden = false; const P = place();
+    if (REDUCE) return;
+    ph.animate({ transform: ['scale(1)', 'scale(.82)', 'scale(1.08)', 'scale(1)'] }, { duration: 520, easing: 'cubic-bezier(.34,1.56,.64,1)' });
+    arcs.animate({ opacity: [0, 1] }, { duration: 700, easing: 'ease-out' });
+    chips.forEach((c, k) => anims.push(c.animate(path(P[k], false), { duration: 820, delay: 60 + k * 55, easing: 'linear', fill: 'backwards' })));
+  }
+  function hide() {
+    if (!open) return; open = false; anims.forEach(a => a.cancel()); anims = [];
+    if (REDUCE) { wrap.hidden = true; return; }
+    const P = place();
+    arcs.animate({ opacity: [1, 0] }, { duration: 420, fill: 'forwards' });
+    let last;
+    chips.forEach((c, k) => { last = c.animate(path(P[k], true), { duration: 440, delay: (chips.length - 1 - k) * 30, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'forwards' }); anims.push(last); });
+    last.onfinish = () => { if (!open) { wrap.hidden = true; anims.forEach(a => a.cancel()); anims = []; arcs.getAnimations().forEach(a => a.cancel()); } };
+  }
+  btn.addEventListener('click', e => { e.stopPropagation(); open ? hide() : show(); });
+  chips.forEach((c, k) => c.addEventListener('click', () => { hide(); setTimeout(B[k][4], 180); }));
+  document.addEventListener('pointerdown', e => { if (open && !e.target.closest('.orb') && !btn.contains(e.target)) hide(); });
+  addEventListener('keydown', e => { if (e.key === 'Escape' && open) { e.stopImmediatePropagation(); hide(); btn.focus({ preventScroll: true }); } }, true);
+  addEventListener('scroll', () => { if (open && scrollY > 240) hide(); }, { passive: true });
+  addEventListener('resize', () => { if (open) place(); });
+})();
+
+/* ---------------- idea 3 · confetti made of the projects: price paths, Life cells, signal dots, spectrogram bars, maths ---------------- */
+(() => {
+  if (!ME_FX.confetti) return;
+  const btn = $('#meBtn'), ph = btn;
+  let cv = null, g = null, P = [], rings = [], raf = 0, last = 0, col = null;
+  const GLYPHS = ['σ²', 'Σ', 'λ', 'θ', '∫', 'Δ', '{ }', '01', 'f(x)', 'μ'];
+  const tokens = () => { const cs = getComputedStyle(root), v = k => cs.getPropertyValue(k).trim(); return { acc: v('--acc'), ink: v('--ink'), dim: v('--dim'), live: v('--live') || '#22c55e' }; };
+  const size = () => { const d = Math.min(2, devicePixelRatio || 1); cv.width = innerWidth * d; cv.height = innerHeight * d; g.setTransform(d, 0, 0, d, 0, 0); };
+  function ensure() {
+    if (cv) return; cv = document.createElement('canvas'); cv.className = 'burst'; cv.setAttribute('aria-hidden', 'true'); document.body.append(cv); g = cv.getContext('2d'); size();
+    addEventListener('resize', () => cv && size());
+  }
+  function walk() { const w = []; let y = 0; for (let i = 0; i < 9; i++) { w.push(y); y += (Math.random() - .48) * 4; } return w; }
+  function burst() {
+    ensure(); col = tokens();
+    const r = ph.getBoundingClientRect(), x0 = r.left + r.width / 2, y0 = r.top + r.height / 2;
+    rings.push({ x: x0, y: y0, t: 0 });
+    const types = ['cell', 'cell', 'cell', 'dot', 'dot', 'bar', 'bar', 'path', 'path', 'glyph'];
+    for (let i = 0; i < 80 && P.length < 480; i++) {
+      const a = (-40 + Math.random() * 120) * Math.PI / 180, sp = 380 + Math.random() * 900;   // a fan towards the page, away from the corner
+      const type = types[(Math.random() * types.length) | 0];
+      P.push({ type, x: x0, y: y0, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp - 260, rot: Math.random() * 6.28, vr: (Math.random() - .5) * 9,
+        life: 1.7 + Math.random() * 1.2, t: 0, s: 1 + Math.random() * .7, c: Math.random() < .55 ? 'acc' : Math.random() < .8 ? 'ink' : 'dim',
+        w: type === 'path' ? walk() : null, gl: GLYPHS[(Math.random() * GLYPHS.length) | 0], h: 6 + Math.random() * 12 });
+    }
+    if (!raf) { last = performance.now(); raf = requestAnimationFrame(step); }
+  }
+  function step(t) {
+    const dt = Math.min(.04, (t - last) / 1000); last = t;
+    const W = innerWidth, H = innerHeight; g.clearRect(0, 0, W, H);
+    rings = rings.filter(q => (q.t += dt) < .7);
+    rings.forEach(q => { const u = q.t / .7, e = 1 - Math.pow(1 - u, 3); g.globalAlpha = (1 - u) * .7; g.strokeStyle = col.acc; g.lineWidth = 2 * (1 - u) + .5; g.beginPath(); g.arc(q.x, q.y, 16 + e * 90, 0, 6.29); g.stroke(); });
+    P = P.filter(p => (p.t += dt) < p.life && p.y < H + 40);
+    for (const p of P) {
+      p.vy += 1350 * dt; p.vx *= Math.pow(.5, dt); p.vy *= Math.pow(.6, dt); p.x += p.vx * dt; p.y += p.vy * dt; p.rot += p.vr * dt;
+      const u = p.t / p.life, a = u < .08 ? u / .08 : 1 - Math.pow(Math.max(0, (u - .55) / .45), 2);
+      g.save(); g.translate(p.x, p.y); g.rotate(p.rot); g.scale(p.s, p.s); g.globalAlpha = Math.max(0, a);
+      const c = col[p.c]; g.fillStyle = c; g.strokeStyle = c;
+      if (p.type === 'cell') g.fillRect(-3.5, -3.5, 7, 7);                                       // Game of Life
+      else if (p.type === 'dot') { g.beginPath(); g.arc(0, 0, 3, 0, 6.29); g.fill(); }           // signal sample
+      else if (p.type === 'bar') { g.globalAlpha *= .85; g.fillRect(-1.5, -p.h / 2, 3, p.h); }   // spectrogram column
+      else if (p.type === 'path') { g.lineWidth = 1.6; g.lineJoin = 'round'; g.beginPath(); p.w.forEach((v, i) => i ? g.lineTo(-12 + i * 3, v) : g.moveTo(-12, v)); g.stroke(); }  // price path
+      else { g.font = '500 13px "Geist Mono", ui-monospace, monospace'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(p.gl, 0, 0); }
+      g.restore();
+    }
+    g.globalAlpha = 1;
+    if (P.length || rings.length) raf = requestAnimationFrame(step); else { raf = 0; g.clearRect(0, 0, W, H); }
+  }
+  meFx.burst = () => { if (!REDUCE) burst(); };
+  if (!ME_FX.flip) btn.addEventListener('click', e => {
+    e.stopPropagation();
+    ph.animate({ transform: ['scale(1)', 'scale(.78)', 'scale(1.12)', 'scale(1)'] }, { duration: 520, easing: 'cubic-bezier(.34,1.56,.64,1)' });
+    meFx.burst();
+  });
+})();
+
+/* ---------------- idea 4 · the photo flips over into a card (with the confetti burst as it turns) ---------------- */
+(() => {
+  if (!ME_FX.flip) return;
+  const btn = $('#meBtn'), img = $('img', btn), fl = $('#flip'), inner = $('.fl-in', fl), front = $('.fl-f', fl), back = $('.fl-b', fl), content = $('.fl-c', fl), cp = $('[data-fl-copy]', fl);
+  let open = false, anims = [];
+  const box = () => {
+    const a = img.getBoundingClientRect(), cw = Math.min(330, innerWidth - 2 * a.left);
+    fl.style.setProperty('--cw', cw + 'px');
+    const ch = content.offsetHeight;
+    return { a, end: { left: a.left + 'px', top: a.bottom + 14 + 'px', width: cw + 'px', height: ch + 'px' }, start: { left: a.left + 'px', top: a.top + 'px', width: a.width + 'px', height: a.height + 'px' } };
+  };
+  const set = (o) => Object.assign(fl.style, o);
+  function show() {
+    if (open) return; open = true; anims.forEach(x => x.cancel()); anims = [];
+    const b = box(); set(b.end);
+    btn.setAttribute('aria-expanded', 'true'); btn.classList.add('hid'); fl.classList.add('open');
+    if (meFx.burst) meFx.burst();
+    if (REDUCE) { inner.style.transform = 'rotateY(180deg)'; fl.classList.add('shown'); btn.classList.remove('hid'); return; }
+    // once the card has left, the photo pops back into the header so it can be clicked to flip back
+    setTimeout(() => { if (!open) return; btn.classList.remove('hid'); img.animate({ transform: ['scale(.4)', 'scale(1.12)', 'scale(1)'], opacity: [0, 1, 1] }, { duration: 460, easing: 'cubic-bezier(.34,1.56,.64,1)' }); }, 620);
+    const o = { duration: 820, easing: 'cubic-bezier(.3,1.25,.5,1)', fill: 'both' };
+    anims = [
+      fl.animate([b.start, b.end], { duration: 760, easing: 'cubic-bezier(.3,1.15,.5,1)', fill: 'both' }),
+      inner.animate([{ transform: 'rotateY(0deg) scale(1)' }, { transform: 'rotateY(100deg) scale(1.04)', offset: .45 }, { transform: 'rotateY(180deg) scale(1)' }], o),
+      front.animate([{ borderRadius: '50%' }, { borderRadius: '20px' }], { duration: 500, fill: 'both' }),
+      back.animate([{ borderRadius: '50%' }, { borderRadius: '20px' }], { duration: 500, fill: 'both' })];
+    setTimeout(() => { if (open) fl.classList.add('shown'); }, 330);
+  }
+  function hide() {
+    if (!open) return; open = false; fl.classList.remove('shown'); btn.classList.add('hid');
+    const done = () => { fl.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); btn.classList.remove('hid'); anims.forEach(x => x.cancel()); anims = []; inner.style.transform = ''; };
+    if (REDUCE) return done();
+    anims.forEach(x => x.cancel());
+    const b = box();
+    anims = [
+      fl.animate([b.end, b.start], { duration: 560, easing: 'cubic-bezier(.5,0,.3,1)', fill: 'both' }),
+      inner.animate([{ transform: 'rotateY(180deg)' }, { transform: 'rotateY(360deg)' }], { duration: 560, easing: 'cubic-bezier(.5,0,.3,1)', fill: 'both' }),
+      front.animate([{ borderRadius: '20px' }, { borderRadius: '50%' }], { duration: 560, fill: 'both' }),
+      back.animate([{ borderRadius: '20px' }, { borderRadius: '50%' }], { duration: 560, fill: 'both' })];
+    anims[0].onfinish = () => { if (!open) done(); };
+  }
+  btn.addEventListener('click', e => { e.stopPropagation(); open ? hide() : show(); });
+  document.addEventListener('pointerdown', e => { if (open && !fl.contains(e.target) && !btn.contains(e.target)) hide(); });
+  addEventListener('keydown', e => { if (e.key === 'Escape' && open) { e.stopImmediatePropagation(); hide(); btn.focus({ preventScroll: true }); } }, true);
+  addEventListener('scroll', () => { if (open && scrollY > 300) hide(); }, { passive: true });
+  cp.addEventListener('click', async () => { if (await copyText('cesar.garin@epfl.ch')) { cp.textContent = 'Copied ✓'; cp.classList.add('ok'); setTimeout(() => { cp.textContent = 'Copy email'; cp.classList.remove('ok'); }, 1800); } });
+})();
 
 /* ---------------- Esc for Info overlay ---------------- */
 addEventListener('keydown', e => { if (e.key === 'Escape' && info.classList.contains('open') && !sheet.open && !lb.open && !kd.open) setView('work'); });
