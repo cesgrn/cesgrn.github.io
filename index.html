@@ -386,6 +386,64 @@ body.info-open main{transform:translateY(48px) scale(.985);opacity:.35}
 .br.best .lb2{color:var(--ink);font-weight:500}
 .br.best .fl{background:var(--acc)}
 .br.best .v{color:var(--acc)}
+.tab .key{display:inline-block;margin-left:8px;font:500 9.5px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:3px 6px;border-radius:999px;background:color-mix(in srgb,var(--acc) 16%,transparent);color:var(--acc);vertical-align:1px}
+.blk-h{margin:0;font-size:13px;font-weight:500}
+.blk-s{margin:2px 0 0;font-size:12.5px;color:var(--dim)}
+.sweep{padding:18px;border:1px solid var(--line);border-radius:14px;margin:0 0 20px}
+.sw-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.sw-c{font:500 12px/1 var(--mono);color:var(--dim)}
+.sw-c b{color:var(--acc);font-size:15px}
+.sweep input[type=range]{width:100%;margin:16px 0 2px;accent-color:var(--acc);cursor:pointer}
+.sw-ticks{display:flex;justify-content:space-between;font:500 10.5px/1 var(--mono);color:var(--dim)}
+.sw-ticks button{padding:6px 2px;color:inherit;transition:color .2s}
+.sw-ticks button:hover,.sw-ticks button[aria-pressed="true"]{color:var(--ink)}
+.sweep .rows{margin-top:12px}
+.sweep .br .fl{transition:width .7s cubic-bezier(.22,1,.36,1)}
+.sweep .br .v{transition:color .3s}
+.sw-note{margin:12px 0 0;font-size:13.5px;color:var(--ink2)}
+.sw-note b{color:var(--acc);font-weight:500}
+.sw-band{margin:4px 0 0;font-size:12.5px;color:var(--dim)}
+.sw-band b{color:var(--ink);font-weight:500}
+.bandviz{margin:0 0 20px;padding:18px;border-radius:14px;background:var(--bg2);border:1px solid var(--line)}
+.bandviz svg{width:100%;height:auto;display:block;margin-top:10px}
+.bandviz .bf{fill:var(--acc);opacity:.14}
+.bandviz .be{fill:none;stroke:var(--acc);stroke-opacity:.5;stroke-width:1}
+.bandviz .bd{fill:none;stroke:var(--dim);stroke-dasharray:4 4;stroke-width:1.2}
+.bandviz .hp{fill:none;stroke:var(--ink);stroke-width:2;stroke-linejoin:round}
+.bandviz .tr{fill:var(--acc);opacity:0;transition:opacity .3s}
+.bandviz .tr.on{opacity:1}
+.bandviz .ax{fill:var(--dim);font:500 10px var(--mono)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--ink2);margin-top:10px}
+.legend i{display:inline-block;width:18px;height:3px;border-radius:2px;margin-right:6px;vertical-align:middle}
+.finds{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:22px 0 0}
+.finds div{background:var(--bg);padding:16px}
+.finds b{display:block;font:500 22px/1.1 var(--sans);letter-spacing:-.03em;color:var(--acc)}
+.finds span{display:block;font-size:13px;color:var(--ink2);margin-top:6px}
+.one{margin:14px 0 0;font:400 italic clamp(18px,1.7vw,21px)/1.4 var(--serif);color:var(--ink)}
+.rtab{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:10px}
+.rtab th{font:500 10.5px/1.2 var(--mono);color:var(--dim);text-align:right;padding:8px 0;border-bottom:1px solid var(--line2);letter-spacing:.04em;text-transform:uppercase}
+.rtab td{padding:9px 0;border-bottom:1px solid var(--line);text-align:right;font-family:var(--mono)}
+.rtab th:first-child,.rtab td:first-child{text-align:left;font-family:var(--sans)}
+.rtab td small{color:var(--dim);font-size:11.5px}
+.rtab tr.best td{color:var(--acc);font-weight:500}
+.part{margin:22px 0 0;padding:18px 20px;border-radius:14px;border:1px dashed var(--line2)}
+.part p,.part ol{margin:6px 0 0;font-size:14px;color:var(--ink2)}
+.part ol{padding-left:20px}
+.part li{margin:3px 0}
+.part p b{color:var(--ink);font-weight:500}
+details.more{border-top:1px solid var(--line)}
+details.more:last-of-type{border-bottom:1px solid var(--line)}
+details.more summary{cursor:pointer;list-style:none;padding:14px 2px;font-size:14px;font-weight:500;display:flex;justify-content:space-between;align-items:center}
+details.more summary::-webkit-details-marker{display:none}
+details.more summary::after{content:"+";color:var(--dim);font-size:18px;transition:transform .35s var(--spring)}
+details.more[open] summary::after{transform:rotate(45deg)}
+details.more ul{margin:0 0 14px;padding-left:18px;font-size:14px;color:var(--ink2)}
+details.more li{margin:5px 0}
+.more-wrap{margin-top:22px}
+.verd.key{background:color-mix(in srgb,var(--acc) 7%,transparent)}
+.verd.key .q{color:var(--acc)}
+.note .btn{margin-top:14px;height:36px;font-size:13px}
+@media (max-width:860px){ .finds{grid-template-columns:1fr} .rtab th:nth-child(3),.rtab td:nth-child(3){display:none} }
 .lesson{margin:20px 0 0;padding:18px 20px;border-radius:14px;background:var(--bg2)}
 .lesson p{margin:0;font-size:14.5px;color:var(--ink2)}
 .lesson q{display:block;margin-top:12px;font:400 italic clamp(19px,1.8vw,23px)/1.35 var(--serif);color:var(--ink)}
@@ -451,8 +509,9 @@ body.info-open main{transform:translateY(48px) scale(.985);opacity:.35}
 @media (max-width:860px){
   .fig-cap{flex-direction:column;gap:10px;min-height:156px}
   .lb-cap{flex-direction:column;align-items:flex-start;gap:8px;min-height:120px}
-  .chapters{grid-template-columns:1fr}
-  .tabs{position:static;flex-direction:row;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:4px}
+  .chapters{grid-template-columns:minmax(0,1fr)}
+  .chapters > *{min-width:0}
+  .tabs{position:relative;flex-direction:row;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:4px}
   .tab{flex:0 0 200px;scroll-snap-align:start}
   .metrics{grid-template-columns:1fr}
   .verd{grid-template-columns:28px 1fr}.verd .a{grid-column:2}
@@ -556,12 +615,12 @@ body.info-open main{transform:translateY(48px) scale(.985);opacity:.35}
     <button class="w rv" type="button" data-sheet="ml">
       <div class="w-media">
         <div class="cv-paper scale" data-cycle>
-          <img class="on" src="assets/mlqf/smoothed_surface_3d.png" alt="" loading="lazy">
+          <img class="on" src="assets/mlqf/bands_0.01.png" alt="" loading="lazy">
           <img src="assets/mlqf/cost_sweep.png" alt="" loading="lazy">
-          <img src="assets/mlqf/raw_surface_3d.png" alt="" loading="lazy">
+          <img src="assets/mlqf/smoothed_surface_3d.png" alt="" loading="lazy">
           <img src="assets/mlqf/backtest.png" alt="" loading="lazy">
         </div>
-        <div class="cv-chips"><span>4 chapters</span><span>12 figures</span></div>
+        <div class="cv-chips"><span>Key result · 12.88 vs 13.58</span><span>4 chapters</span></div>
         <span class="open">Open research ↗</span>
       </div>
       <div class="w-cap"><span><b>ML × Quant Finance</b> <span class="t">— Can machine learning beat the market?</span></span><span class="m">Research · 2026</span></div>
@@ -723,14 +782,15 @@ body.info-open main{transform:translateY(48px) scale(.985);opacity:.35}
 <template id="t-ml">
   <div class="kick reveal" style="--d:200ms">Research · Personal <span class="lang">Python</span></div>
   <h2 class="sh-h reveal" style="--d:260ms">ML <em>×</em> Quant Finance</h2>
-  <p class="sh-lead reveal" style="--d:320ms">Four-project research series asking whether ML can generate alpha in financial markets: price prediction with XGBoost, NLP sentiment analysis on earnings calls (FinBERT), deep hedging of options under transaction costs, and neural network modeling of the implied volatility surface.</p>
-  <div class="note reveal" style="--d:380ms"><b>Highlight</b>A no-transaction band network trained on the risk of the full P&amp;L hedges more cheaply than Black-Scholes, Leland and Whalley-Wilmott at every cost level, and re-evaluating an earlier PPO agent showed its apparent edge came from flawed accounting. Each project builds honestly on the limits of the previous one. Inspired by papers from JP Morgan, NeurIPS and Quantitative Finance.</div>
+  <p class="sh-lead reveal" style="--d:320ms">A four-chapter research series, all evaluated out of sample, asking whether ML can really beat simple benchmarks in finance: price prediction with XGBoost, NLP sentiment analysis on earnings calls (FinBERT), neural modeling of the implied volatility surface — and, as the finale, deep hedging of options under transaction costs. The first attempts mostly showed how easily signals vanish once they are tested properly; the hedging network gave the strongest result.</p>
+  <div class="note reveal" style="--d:380ms"><b>Key result</b>With 1% transaction costs, a no-transaction band network trained end-to-end on the risk of the full P&amp;L needs a premium of <strong>12.88</strong>, against <strong>13.58</strong> for the best classical strategies (Leland, Whalley-Wilmott) and <strong>14.50</strong> for Black-Scholes delta hedging — at every cost level tested and on 5 out of 5 seeds. Re-evaluating an earlier PPO agent showed its apparent edge came from flawed accounting. Each project builds honestly on the limits of the previous one. Inspired by papers from JP Morgan, NeurIPS and Quantitative Finance.<br><button class="btn" type="button" data-key>See chapter 4 — Learning the band <span>→</span></button></div>
   <div class="links reveal" style="--d:420ms"><a class="btn" href="https://github.com/cesgrn/ml-quant-finance" target="_blank" rel="noopener">github.com/cesgrn/ml-quant-finance <span>↗</span></a></div>
   <div class="hr"></div>
   <div class="chapters reveal" style="--d:460ms"><div class="tabs" role="tablist" aria-label="Research chapters" data-tabs></div><div class="panel" role="tabpanel" aria-live="polite" data-panel></div></div>
   <div class="hr"></div>
   <p class="small dim" style="margin:0 0 8px">The honest conclusion</p>
   <div data-verdicts></div>
+  <p class="one">The one chapter where machine learning clearly beat the textbook is hedging — and that is not a coincidence: hedging is not a forecasting problem, it is an optimisation problem with a well-defined objective.</p>
   <ul class="tags"><li class="tag">XGBoost</li><li class="tag">FinBERT / NLP</li><li class="tag">Deep Hedging</li><li class="tag">Reinforcement Learning</li><li class="tag">Black-Scholes</li><li class="tag">Implied Volatility</li><li class="tag">PyTorch</li><li class="tag">Options Pricing</li></ul>
 </template>
 
@@ -1122,19 +1182,7 @@ const CH = [
     figs: [{ f: 'event_study.png', cap: 'FinBERT sentiment score vs post-earnings returns at t+1, t+2, t+3 and t+5.' }],
     learned: 'Small samples lie in finance more than anywhere else. Sentiment is real, but the signal needs hundreds of transcripts, not five — and context matters: FinBERT reads “we are not concerned about growth” as positive, the dictionary as negative.',
     quote: 'NLP sees beyond price data. But seeing is not the same as acting faster than everyone else who is also looking.' },
-  { n: '03', tab: 'Stop predicting. Manage risk.', s: 'Deep hedging with transaction costs', kick: 'Chapter 3 · Derivative hedging with transaction costs',
-    appr: 'Short at-the-money call on a GBM-simulated underlying, 1% transaction cost. Part A: PPO reinforcement learning agent. Part B: deep hedging with a no-transaction band network trained on the risk of the full P&L.',
-    metrics: [['12.88', 'Premium needed by the band network (Black-Scholes delta: 14.50)', 1], ['5 / 5', 'Training seeds beating every classical benchmark'], ['0.1–2%', 'Wins at every transaction-cost level tested']],
-    bars: [['Black-Scholes delta', 14.50], ['Leland delta (classical)', 13.58], ['Whalley-Wilmott band (classical)', 13.59], ['PPO, part A (re-evaluated)', 32.62], ['No-transaction band network', 12.88, 1]],
-    figs: [
-      { f: 'cost_sweep.png', cap: 'Part B — the price a dealer must charge, and the width of the no-trade band, as transaction costs grow.' },
-      { f: 'bands_0.01.png', cap: 'Learned no-transaction bands vs Whalley-Wilmott, Leland and Black-Scholes delta at three maturities (1% cost).' },
-      { f: 'learning_curves_0.01.png', cap: 'Entropic risk during training, against the Whalley-Wilmott and Black-Scholes benchmarks.' },
-      { f: 'hedge_comparison.png', cap: 'Part A — first evaluation of the PPO agent vs the delta hedge. With a correct self-financing P&L on identical paths, its edge disappears.' },
-      { f: 'gbm_paths.png', cap: 'Simulated GBM price paths — the environment used to train and test every hedge.' }],
-    learned: 'The gap between part A and part B is not “neural networks vs formulas” — both use neural networks. It is the training signal: part B optimises the risk of the full P&L directly, with the right structure (a no-trade band), and beats the textbook. Second lesson: check the accounting before believing a result, especially a profitable one.',
-    quote: 'Predicting the market and managing risk in the market are two entirely different problems. The second one is solvable, if you optimise the right objective.' },
-  { n: '04', tab: 'What does the market believe?', s: 'Neural volatility surface', kick: 'Chapter 4 · Neural Volatility Surface Forecaster',
+  { n: '03', tab: 'What does the market believe?', s: 'Neural volatility surface', kick: 'Chapter 3 · Neural Volatility Surface Forecaster',
     appr: 'Black-Scholes IV inversion (Brent’s method) on real SPY options, a neural-network smoother (ELU + Softplus) and a term-structure forecaster trained on 8 years of VIX history.',
     metrics: [['3,038', 'Liquid SPY options inverted — 96.5% success rate'], ['3.94%', 'Smoother RMSE, zero arbitrage violations', 1], ['1.76%', 'Forecaster RMSE (2.37% at 30d → 1.15% at 180d)']],
     figs: [
@@ -1143,22 +1191,138 @@ const CH = [
       { f: 'term_structure.png', cap: 'ATM term structure: volatility rises from ~15% at 6 days to ~18% at 387 days.' },
       { f: 'forecast_vs_actual.png', cap: 'IV term-structure forecast vs actual at 30, 90 and 180 days.' }],
     learned: 'The IV surface is a consensus, not a prediction. Neural networks can smooth and forecast it with good accuracy in normal regimes — but during the COVID spike the 30-day forecast said ~40% while actual reached ~52%. Black swans remain unpredictable by definition.',
-    quote: 'The options market does not know the future. But it has thought harder about it than anyone.' }
+    quote: 'The options market does not know the future. But it has thought harder about it than anyone.' },
+  { n: '04', key: 1, tab: 'Learning the band.', s: 'Deep hedging · the finale', kick: 'Chapter 4 · Deep hedging with transaction costs — key result',
+    q: 'Learning the band: hedging better than the textbook',
+    appr: 'The problem in plain words: a dealer sells a one-year at-the-money call and hedges it by trading the stock, paying 1% on every share traded. Hedging more often reduces risk but costs more. What is the cheapest premium the dealer can charge while keeping the risk acceptable?',
+    metrics: [['12.88', 'Premium needed at 1% cost — vs 13.58 for the best classical strategy and 14.50 for Black-Scholes', 1], ['5 / 5', 'Training seeds on which it beats every benchmark'], ['2.5–3.5×', 'Narrower no-trade band than Whalley–Wilmott, at the money']],
+    pre: [
+`<div class="sweep">
+  <div class="sw-top"><div><h4 class="blk-h">Premium a dealer needs — lower is better</h4><p class="blk-s">Drag the transaction cost. Each network was retrained at every cost level; 20,000 test paths.</p></div><span class="sw-c">Cost <b data-cv>1%</b></span></div>
+  <input type="range" min="0" max="5" step="1" value="4" data-cost aria-label="Transaction cost">
+  <div class="sw-ticks" data-ticks></div>
+  <div class="rows" data-rows></div>
+  <p class="sw-note" data-note></p>
+  <p class="sw-band" data-band></p>
+</div>`,
+`<div class="bandviz">
+  <h4 class="blk-h">How the band network hedges</h4>
+  <p class="blk-s">The network does not output a hedge. It outputs a band around delta: inside the band it does nothing, outside it trades only back to the nearest edge.</p>
+  <svg viewBox="0 0 640 230" role="img" aria-label="Illustration: a hedge position that stays flat while inside a no-trade band around delta and only trades when it hits the band edge" data-bandviz></svg>
+  <div class="legend"><span><i style="background:var(--dim)"></i>Black–Scholes delta</span><span><i style="background:var(--acc);opacity:.35;height:8px"></i>Learned no-trade band</span><span><i style="background:var(--ink)"></i>Hedge — trades only at the band edge</span></div>
+  <p class="blk-s" style="margin-top:8px">Illustration of the mechanism on a simulated path, not output from the trained model.</p>
+</div>`],
+    figs: [
+      { f: 'bands_0.01.png', cap: 'What the network learned: its no-trade band vs Whalley–Wilmott, Leland and Black–Scholes delta at three maturities (1% cost).' },
+      { f: 'cost_sweep.png', cap: 'The price a dealer must charge, and the width of the band, as transaction costs grow — the advantage grows with costs.' },
+      { f: 'learning_curves_0.01.png', cap: 'Entropic risk during training: the band network drops below Whalley–Wilmott and Black–Scholes within about 60 iterations.' },
+      { f: 'hedge_comparison.png', cap: 'Where it started — part A’s PPO agent vs the delta hedge. With correct accounting on identical paths, its apparent edge disappears.' },
+      { f: 'gbm_paths.png', cap: 'Simulated GBM price paths. With a known model, the classical strategies are exact references, so any gain comes from the strategy itself.' }],
+    post: [
+`<h4 class="blk-h">What I found inside the model</h4>
+<div class="finds">
+  <div><b>2.5–3.5× narrower</b><span>The learned band is much tighter than Whalley–Wilmott’s at the money. Both widen near expiry, as gamma grows.</span></div>
+  <div><b>Leland-type centre</b><span>The band is not centred on the Black–Scholes delta: it follows a delta flattened towards 0.5, close to Leland’s adjusted delta.</span></div>
+  <div><b>Width ∝ c<sup>0.56</sup></b><span>The band grows like c<sup>0.56</sup> with the cost c, vs c<sup>1/3</sup> in Whalley–Wilmott’s small-cost theory — consistent at finite costs and 50 discrete dates.</span></div>
+  <div><b>8× more stable</b><span>Entropic risk over 5 seeds: 2.431 ± 0.002 vs 2.514 ± 0.017 for the feed-forward network. It beats Whalley–Wilmott in about half the iterations (63 vs 124).</span></div>
+</div>
+<p class="one">In one sentence: the network rediscovered both classical ideas at once — a Leland-type centre with a Whalley–Wilmott-type no-trade band — and calibrated the band much tighter.</p>`,
+`<h4 class="blk-h" style="margin-top:24px">Results at 1% transaction cost</h4>
+<p class="blk-s">Price = premium needed (lower is better) · CVaR 95% = mean P&amp;L of the worst 5% of paths · turnover = shares traded per path.</p>
+<table class="rtab"><thead><tr><th>Strategy</th><th>Price</th><th>CVaR 95%</th><th>Turnover</th></tr></thead><tbody>
+<tr><td>Black–Scholes delta</td><td>14.50</td><td>−6.00</td><td>2.78</td></tr>
+<tr><td>Leland delta</td><td>13.58</td><td>−4.81</td><td>2.55</td></tr>
+<tr><td>Whalley–Wilmott band</td><td>13.59</td><td>−5.05</td><td>1.35</td></tr>
+<tr><td>Feed-forward network <small>· Buehler et al., 2019</small></td><td>12.95</td><td>−4.25</td><td>1.68</td></tr>
+<tr class="best"><td>No-transaction band network <small>· Imaki et al., 2021</small></td><td>12.88</td><td>−4.21</td><td>1.59</td></tr>
+</tbody></table>`,
+`<div class="part">
+  <h4 class="blk-h">Where it started — PPO, re-evaluated</h4>
+  <p>My first version used reinforcement learning (PPO) and seemed to beat delta hedging. The evaluation code built for this chapter found three accounting errors in it:</p>
+  <ol><li>No financing cost for the stock position, so over-hedging looked profitable.</li><li>A one-period lag: every hedge started earning one step late.</li><li>Different test paths, which mixed strategy and luck.</li></ol>
+  <p>Re-evaluated correctly, the variance-reward agent needs a premium of <b>32.62</b>, and the CVaR-reward agent (<b>106.89</b>) never hedges at all: its policy mean was negative in every state, so the action was always clipped to zero. The likely cause was the reward design — exactly what training end-to-end on the full P&amp;L fixes.</p>
+</div>`,
+`<div class="more-wrap">
+<details class="more"><summary>Setup &amp; method</summary><ul>
+  <li><b>Market:</b> simulated geometric Brownian motion, S₀ = K = 100, σ = 20%, r = 5%, T = 1 year, 50 rebalancing dates.</li>
+  <li><b>P&amp;L:</b> premium + hedging gains − transaction costs − call payoff, all discounted (the stock position is financed).</li>
+  <li><b>Risk measure:</b> entropic risk (1/λ)·log E[e<sup>−λX</sup>] with λ = 1, computed with log-sum-exp. The indifference price is the premium that makes the risk zero.</li>
+  <li><b>Training:</b> 4 hidden layers × 32 units (≈3,300 parameters), Adam, learning rate 10⁻³, 1,000 iterations of 10,000 fresh paths. The risk is back-propagated through all 50 hedging dates.</li>
+  <li><b>Two networks:</b> a feed-forward network outputs the hedge directly (delta + learned correction); the band network outputs a band [lower, upper] around delta and clamps the previous position into it — the known structure of the optimal solution under costs, built into the architecture.</li>
+</ul></details>
+<details class="more"><summary>Limits &amp; next steps</summary><ul>
+  <li>GBM with a known volatility, a single at-the-money call, and only λ = 1.</li>
+  <li>Next: train and test on real SPY or bootstrapped paths, a Heston stochastic-volatility model, a sweep over risk aversion λ, and PPO retrained with a terminal-only entropic reward.</li>
+</ul></details>
+</div>`],
+    init: p => {
+      const sw = $('.sweep', p);
+      if (sw) {
+        const C = ['0%', '0.1%', '0.25%', '0.5%', '1%', '2%'];
+        const S = [['Black–Scholes delta', [10.99, 11.31, 11.80, 12.65, 14.50, 18.59]], ['Leland delta', [10.99, 11.26, 11.67, 12.33, 13.58, 15.90]], ['Whalley–Wilmott band', [10.99, 11.40, 11.82, 12.44, 13.59, 15.90]], ['No-transaction band network', [10.97, 11.19, 11.52, 12.01, 12.89, 14.46], 1]];
+        const HW = [null, [0.010, 0.048], [0.018, 0.065], [0.027, 0.082], [0.040, 0.103], [0.054, 0.130]];
+        const BS0 = 10.45, MAX = 18.59 - BS0;
+        const rows = $('[data-rows]', sw), inp = $('[data-cost]', sw), ticks = $('[data-ticks]', sw);
+        rows.innerHTML = S.map(x => `<div class="br${x[2] ? ' best' : ''}"><span class="lb2">${x[0]}</span><span class="tk"><span class="fl"></span></span><span class="v"></span></div>`).join('');
+        ticks.innerHTML = C.map((c, k) => `<button type="button" data-k="${k}">${c}</button>`).join('');
+        const upd = k => {
+          $('[data-cv]', sw).textContent = C[k]; inp.value = k;
+          $$('button', ticks).forEach((b, j) => b.setAttribute('aria-pressed', j === k));
+          S.forEach((x, j) => { const r = rows.children[j]; $('.fl', r).style.width = Math.max(1.5, (x[1][k] - BS0) / MAX * 100).toFixed(1) + '%'; $('.v', r).textContent = x[1][k].toFixed(2); });
+          const net = S[3][1][k], best = Math.min(S[1][1][k], S[2][1][k]);
+          $('[data-note]', sw).innerHTML = k === 0 ? 'Sanity check — with no costs the network finds no free lunch: <b>10.97</b> vs 10.99 for delta hedging.' : `The band network needs <b>${(best - net).toFixed(2)} less</b> than the best classical strategy — and the gap grows with costs.`;
+          $('[data-band]', sw).innerHTML = HW[k] ? `No-trade band half-width: learned <b>${HW[k][0].toFixed(3)}</b> vs Whalley–Wilmott ${HW[k][1].toFixed(3)} — <b>${(HW[k][1] / HW[k][0]).toFixed(1)}× narrower</b>.` : 'No costs, so no no-trade band is needed.';
+        };
+        inp.addEventListener('input', () => upd(+inp.value));
+        ticks.addEventListener('click', e => { const b = e.target.closest('[data-k]'); if (b) upd(+b.dataset.k); });
+        $$('.fl', rows).forEach(f => f.style.width = '0%');
+        setTimeout(() => upd(4), 380);
+      }
+      const svg = $('[data-bandviz]', p);
+      if (svg) {
+        let sd = 172; const rr = () => { sd = sd * 16807 % 2147483647; return (sd - 1) / 2147483646; };
+        const gn = () => { let u = 0, v = 0; while (!u) u = rr(); while (!v) v = rr(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); };
+        const Phi = x => { const t = 1 / (1 + .2316419 * Math.abs(x)), d = .3989423 * Math.exp(-x * x / 2), q = d * t * (.3193815 + t * (-.3565638 + t * (1.781478 + t * (-1.821256 + t * 1.330274)))); return x > 0 ? 1 - q : q; };
+        const N = 40, W = 640, H = 230, L = 34, R = 10, T0 = 14, B = 26; let St = 100; const D = [], WD = [];
+        for (let t = 0; t <= N; t++) { const tau = 1 - t * .02; D.push(Phi((Math.log(St / 100) + (.05 + .02) * tau) / (.2 * Math.sqrt(tau)))); WD.push(.035 + .04 * (t / N)); St *= Math.exp((.05 - .02) * .02 + .2 * Math.sqrt(.02) * gn()); }
+        const Hh = [D[0]], trades = [];
+        for (let t = 1; t <= N; t++) { const lo = D[t] - WD[t], hi = D[t] + WD[t], prev = Hh[t - 1], h = Math.min(hi, Math.max(lo, prev)); if (Math.abs(h - prev) > 1e-9) trades.push(t); Hh.push(h); }
+        const X = t => L + t * (W - L - R) / N, Y = v => T0 + (1 - v) * (H - T0 - B);
+        const line = arr => arr.map((v, t) => `${t ? 'L' : 'M'}${X(t).toFixed(1)} ${Y(v).toFixed(1)}`).join(' ');
+        const up = D.map((d, t) => Math.min(1, d + WD[t])), lo = D.map((d, t) => Math.max(0, d - WD[t]));
+        const area = line(up) + ' ' + lo.map((v, t) => [t, v]).reverse().map(([t, v]) => `L${X(t).toFixed(1)} ${Y(v).toFixed(1)}`).join(' ') + ' Z';
+        let hp = `M${X(0)} ${Y(Hh[0]).toFixed(1)}`; for (let t = 1; t <= N; t++) hp += ` H${X(t).toFixed(1)} V${Y(Hh[t]).toFixed(1)}`;
+        svg.innerHTML = `<g class="ax"><text x="2" y="${Y(1) + 4}">1.0</text><text x="2" y="${Y(.5) + 4}">0.5</text><text x="2" y="${Y(0) + 4}">0.0</text><text x="${L}" y="${H - 6}">t = 0</text><text x="${W - R}" y="${H - 6}" text-anchor="end">40 rebalancing dates</text></g>
+          <line x1="${L}" x2="${W - R}" y1="${Y(.5)}" y2="${Y(.5)}" stroke="var(--line2)"/>
+          <path class="bf" d="${area}"/><path class="be" d="${line(up)}"/><path class="be" d="${line(lo)}"/><path class="bd" d="${line(D)}"/>
+          <path class="hp" d="${hp}"/>${trades.map(t => `<circle class="tr" cx="${X(t).toFixed(1)}" cy="${Y(Hh[t]).toFixed(1)}" r="3.2" data-t="${t}"/>`).join('')}`;
+        const hpEl = $('.hp', svg), len = hpEl.getTotalLength(), dots = $$('.tr', svg);
+        if (REDUCE) { dots.forEach(d => d.classList.add('on')); }
+        else {
+          hpEl.style.strokeDasharray = len; hpEl.style.strokeDashoffset = len;
+          const t0 = performance.now() + 450, dur = 2600;
+          const step = now => { const k = Math.min(1, Math.max(0, (now - t0) / dur)); hpEl.style.strokeDashoffset = (len * (1 - k)).toFixed(1); const tt = k * N; dots.forEach(d => d.classList.toggle('on', +d.dataset.t <= tt)); if (k < 1 && svg.isConnected) requestAnimationFrame(step); };
+          requestAnimationFrame(step);
+        }
+      }
+    },
+    learned: 'The gap between my first attempt and this one is not “neural networks vs formulas” — both use neural networks. It is the training signal: this network optimises the risk of the full P&L directly, with the right structure (a no-trade band), and beats the textbook. Second lesson: check the accounting before believing a result, especially a profitable one.',
+    quote: 'Predicting the market and managing risk in the market are two entirely different problems. The second one is solvable, if you optimise the right objective.' }
 ];
 const VERD = [
   ['Can technical ML predict prices?', '', 'No', 'markets price in public information too fast.'],
   ['Can NLP on earnings calls add edge?', '', 'Not at scale', 'signal exists but vanishes at scale; context matters.'],
-  ['Can ML hedge better than formulas?', 'yes', 'Yes', 'not with off-the-shelf RL — yes when trained on the risk of the full P&L: 12.88 vs 13.58 premium at 1% cost.'],
-  ['Can we model what the market believes?', 'yes', 'Yes', 'IV surfaces are learnable, smooth, and forecastable in normal regimes.']];
+  ['Can we model what the market believes?', 'yes', 'Yes', 'IV surfaces are learnable, smooth, and forecastable in normal regimes.'],
+  ['Can ML hedge better than the textbook?', 'yes', 'Yes · key result', 'not with off-the-shelf RL — yes when trained end-to-end on the risk of the full P&L: 12.88 vs 13.58 at 1% cost.', 1]];
 function initML(rootEl) {
   const tabs = $('[data-tabs]', rootEl), panel = $('[data-panel]', rootEl);
   let cur = 0, fi = 0, busy = false, queued = null;
-  tabs.innerHTML = '<span class="tab-ind" aria-hidden="true"></span>' + CH.map((c, i) => `<button class="tab" role="tab" type="button" aria-selected="${i === 0}"><span class="n">CHAPTER ${c.n}</span><span class="t">${c.tab}</span><span class="s">${c.s}</span></button>`).join('');
+  tabs.innerHTML = '<span class="tab-ind" aria-hidden="true"></span>' + CH.map((c, i) => `<button class="tab" role="tab" type="button" aria-selected="${i === 0}"><span class="n">CHAPTER ${c.n}${c.key ? '<span class="key">Key result</span>' : ''}</span><span class="t">${c.tab}</span><span class="s">${c.s}</span></button>`).join('');
   const ind = $('.tab-ind', tabs), tabBtns = $$('.tab', tabs);
   const moveInd = i => { const t = tabBtns[i]; ind.style.width = t.offsetWidth + 'px'; ind.style.height = t.offsetHeight + 'px'; ind.style.transform = `translate(${t.offsetLeft}px, ${t.offsetTop}px)`;
     if (tabs.scrollWidth > tabs.clientWidth) tabs.scrollTo({ left: t.offsetLeft - 16, behavior: REDUCE ? 'auto' : 'smooth' }); };
   addEventListener('resize', () => moveInd(cur));
-  $('[data-verdicts]', rootEl).innerHTML = VERD.map((v, i) => `<div class="verd" role="button" tabindex="0" data-go="${i}"><span class="n">0${i + 1}</span><span class="q">${v[0]}</span><span class="a"><span class="pill ${v[1]}">${v[2]}</span>${v[3]}</span></div>`).join('');
+  $('[data-verdicts]', rootEl).innerHTML = VERD.map((v, i) => `<div class="verd${v[4] ? ' key' : ''}" role="button" tabindex="0" data-go="${i}"><span class="n">0${i + 1}</span><span class="q">${v[0]}</span><span class="a"><span class="pill ${v[1]}">${v[2]}</span>${v[3]}</span></div>`).join('');
   const media = f => f.cmp
     ? `<div class="cmp"><img src="${FIG + f.cmp[1]}"${wh(f.cmp[1])} alt="Neural-network smoothed implied volatility surface"><div class="top"><img src="${FIG + f.cmp[0]}" alt="Raw implied volatility surface (cubic interpolation)"></div><span class="ln"></span><span class="kn" aria-hidden="true">⇆</span><span class="lb l">RAW</span><span class="lb r">NN SMOOTHED</span><input type="range" min="0" max="100" value="50" aria-label="Compare raw and smoothed surfaces"></div>`
     : `<button class="fig-btn" type="button" aria-label="Enlarge figure"><img src="${FIG + f.f}"${wh(f.f)} alt="${f.cap.replace(/"/g, '&quot;')}"></button>`;
@@ -1166,16 +1330,19 @@ function initML(rootEl) {
   function build(i) {
     const c = CH[i]; let k = 0; const st = () => `class="st" style="--k:${k++}"`;
     const mx = c.bars ? Math.max(...c.bars.map(b => b[1])) : 1;
-    panel.innerHTML = `<div ${st()}><div class="ch-k">${c.kick}</div><h3 class="ch-q">${c.tab}</h3><p class="ch-a">${c.appr}</p></div>
+    panel.innerHTML = `<div ${st()}><div class="ch-k">${c.kick}</div><h3 class="ch-q">${c.q || c.tab}</h3><p class="ch-a">${c.appr}</p></div>
       <div ${st()}><div class="metrics">${c.metrics.map(m => `<div class="metric${m[2] ? ' hi' : ''}"><b>${m[0]}</b><span>${m[1]}</span></div>`).join('')}</div></div>
+      ${c.pre ? c.pre.map(h => `<div ${st()}>${h}</div>`).join('') : ''}
       ${c.bars ? `<div ${st()}><div class="bars"><h4>Premium a dealer needs — lower is better</h4><p>Same 20,000 test paths, 1% transaction cost.</p>${c.bars.map((b, j) => `<div class="br${b[2] ? ' best' : ''}"><span class="lb2">${b[0]}</span><span class="tk"><span class="fl" style="--d:${300 + j * 110}ms" data-w="${(b[1] / mx * 100).toFixed(1)}"></span></span><span class="v">${b[1].toFixed(2)}</span></div>`).join('')}</div></div>` : ''}
       <div ${st()}><figure class="fig"><div data-m>${c.figs.map((f, j) => `<div class="layer${j === 0 ? ' on cur' : ''}">${media(f)}</div>`).join('')}</div><figcaption class="fig-cap"><span data-c>${c.figs[0].cap}</span>${c.figs.length > 1 ? `<span class="fig-nav"><span class="cnt" data-n>1 / ${c.figs.length}</span><button type="button" data-step="-1" aria-label="Previous figure">←</button><button type="button" data-step="1" aria-label="Next figure">→</button></span>` : ''}</figcaption></figure>
       ${c.figs.length > 1 ? `<div class="thumbs">${c.figs.map((f, j) => `<button type="button" data-th="${j}" aria-current="${j === 0}" aria-label="Figure ${j + 1}"><img src="${FIG + (f.f || f.cmp[1])}" alt=""></button>`).join('')}</div>` : ''}</div>
+      ${c.post ? `<div ${st()}>${c.post.join('')}</div>` : ''}
       <div ${st()}><div class="lesson"><p><b style="font-weight:500;color:var(--ink)">What we learned — </b>${c.learned}</p><q>${c.quote}</q></div></div>`;
     fadeImgs(panel); decodeAll($('[data-m]', panel));
     if (c.figs.length > 1) swipeable($('[data-m]', panel), () => show(fi - 1, -1), () => show(fi + 1, 1));
-    setTimeout(() => $$('.fl', panel).forEach(f => f.style.width = f.dataset.w + '%'), 60);
+    setTimeout(() => $$('.fl[data-w]', panel).forEach(f => f.style.width = f.dataset.w + '%'), 60);
     bind();
+    if (c.init) c.init(panel);
   }
   function render(i, first) {
     if (busy) { queued = i; return; }
@@ -1219,6 +1386,8 @@ function initML(rootEl) {
   tabs.addEventListener('keydown', e => { const d = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[e.key]; if (!d) return; e.preventDefault(); const n = (cur + d + CH.length) % CH.length; tabBtns[n].focus(); render(n); });
   $('[data-verdicts]', rootEl).addEventListener('click', e => { const r = e.target.closest('[data-go]'); if (r) { const sc = rootEl.closest('.sh-scroll'); if (sc) sc.scrollTo({ top: sc.scrollTop + tabs.getBoundingClientRect().top - 80, behavior: REDUCE ? 'auto' : 'smooth' }); setTimeout(() => render(+r.dataset.go), REDUCE ? 0 : 450); } });
   render(0, true);
+  const keyBtn = $('[data-key]', rootEl);
+  if (keyBtn) keyBtn.addEventListener('click', () => { const sc = rootEl.closest('.sh-scroll'); if (sc) sc.scrollTo({ top: sc.scrollTop + tabs.getBoundingClientRect().top - 80, behavior: REDUCE ? 'auto' : 'smooth' }); setTimeout(() => render(CH.length - 1), REDUCE ? 0 : 450); });
   requestAnimationFrame(() => moveInd(0));
   setTimeout(() => moveInd(0), 700);
 }
