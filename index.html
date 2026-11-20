@@ -2261,7 +2261,7 @@ function initMlsp(el) {
 /* ---------------- sheet: opens from the clicked card ---------------- */
 const sheet = $('#sheet'), shBody = $('#shBody'), shTitle = $('#shTitle');
 const TITLES = { ml: ['ML × Quant Finance', 'Research'], summexa: ['Summexa AI', 'Founder project'], nanogpt: ['NanoGPT', 'Personal'], riscv: ['Mini RISC-V Processor', 'EPFL'], digcom: ['Digital Communication', 'DTU'], mlsp: ['ML for Signal Processing', 'DTU'], finance: ['Personal Finance Project', 'Personal'], ai: ['Artificial Intelligence', 'EPFL'], swc: ['Software Construction', 'EPFL'], oop: ['Object-Oriented Programming', 'EPFL'], sys: ['Systems Programming', 'EPFL'], yale: ['Financial Markets', 'Coursera'] };
-let fromRect = null, phaseT = null, closing = false, stopSheetLife = null;
+let fromRect = null, fromEl = null, phaseT = null, closing = false, stopSheetLife = null;
 function openSheet(key, el) {
   shBody.innerHTML = $('#t-' + key).innerHTML;
   shTitle.innerHTML = `${TITLES[key][0]} <span>· ${TITLES[key][1]}</span>`;
@@ -2274,7 +2274,7 @@ function openSheet(key, el) {
   const ph = $('[data-phases]', shBody); clearInterval(phaseT);
   if (ph) { const p = $$('.phase', ph); let k = 0; const st = () => { p.forEach((x, j) => x.classList.toggle('on', j === k)); k = (k + 1) % p.length; }; st(); if (!REDUCE) phaseT = setInterval(st, 900); }
   sheet.showModal(); $('.sh-scroll', sheet).scrollTop = 0; document.body.classList.add('lock');
-  fromRect = el ? el.getBoundingClientRect() : null;
+  fromEl = el || null; fromRect = el ? el.getBoundingClientRect() : null;
   if (fromRect && !REDUCE) {
     const r = fromRect, ins = `inset(${r.top}px ${innerWidth - r.right}px ${innerHeight - r.bottom}px ${r.left}px round 14px)`;
     sheet.animate({ clipPath: [ins, 'inset(0px 0px 0px 0px round 0px)'] }, { duration: 620, easing: 'cubic-bezier(.2,.8,.2,1)' });
@@ -2282,11 +2282,31 @@ function openSheet(key, el) {
 }
 function closeSheet() {
   if (closing || !sheet.open) return; closing = true; clearInterval(phaseT); if (mlspOff) { mlspOff(); mlspOff = null; } if (stopSheetLife) { stopSheetLife(); stopSheetLife = null; }
-  const done = () => { sheet.close(); closing = false; if (!info.classList.contains('open')) document.body.classList.remove('lock'); };
-  if (fromRect && !REDUCE) {
-    const r = fromRect, ins = `inset(${r.top}px ${innerWidth - r.right}px ${innerHeight - r.bottom}px ${r.left}px round 14px)`;
-    sheet.animate({ clipPath: ['inset(0px 0px 0px 0px round 0px)', ins], opacity: [1, .6] }, { duration: 420, easing: 'cubic-bezier(.4,0,.2,1)' }).onfinish = done;
-  } else done();
+  const sc = $('.sh-scroll', sheet), anims = [];
+  const done = () => { sheet.close(); anims.forEach(a => a.cancel()); closing = false; if (!info.classList.contains('open')) document.body.classList.remove('lock'); };
+  if (REDUCE) return done();
+  const bd = o => { try { anims.push(sheet.animate({ opacity: [1, 0] }, { pseudoElement: '::backdrop', fill: 'forwards', ...o })); } catch (e) {} };
+  // 1 · the content steps back and dissolves, so a clean surface (not a cropped page) travels back
+  anims.push(sc.animate([{ opacity: 1, transform: 'none', filter: 'blur(0px)' }, { opacity: 0, transform: 'scale(.97) translateY(-6px)', filter: 'blur(6px)' }],
+    { duration: 240, easing: 'cubic-bezier(.4,0,1,1)', fill: 'forwards' }));
+  const el = fromEl && fromEl.isConnected ? fromEl : null, r = el && el.getBoundingClientRect();
+  if (r && r.width && r.bottom > 0 && r.top < innerHeight) {
+    // 2 · the surface glides back into the card it came from (re-measured now), 3 · and melts into it on arrival
+    const rad = Math.max(10, parseFloat(getComputedStyle(el).borderTopLeftRadius) || 0);
+    const ins = `inset(${r.top}px ${innerWidth - r.right}px ${innerHeight - r.bottom}px ${r.left}px round ${rad}px)`;
+    const D = 620;
+    const a = sheet.animate([
+      { clipPath: 'inset(0px 0px 0px 0px round 0px)', opacity: 1 },
+      { opacity: 1, offset: .7 },
+      { clipPath: ins, opacity: 0 }], { duration: D, delay: 60, easing: 'cubic-bezier(.32,0,.15,1)', fill: 'forwards' });
+    anims.push(a); bd({ duration: D * .85, delay: 60, easing: 'ease-out' });
+    a.onfinish = () => { done(); el.animate({ transform: ['scale(.985)', 'scale(1.006)', 'scale(1)'] }, { duration: 460, easing: 'cubic-bezier(.34,1.56,.64,1)' }); };
+  } else {
+    // opened from the ⌘K menu, or the card is off screen: a soft fade and scale instead
+    const a = sheet.animate([{ opacity: 1, transform: 'none' }, { opacity: 0, transform: 'scale(.985)' }], { duration: 340, delay: 80, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'forwards' });
+    anims.push(a); bd({ duration: 340, delay: 80 });
+    a.onfinish = done;
+  }
 }
 sheet.addEventListener('cancel', e => { e.preventDefault(); closeSheet(); });
 sheet.addEventListener('keydown', e => { if (!['ArrowLeft', 'ArrowRight'].includes(e.key) || e.target.closest('.tab, input')) return; const b = $(`#shBody [data-step="${e.key === 'ArrowLeft' ? -1 : 1}"]`); if (b) { e.preventDefault(); b.click(); } });
