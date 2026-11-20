@@ -425,6 +425,22 @@ body.info-open main{transform:translateY(48px) scale(.985);opacity:.35}
 .btn span{transition:transform .3s var(--ease)}
 .btn:hover span{transform:translate(2px,-2px)}
 .links{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px}
+/* certificate (Financial Markets sheet) */
+.cert{margin:30px 0 0;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--card)}
+.cert-img{position:relative;display:block;width:100%;padding:clamp(14px,3vw,32px);cursor:zoom-in;background:radial-gradient(120% 90% at 50% 0%,var(--bg2),var(--card))}
+.cert-img img{display:block;width:100%;height:auto;border-radius:6px;box-shadow:0 0 0 1px rgba(0,0,0,.06),0 24px 50px -24px rgba(0,0,0,.45);transition:transform .7s var(--ease),box-shadow .7s var(--ease)}
+.cert-img:hover img{transform:scale(1.012) translateY(-2px);box-shadow:0 0 0 1px rgba(0,0,0,.06),0 34px 60px -26px rgba(0,0,0,.5)}
+.cert-open{position:absolute;right:clamp(22px,4vw,44px);bottom:clamp(22px,4vw,44px);font:500 11.5px/1 var(--mono);padding:8px 11px;border-radius:999px;background:rgba(11,11,11,.78);color:#F2F2F2;opacity:0;transform:translateY(4px);transition:opacity .3s,transform .4s var(--spring)}
+.cert-img:hover .cert-open,.cert-img:focus-visible .cert-open{opacity:1;transform:none}
+.cert figcaption{display:flex;justify-content:space-between;align-items:center;gap:14px 20px;flex-wrap:wrap;padding:16px clamp(16px,2.4vw,24px);border-top:1px solid var(--line)}
+.cert-meta b{display:block;font-weight:500;font-size:14.5px}
+.cert-meta span{display:block;font-size:13px;color:var(--dim);margin-top:2px}
+.cert-act{display:flex;gap:8px;flex-wrap:wrap}
+.btn.pri{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn.pri:hover{background:var(--ink);border-color:var(--ink);opacity:.88}
+.btn .dl{transition:transform .3s var(--ease)}
+.btn:hover .dl{transform:translateY(2px)}
+@media (hover:none){ .cert-open{display:none} }
 .note{margin-top:28px;padding:18px 20px;border-radius:14px;background:var(--bg2);border:1px solid var(--line);font-size:14.5px;color:var(--ink2)}
 .note b{display:block;font:500 11.5px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--acc);margin-bottom:8px}
 .hr{height:1px;background:var(--line);margin:clamp(36px,5vw,56px) 0}
@@ -673,7 +689,7 @@ details.more li{margin:5px 0}
 #lb{width:min(1200px,100% - 24px);max-width:none;max-height:none;margin:auto;padding:0;border:0;background:transparent}
 #lb::backdrop{background:rgba(0,0,0,.7);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
 .lb-in{position:relative;background:#fff;border-radius:16px;padding:14px;color:#111;transform-origin:50% 50%;will-change:transform}
-.lb-layer{position:absolute;inset:0;display:grid;place-items:center}
+.lb-layer{position:absolute;inset:0;display:grid;place-items:center;grid-template:100% / 100%}
 .lb-media{position:relative}
 .lb-media{display:grid;place-items:center;height:min(76vh,760px)}
 .lb-media img{width:100%;height:100%;object-fit:contain;display:block}
@@ -866,7 +882,7 @@ details.more li{margin:5px 0}
     <button class="row rv" type="button" data-sheet="swc"><b>Software Construction</b><span class="c">Software Engineering · EPFL</span><span class="l">Java / Scala</span><span class="ar">↗</span></button>
     <button class="row rv" type="button" data-sheet="oop"><b>Object-Oriented Programming</b><span class="c">OOP &amp; design patterns · EPFL</span><span class="l">Java</span><span class="ar">↗</span></button>
     <button class="row rv" type="button" data-sheet="sys"><b>Systems Programming</b><span class="c">Systems-Oriented Programming · EPFL</span><span class="l">C</span><span class="ar">↗</span></button>
-    <button class="row rv" type="button" data-sheet="yale"><b>Financial Markets</b><span class="c">Yale University — Robert Shiller · Coursera</span><span class="l">Course</span><span class="ar">↗</span></button>
+    <button class="row rv" type="button" data-sheet="yale"><b>Financial Markets</b><span class="c">Yale University — Robert Shiller · Coursera</span><span class="l">Certificate</span><span class="ar">↗</span></button>
   </div>
 </section>
 
@@ -1232,6 +1248,19 @@ details.more li{margin:5px 0}
   <div class="kick reveal" style="--d:200ms">Yale University — Robert Shiller · Coursera</div>
   <h2 class="sh-h reveal" style="--d:260ms">Financial <em>Markets</em></h2>
   <p class="sh-lead reveal" style="--d:320ms">Comprehensive course on financial markets taught by Nobel Prize winner Robert Shiller. Covers equity and bond markets, derivatives, portfolio management, market psychology and global financial institutions.</p>
+  <figure class="cert reveal" style="--d:400ms">
+    <button class="cert-img" type="button" data-cert aria-label="View the certificate full size">
+      <img src="assets/yale-certificate.webp" alt="Coursera course certificate for Financial Markets, an online course authorized by Yale University, awarded to César Garin on November 20, 2026" width="1600" height="1236" decoding="async">
+      <span class="cert-open">View full size ↗</span>
+    </button>
+    <figcaption>
+      <div class="cert-meta"><b>Course certificate</b><span>Completed Nov 20, 2026 · identity verified by Coursera</span></div>
+      <div class="cert-act">
+        <a class="btn pri" href="https://coursera.org/verify/VXXV8CK1LTKK" target="_blank" rel="noopener">Verify on Coursera <span>↗</span></a>
+        <a class="btn" href="assets/Yale_Financial_Market_Coursera.pdf" download="Cesar_Garin_Yale_Financial_Markets_Certificate.pdf">Download PDF <span class="dl">↓</span></a>
+      </div>
+    </figcaption>
+  </figure>
   <ul class="tags"><li class="tag">Financial Markets</li><li class="tag">Derivatives</li><li class="tag">Portfolio Management</li><li class="tag">Risk Analysis</li><li class="tag">Financial Institutions</li></ul>
 </template>
 
@@ -2268,6 +2297,7 @@ function openSheet(key, el) {
   if (key === 'ml') initML(shBody);
   if (key === 'summexa') initTour(shBody);
   if (key === 'digcom') initDigcom(shBody);
+  if (key === 'yale') { const c = $('[data-cert]', shBody); c.addEventListener('click', () => openLB([{ src: 'assets/yale-certificate.webp', cap: 'Financial Markets — Yale University via Coursera · completed Nov 20, 2026' }], 0, $('img', c))); }
   if (key === 'mlsp') initMlsp(shBody); else if (mlspOff) { mlspOff(); mlspOff = null; }
   if (stopSheetLife) { stopSheetLife(); stopSheetLife = null; }
   const sl = $('[data-life-sheet]', shBody); if (sl) requestAnimationFrame(() => { stopSheetLife = life(sl, { W: 64, H: 28, interactive: true }); });
@@ -2565,6 +2595,7 @@ const CMDS = [
   ['Open GitHub', 'Link', () => window.open('https://github.com/cesgrn', '_blank', 'noopener')],
   ['Open LinkedIn', 'Link', () => window.open('https://linkedin.com/in/césar-garin', '_blank', 'noopener')],
   ['Download résumé', 'Link', () => window.open('assets/Garin_Cesar_Resume.pdf', '_blank', 'noopener')],
+  ['Yale certificate · Financial Markets', 'Link', () => window.open('https://coursera.org/verify/VXXV8CK1LTKK', '_blank', 'noopener')],
   ['Switch light / dark', 'Action', () => setTheme(isDark() ? 'light' : 'dark')]];
 let ks = 0, kv = CMDS;
 const kr = () => { const q = kIn.value.trim().toLowerCase(); kv = CMDS.filter(c => !q || (c[0] + c[1]).toLowerCase().includes(q)); ks = Math.min(ks, Math.max(0, kv.length - 1));
